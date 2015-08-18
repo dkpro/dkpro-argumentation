@@ -1,6 +1,6 @@
-# DKPro Argumentation - Java framework for argumentation mining
+# DKPro Argumentation
 
-A minimalistic Java library for demonstration purposes of working with DKPro/UIMA typesystem for argumentation annotation.
+Java framework for demonstration purposes of working with DKPro/UIMA typesystem for argumentation annotation and argumentation mining.
 
 Version 0.0.2
 
