@@ -1,0 +1,4 @@
+classpath*:desc/types/ArgumentationTypeSystem.xml
+classpath*:desc/types/WebArgumentMetadata.xml
+classpath*:desc/types/PersuasivenessAnnotationMetaData.xml
+classpath*:desc/types/BIOArgumentAnnotation.xml

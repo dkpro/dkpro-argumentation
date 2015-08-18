@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2014
+  ~ Ubiquitous Knowledge Processing (UKP) Lab
+  ~ Technische Universität Darmstadt
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+	<name>PersuasivenessAnnotationMetaData</name>
+	<description>Type system for meta data of documents annotated with its persuasiveness
+	</description>
+	<version>1.0</version>
+	<vendor>(c) 2014 UKP</vendor>
+	<types>
+		<typeDescription>
+			<name>de.tudarmstadt.ukp.dkpro.argumentation.types.PersuasivenessAnnotationMetaData
+			</name>
+			<description>Metadata for storing annotations of persuasiveness</description>
+			<supertypeName>uima.tcas.DocumentAnnotation</supertypeName>
+			<features>
+				<featureDescription>
+					<name>annotator</name>
+					<description>Annotator's name or id (mandatory)</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>isPersuasive</name>
+					<description>True, if annotator labeled the document as persuasive (=P1), false
+						otherwise (mandatory)
+					</description>
+					<rangeTypeName>uima.cas.Boolean</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>labelDetailed</name>
+					<description>Annotated label as string (either 'P1' = persuasive or 'Px' =
+						non-persuasive with some sub-categories). (not required)
+					</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>isGold</name>
+					<description>True, if this annotation is the 'gold' annotation; false
+						otherwise
+					</description>
+					<rangeTypeName>uima.cas.Boolean</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>comment</name>
+					<description>Comments from the annotator</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>annotationBatchName</name>
+					<description>Name of the annotation batch (e.g. 'training', etc.) (not
+						required)
+					</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>conflictResolvingAnnotation</name>
+					<description>Determines whether this annotation was added in order to resolve
+						conflicts among other annotators (not required)
+					</description>
+					<rangeTypeName>uima.cas.Boolean</rangeTypeName>
+				</featureDescription>
+			</features>
+		</typeDescription>
+	</types>
+</typeSystemDescription>

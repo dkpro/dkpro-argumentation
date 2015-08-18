@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2014
+  ~ Ubiquitous Knowledge Processing (UKP) Lab
+  ~ Technische Universität Darmstadt
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+	<name>WebArgumentMetadata</name>
+	<description>Type system for documents with argument annotation</description>
+	<version>1.0</version>
+	<vendor>(c) 2014 DIPF-UKP I.H.</vendor>
+	<types>
+		<typeDescription>
+			<name>de.tudarmstadt.ukp.dkpro.argumentation.types.WebArgumentMetadata</name>
+			<description>Metadata for web documents (comments, forum posts, blogs)</description>
+			<supertypeName>uima.tcas.DocumentAnnotation</supertypeName>
+			<features>
+				<featureDescription>
+					<name>author</name>
+					<description>Author of the document (not mandatory)</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>date</name>
+					<description>Date (not mandatory)</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>docType</name>
+					<description>Type of the document - artcomment, forumpost, blogpost, article</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>origUrl</name>
+					<description>Url of the document</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>topic</name>
+					<description>Topic of the discussed controversy</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>thumbsUp</name>
+					<description>ThumbsUp (not mandatory)</description>
+					<rangeTypeName>uima.cas.Integer</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>thumbsDown</name>
+					<description>ThumbsDown (not mandatory)</description>
+					<rangeTypeName>uima.cas.Integer</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>origId</name>
+					<description>Unique ID of the document that is used across all applications</description>
+					<rangeTypeName>uima.cas.Integer</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>notes</name>
+					<description>Notes (not mandatory; remove later?)</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+				<featureDescription>
+					<name>title</name>
+					<description>Title of the (related) article</description>
+					<rangeTypeName>uima.cas.String</rangeTypeName>
+				</featureDescription>
+			</features>
+		</typeDescription>
+	</types>
+</typeSystemDescription>
