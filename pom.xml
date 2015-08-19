@@ -29,6 +29,7 @@
 
 	<properties>
 		<dkpro.version>1.6.2</dkpro.version>
+		<java.version>1.7</java.version>
 	</properties>
 
 	<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
@@ -37,6 +38,44 @@
 	<packaging>pom</packaging>
 
 	<name>DKPro Argumentation</name>
+	<description>A general Java framework for argumentation mining</description>
+	<url>https://github.com/dkpro/dkpro-argumentation</url>
+
+	<scm>
+		<connection>scm:git:git://github.com/dkpro/dkpro-argumentation</connection>
+		<developerConnection>scm:git:git://github.com/dkpro/dkpro-argumentation.git
+		</developerConnection>
+		<url>https://github.com/dkpro/dkpro-argumentation</url>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/dkpro/dkpro-argumentation/issues</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Ubiquitous Knowledge Processing (UKP) Lab, Technische Universität Darmstadt</name>
+		<url>http://www.ukp.tu-darmstadt.de/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Ivan Habernal</name>
+			<email>habernal@ukp.informatik.tu-darmstadt.de</email>
+		</developer>
+		<developer>
+			<name>Christian Stab</name>
+			<email>stab@ukp.informatik.tu-darmstadt.de</email>
+		</developer>
+	</developers>
 
 	<modules>
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.types</module>
