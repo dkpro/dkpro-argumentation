@@ -9,9 +9,11 @@ Version 0.0.2
 DKPro Argumentation is available from Maven Central. For working with the UIMA type system, add the following dependencies to your `pom.xml`
 
 ```
-<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
-<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
-<version>0.0.2</version>
+<dependency>
+    <groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
+    <artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
+    <version>0.0.2</version>
+</dependency>
 ```
 
 ## Examples
