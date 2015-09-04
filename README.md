@@ -61,21 +61,39 @@ uima.tcas.Annotation
       +- de.tudarmstadt.ukp.dkpro.argumentation.types.Same
 ```
 
-### de.tudarmstadt.ukp.dkpro.argumentation.io
+### IO
 
 Contains ``ArgumentDumpWriter`` class that debugs all argument annotations in a document to the file/stdout.
 
-### de.tudarmstadt.ukp.dkpro.argumentation.misc
+### Misc
 
 Provides classes to easily operate with argument component annotations.
 
-### de.tudarmstadt.ukp.dkpro.argumentation.preprocessing
+### Preprocessing
 
 Contains several annotators for casting the problem of argument component identification as BIO tagging (i.e. ``ArgumentTokenBIOAnnotator``)
 
-## Examples
+### Examples
 
-See https://github.com/habernal/dkpro-argumentation-tutorial
+#### Example project for reading annotated data
+
+as shown in
+
+> Habernal, I., Eckle-Kohler, J., & Gurevych, I. (2014). Argumentation Mining on the Web from Information Seeking Perspective. In E. Cabrio, S. Villata, & A. Wyner (Eds.), Proceedings of the Workshop on Frontiers and Connections between Argumentation Theory and Natural Language Processing (pp. 26-39). Bertinoro, Italy: CEUR-WS. Retrieved from http://ceur-ws.org/Vol-1341/
+
+##### Requirements
+
+- Annotated data
+  - packaged separately, available at https://www.ukp.tu-darmstadt.de/data/argumentation-mining/argument-annotated-user-generated-web-discourse/
+
+##### How-to
+
+1. Modify paths to gold data
+  - Modify `de.tudarmstadt.ukp.dkpro.argumentation.tutorial.ArgumentationCorpusDebugger` and set the `annotatedCorpusDir` variable to point to the gold data located in `gold.data.toulmin` directory
+2. Run `ArgumentationCorpusDebugger`
+  - It will print annotated argument components, relations, and other info to the std. out
+3. Explore it further!
+  - Have a look at `de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `de.tudarmstadt.ukp.dkpro.argumentation.0.0.2` package which shows how to access the argument components, their text, tokens, sentences, etc.
 
 
 &copy; 2013-2015 UKP
