@@ -10,7 +10,7 @@ DKPro Argumentation is available from Maven Central. For working with the UIMA t
 
 ```
 <dependency>
-    <groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
+    <groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
     <artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
     <version>0.0.2</version>
 </dependency>
