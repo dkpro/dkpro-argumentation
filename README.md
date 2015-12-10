@@ -23,45 +23,7 @@ The UIMA type system is the central part of DKPro Argumentation. It enables to a
 
 The class hierarchy contains two central classes, ``ArgumentComponent`` and ``ArgumentRelation``.
 
-[DKPro-argumentation type system hierarchy](dkpro-argumentation-typesystem-draw.io.png)
-
-```
-uima.tcas.Annotation
-|
-+- de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit</name>
-   |      typeValue: uima.cas.String (Field for storing type value)
-   |      properties: uima.cas.String (Field for storing any additional information; String
-   |                                   serialization of java Properties)
-   |
-   +- de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent
-   |  |
-   |  +- de.tudarmstadt.ukp.dkpro.argumentation.types.Claim
-   |  |       stance: uima.cas.String
-   |  |
-   |  +- de.tudarmstadt.ukp.dkpro.argumentation.types.Premise
-   |  |  |
-   |  |  +- de.tudarmstadt.ukp.dkpro.argumentation.types.Backing
-   |  |
-   |  +- de.tudarmstadt.ukp.dkpro.argumentation.types.Rebuttal
-   |  |
-   |  +- de.tudarmstadt.ukp.dkpro.argumentation.types.Refutation
-   |  |
-   |  +- de.tudarmstadt.ukp.dkpro.argumentation.types.Citation
-   |  |
-   |  +- de.tudarmstadt.ukp.dkpro.argumentation.types.MajorClaim
-   |
-   +- de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation
-      |      source: de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit
-      |      target: de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit
-      |
-      +- de.tudarmstadt.ukp.dkpro.argumentation.types.Support
-      |
-      +- de.tudarmstadt.ukp.dkpro.argumentation.types.Attack
-      |
-      +- de.tudarmstadt.ukp.dkpro.argumentation.types.Detail
-      |
-      +- de.tudarmstadt.ukp.dkpro.argumentation.types.Same
-```
+![DKPro-argumentation type system hierarchy](dkpro-argumentation-typesystem-draw.io.png)
 
 ### IO
 
