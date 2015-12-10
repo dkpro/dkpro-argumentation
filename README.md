@@ -23,6 +23,8 @@ The UIMA type system is the central part of DKPro Argumentation. It enables to a
 
 The class hierarchy contains two central classes, ``ArgumentComponent`` and ``ArgumentRelation``.
 
+[DKPro-argumentation type system hierarchy](dkpro-argumentation-typesystem-draw.io.png)
+
 ```
 uima.tcas.Annotation
 |
