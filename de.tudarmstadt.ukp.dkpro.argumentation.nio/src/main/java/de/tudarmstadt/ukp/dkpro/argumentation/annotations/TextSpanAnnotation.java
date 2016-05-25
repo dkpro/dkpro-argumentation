@@ -1,0 +1,168 @@
+/*
+ * Copyright (c) the Department of Informatics, Technische Universität Darmstadt. All Rights Reserved.
+ *
+ * Unauthorized distribution of this file via any medium is strictly prohibited.
+ */
+package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
+
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+/**
+ * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @since Apr 29, 2016
+ *
+ */
+@JsonPropertyOrder({ "begin", "end" })
+public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -5564537471325147494L;
+
+	private final String annotationType;
+
+	private final int begin;
+
+	private final String coveredText;
+
+	private final int end;
+
+	private final transient int hashCode;
+
+	/**
+	 *
+	 */
+	public TextSpanAnnotation(final int begin, final int end, final String annotationType, final String coveredText) {
+		this.begin = begin;
+		this.end = end;
+		this.annotationType = annotationType;
+		this.coveredText = coveredText;
+
+		hashCode = createHashCode();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof TextSpanAnnotation)) {
+			return false;
+		}
+		final TextSpanAnnotation other = (TextSpanAnnotation) obj;
+		if (annotationType == null) {
+			if (other.annotationType != null) {
+				return false;
+			}
+		} else if (!annotationType.equals(other.annotationType)) {
+			return false;
+		}
+		if (begin != other.begin) {
+			return false;
+		}
+		if (coveredText == null) {
+			if (other.coveredText != null) {
+				return false;
+			}
+		} else if (!coveredText.equals(other.coveredText)) {
+			return false;
+		}
+		if (end != other.end) {
+			return false;
+		}
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotation#
+	 * getAnnotationType()
+	 */
+	@Override
+	public String getAnnotationType() {
+		return annotationType;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotation#
+	 * getBegin()
+	 */
+	@Override
+	public int getBegin() {
+		return begin;
+	}
+
+	/**
+	 * @return the coveredText
+	 */
+	public String getCoveredText() {
+		return coveredText;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotation#getEnd(
+	 * )
+	 */
+	@Override
+	public int getEnd() {
+		return end;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return hashCode;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("TextSpanAnnotation [begin=");
+		builder.append(begin);
+		builder.append(", end=");
+		builder.append(end);
+		builder.append(", annotationType=");
+		builder.append(annotationType);
+		builder.append(", coveredText=");
+		builder.append(coveredText);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	private int createHashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (annotationType == null ? 0 : annotationType.hashCode());
+		result = prime * result + begin;
+		result = prime * result + (coveredText == null ? 0 : coveredText.hashCode());
+		result = prime * result + end;
+		return result;
+	}
+
+}

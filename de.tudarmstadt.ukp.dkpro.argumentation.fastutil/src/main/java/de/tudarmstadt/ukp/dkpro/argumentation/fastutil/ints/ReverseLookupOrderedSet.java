@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Spliterator;
 
 import it.unimi.dsi.fastutil.ints.IntSortedSet;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -320,6 +321,11 @@ public final class ReverseLookupOrderedSet<E> implements List<E>, Serializable, 
 	@Override
 	public int size() {
 		return decorated.size();
+	}
+
+	@Override
+	public Spliterator<E> spliterator() {
+		return List.super.spliterator();
 	}
 
 	@Override

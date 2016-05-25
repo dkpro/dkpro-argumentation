@@ -23,7 +23,7 @@
 	<parent>
 		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
 		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
-		<version>0.0.2</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.misc</groupId>
 	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.misc</artifactId>
