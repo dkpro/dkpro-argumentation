@@ -84,6 +84,7 @@
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing</module>
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.misc</module>
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.examples</module>
+		<module>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</module>
 	</modules>
 
 	<dependencyManagement>

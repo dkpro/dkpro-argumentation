@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
+		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
+		<version>0.0.2</version>
+	</parent>
+
+	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</groupId>
+	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</artifactId>
+	<name>fastutil NLP</name>
+	<description>Extension classes to classes from fastutil especially used for data mining/NLP tasks.</description>
+	<inceptionYear>2016</inceptionYear>
+
+	<developers>
+		<developer>
+			<id>shore</id>
+			<name>Todd Shore</name>
+			<email>errantlinguist+github@gmail.com</email>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>it.unimi.dsi</groupId>
+			<artifactId>fastutil</artifactId>
+			<version>7.0.12</version>
+		</dependency>
+		<dependency>
+			<!-- Used to backport code using Java 8 classes to Java 7 -->
+			<groupId>net.sf.m-m-m</groupId>
+			<artifactId>mmm-util-backport-java.util.function</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+	</dependencies>
+</project>
+
