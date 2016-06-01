@@ -14,7 +14,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 import de.tudarmstadt.ukp.Sparse3DObjectMatrix;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.TextSpanAnnotation;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.UimaTextSpanAnnotationFactory;
+import de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima.TextSpanAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
 import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.InconsistentSpanAnnotationException;
 import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationException;
@@ -73,7 +73,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 		// First create a matrix of all annotations
 		// TODO: Refactor this into its own method
 		for (final ArgumentComponent argumentComponent : argumentComponents) {
-			final TextSpanAnnotation spanAnnotation = UimaTextSpanAnnotationFactory.getInstance()
+			final TextSpanAnnotation spanAnnotation = TextSpanAnnotationFactory.getInstance()
 					.apply(argumentComponent);
 			final int begin = spanAnnotation.getBegin();
 			final int end = spanAnnotation.getEnd();

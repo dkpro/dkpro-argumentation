@@ -3,22 +3,24 @@
  *
  * Unauthorized distribution of this file via any medium is strictly prohibited.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
+package de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima;
 
 import java.util.function.Function;
 
 import org.apache.uima.jcas.tcas.Annotation;
+
+import de.tudarmstadt.ukp.dkpro.argumentation.annotations.TextSpanAnnotation;
 
 /**
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since May 2, 2016
  *
  */
-public final class UimaTextSpanAnnotationFactory implements Function<Annotation, TextSpanAnnotation> {
+public final class TextSpanAnnotationFactory implements Function<Annotation, TextSpanAnnotation> {
 
 	/**
 	 * {@link SingletonHolder} is loaded on the first execution of
-	 * {@link UimaTextSpanAnnotationFactory#getInstance()} or the first access
+	 * {@link TextSpanAnnotationFactory#getInstance()} or the first access
 	 * to {@link SingletonHolder#INSTANCE}, not before.
 	 *
 	 * @author <a href="http://www.cs.umd.edu/~pugh/">Bill Pugh</a>
@@ -29,16 +31,16 @@ public final class UimaTextSpanAnnotationFactory implements Function<Annotation,
 	 */
 	private static final class SingletonHolder {
 		/**
-		 * A singleton instance of {@link UimaTextSpanAnnotationFactory}.
+		 * A singleton instance of {@link TextSpanAnnotationFactory}.
 		 */
-		private static final UimaTextSpanAnnotationFactory INSTANCE = new UimaTextSpanAnnotationFactory();
+		private static final TextSpanAnnotationFactory INSTANCE = new TextSpanAnnotationFactory();
 	}
 
-	public static UimaTextSpanAnnotationFactory getInstance() {
+	public static TextSpanAnnotationFactory getInstance() {
 		return SingletonHolder.INSTANCE;
 	}
 
-	private UimaTextSpanAnnotationFactory() {
+	private TextSpanAnnotationFactory() {
 	}
 
 	@Override
