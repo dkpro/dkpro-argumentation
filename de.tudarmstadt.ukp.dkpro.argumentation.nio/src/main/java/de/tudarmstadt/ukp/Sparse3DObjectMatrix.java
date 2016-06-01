@@ -14,6 +14,10 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 /**
+ * TODO: Replace this with an object matrix implementation from the library
+ * ultimately used for clustering in order to reduce the amount of code which
+ * needs to be written.
+ * 
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since Apr 29, 2016
  *
