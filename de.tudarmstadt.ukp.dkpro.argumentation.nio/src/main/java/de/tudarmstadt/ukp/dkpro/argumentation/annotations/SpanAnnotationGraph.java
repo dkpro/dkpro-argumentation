@@ -5,9 +5,11 @@
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,23 +28,47 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
  */
 public final class SpanAnnotationGraph<T extends SpanAnnotation> {
 
+	public static final String PROPERTY_RELATIONS = "relations";
+
+	public static final String PROPERTY_SPAN_ANNOTATIONS = "spanAnnotations";
+
 	private final int[] relationTransitionTable;
 
-	private transient final Int2ObjectMap<Int2ObjectMap<Map<String, T>>> spanAnnotationMatrix;
+	private transient final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix;
 
 	private final ReverseLookupOrderedSet<T> spanAnnotationVector;
 
-	/**
-	 * TODO: Make a constructor
-	 * {@code SpanAnnotationGraph(ReverseLookupObject2IntList<T>,
-	 * int[])} which generates a matrix based on a {@link Int2ObjectMap}
-	 * instance for passing to this constructor
-	 *
-	 * @param spanAnnotationVector
-	 *
-	 */
+	public SpanAnnotationGraph(
+			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
+			final int spanAnnotationMatrixSize, final int[] relationTransitionTable) {
+		this(new ReverseLookupOrderedSet<>(
+				SpanAnnotationMatrices.createList(spanAnnotationMatrix.int2ObjectEntrySet(), spanAnnotationMatrixSize)),
+				spanAnnotationMatrix, relationTransitionTable);
+	}
+
+	@JsonCreator
+	public SpanAnnotationGraph(@JsonProperty(PROPERTY_SPAN_ANNOTATIONS) final List<T> spanAnnotationVector,
+			@JsonProperty(PROPERTY_RELATIONS) final int[] relationTransitionTable) {
+		this(spanAnnotationVector instanceof ReverseLookupOrderedSet ? (ReverseLookupOrderedSet<T>) spanAnnotationVector
+				: new ReverseLookupOrderedSet<>(spanAnnotationVector),
+				SpanAnnotationMatrices.createMatrix(spanAnnotationVector).getBackingMap(), relationTransitionTable);
+	}
+
+	public SpanAnnotationGraph(final List<T> spanAnnotationVector,
+			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
+			final int[] relationTransitionTable) {
+		this(spanAnnotationVector instanceof ReverseLookupOrderedSet ? (ReverseLookupOrderedSet<T>) spanAnnotationVector
+				: new ReverseLookupOrderedSet<>(spanAnnotationVector), spanAnnotationMatrix, relationTransitionTable);
+	}
+
 	public SpanAnnotationGraph(final ReverseLookupOrderedSet<T> spanAnnotationVector,
-			final Int2ObjectMap<Int2ObjectMap<Map<String, T>>> spanAnnotationMatrix,
+			final int[] relationTransitionTable) {
+		this(spanAnnotationVector, SpanAnnotationMatrices.createMatrix(spanAnnotationVector).getBackingMap(),
+				relationTransitionTable);
+	}
+
+	public SpanAnnotationGraph(final ReverseLookupOrderedSet<T> spanAnnotationVector,
+			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
 			final int[] relationTransitionTable) {
 		this.spanAnnotationVector = spanAnnotationVector;
 		this.spanAnnotationMatrix = spanAnnotationMatrix;
@@ -75,7 +101,7 @@ public final class SpanAnnotationGraph<T extends SpanAnnotation> {
 	/**
 	 * @return the relationTransitionTable
 	 */
-	@JsonProperty("relations")
+	@JsonProperty(PROPERTY_RELATIONS)
 	public int[] getRelationTransitionTable() {
 		return relationTransitionTable;
 	}
@@ -84,14 +110,14 @@ public final class SpanAnnotationGraph<T extends SpanAnnotation> {
 	 * @return the spanAnnotationMatrix
 	 */
 	@JsonIgnore
-	public Int2ObjectMap<Int2ObjectMap<Map<String, T>>> getSpanAnnotationMatrix() {
+	public Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> getSpanAnnotationMatrix() {
 		return spanAnnotationMatrix;
 	}
 
 	/**
 	 * @return the spanAnnotationVector
 	 */
-	@JsonProperty("spanAnnotations")
+	@JsonProperty(PROPERTY_SPAN_ANNOTATIONS)
 	public ReverseLookupOrderedSet<T> getSpanAnnotationVector() {
 		return spanAnnotationVector;
 	}

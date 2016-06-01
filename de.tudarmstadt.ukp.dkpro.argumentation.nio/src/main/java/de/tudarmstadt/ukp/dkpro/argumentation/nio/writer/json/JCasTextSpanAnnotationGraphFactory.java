@@ -22,7 +22,6 @@ import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationNotFoundE
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
@@ -59,17 +58,16 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 		final Collection<ArgumentComponent> argumentComponents = JCasUtil.select(jCas, ArgumentComponent.class);
 		final int argumentComponentCount = argumentComponents.size();
 		LOG.info(String.format("Processing %d argument components.", argumentComponentCount));
-		// Just use the size directly here because it is assumed that spans
-		// don't overlap
-		final Int2ObjectMap<Int2ObjectMap<Map<String, TextSpanAnnotation>>> spanAnnotationMatrixMap = new Int2ObjectOpenHashMap<>(
-				argumentComponentCount + 1);
 
 		// The list of all annotations, their index in the list serving as their
 		// ID
 		final ReverseLookupOrderedSet<TextSpanAnnotation> spanAnnotationVector = new ReverseLookupOrderedSet<TextSpanAnnotation>(
 				new ArrayList<TextSpanAnnotation>(argumentComponentCount));
+		// Just use the size "argumentComponentCount" directly here because it
+		// is assumed that spans
+		// don't overlap
 		final Sparse3DObjectMatrix<String, TextSpanAnnotation> spanAnnotationMatrix = new Sparse3DObjectMatrix<>(
-				spanAnnotationMatrixMap, ESTIMATED_SPAN_BEGIN_TO_END_MAP_MAX_CAPACITY,
+				new Int2ObjectOpenHashMap<>(argumentComponentCount + 1), ESTIMATED_SPAN_BEGIN_TO_END_MAP_MAX_CAPACITY,
 				ESTIMATED_ANNOTATION_MAP_MAX_CAPACITY);
 
 		// First create a matrix of all annotations
@@ -110,8 +108,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 			}
 		}
 
-		return new SpanAnnotationGraph<TextSpanAnnotation>(spanAnnotationVector, spanAnnotationMatrixMap,
-				argumentTransitionTable);
+		return new SpanAnnotationGraph<TextSpanAnnotation>(spanAnnotationVector, argumentTransitionTable);
 	}
 
 }

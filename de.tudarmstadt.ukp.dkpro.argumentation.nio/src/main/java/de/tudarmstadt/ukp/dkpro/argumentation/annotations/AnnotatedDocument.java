@@ -5,12 +5,19 @@
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since May 10, 2016
  *
  */
 public final class AnnotatedDocument<T extends SpanAnnotation> {
+
+	public static final String PROPERTY_ANNOTATIONS = "annotations";
+
+	public static final String PROPERTY_TEXT = "text";
 
 	private final SpanAnnotationGraph<T> annotations;
 
@@ -19,7 +26,9 @@ public final class AnnotatedDocument<T extends SpanAnnotation> {
 	/**
 	 *
 	 */
-	public AnnotatedDocument(final String text, final SpanAnnotationGraph<T> annotations) {
+	@JsonCreator
+	public AnnotatedDocument(@JsonProperty(PROPERTY_TEXT) final String text,
+			@JsonProperty(PROPERTY_ANNOTATIONS) final SpanAnnotationGraph<T> annotations) {
 		this.text = text;
 		this.annotations = annotations;
 	}
@@ -27,6 +36,7 @@ public final class AnnotatedDocument<T extends SpanAnnotation> {
 	/**
 	 * @return the annotations
 	 */
+	@JsonProperty(PROPERTY_ANNOTATIONS)
 	public SpanAnnotationGraph<T> getAnnotations() {
 		return annotations;
 	}
@@ -38,6 +48,7 @@ public final class AnnotatedDocument<T extends SpanAnnotation> {
 	/**
 	 * @return the text
 	 */
+	@JsonProperty(PROPERTY_TEXT)
 	public String getText() {
 		return text;
 	}

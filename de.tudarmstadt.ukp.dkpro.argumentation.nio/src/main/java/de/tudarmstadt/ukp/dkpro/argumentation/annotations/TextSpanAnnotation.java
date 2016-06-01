@@ -7,6 +7,8 @@ package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -14,8 +16,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @since Apr 29, 2016
  *
  */
-@JsonPropertyOrder({ "begin", "end" })
+@JsonPropertyOrder({ TextSpanAnnotation.PROPERTY_BEGIN, TextSpanAnnotation.PROPERTY_END })
 public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
+
+	public static final String PROPERTY_ANNOTATION_TYPE = "annotationType";
+
+	public static final String PROPERTY_BEGIN = "begin";
+
+	public static final String PROPERTY_COVERED_TEXT = "coveredText";
+
+	public static final String PROPERTY_END = "end";
 
 	/**
 	 *
@@ -35,7 +45,10 @@ public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
 	/**
 	 *
 	 */
-	public TextSpanAnnotation(final int begin, final int end, final String annotationType, final String coveredText) {
+	@JsonCreator
+	public TextSpanAnnotation(@JsonProperty(PROPERTY_BEGIN) final int begin, @JsonProperty(PROPERTY_END) final int end,
+			@JsonProperty(PROPERTY_ANNOTATION_TYPE) final String annotationType,
+			@JsonProperty(PROPERTY_COVERED_TEXT) final String coveredText) {
 		this.begin = begin;
 		this.end = end;
 		this.annotationType = annotationType;
@@ -91,6 +104,7 @@ public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
 	 * getAnnotationType()
 	 */
 	@Override
+	@JsonProperty(PROPERTY_ANNOTATION_TYPE)
 	public String getAnnotationType() {
 		return annotationType;
 	}
@@ -102,6 +116,7 @@ public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
 	 * getBegin()
 	 */
 	@Override
+	@JsonProperty(PROPERTY_BEGIN)
 	public int getBegin() {
 		return begin;
 	}
@@ -109,6 +124,7 @@ public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
 	/**
 	 * @return the coveredText
 	 */
+	@JsonProperty(PROPERTY_COVERED_TEXT)
 	public String getCoveredText() {
 		return coveredText;
 	}
@@ -121,6 +137,7 @@ public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
 	 * )
 	 */
 	@Override
+	@JsonProperty(PROPERTY_END)
 	public int getEnd() {
 		return end;
 	}
