@@ -3,8 +3,8 @@ package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 public interface AnnotatedSpan extends Span {
 
 	/**
-	 * @return the annotationType
+	 * @return the label
 	 */
-	String getAnnotationType();
+	String getLabel();
 
 }

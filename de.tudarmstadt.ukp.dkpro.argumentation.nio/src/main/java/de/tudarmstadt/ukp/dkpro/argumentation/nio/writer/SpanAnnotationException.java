@@ -17,7 +17,7 @@ public class SpanAnnotationException extends Exception {
 	 */
 	private static final long serialVersionUID = -8088424492769878641L;
 
-	private final String annotationType;
+	private final String label;
 
 	private final int begin;
 
@@ -26,46 +26,46 @@ public class SpanAnnotationException extends Exception {
 	/**
 	 *
 	 */
-	public SpanAnnotationException(final int begin, final int end, final String annotationType) {
+	public SpanAnnotationException(final int begin, final int end, final String label) {
 		this.begin = begin;
 		this.end = end;
-		this.annotationType = annotationType;
+		this.label = label;
 	}
 
 	/**
 	 * @param message
 	 */
-	public SpanAnnotationException(final int begin, final int end, final String annotationType, final String message) {
+	public SpanAnnotationException(final int begin, final int end, final String label, final String message) {
 		super(message);
 		this.begin = begin;
 		this.end = end;
-		this.annotationType = annotationType;
+		this.label = label;
 	}
 
-	public SpanAnnotationException(final int begin, final int end, final String annotationType, final String message,
+	public SpanAnnotationException(final int begin, final int end, final String label, final String message,
 			final Throwable cause) {
 		super(message, cause);
 		this.begin = begin;
 		this.end = end;
-		this.annotationType = annotationType;
+		this.label = label;
 	}
 
-	public SpanAnnotationException(final int begin, final int end, final String annotationType, final String message,
+	public SpanAnnotationException(final int begin, final int end, final String label, final String message,
 			final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		this.begin = begin;
 		this.end = end;
-		this.annotationType = annotationType;
+		this.label = label;
 	}
 
 	/**
 	 * @param cause
 	 */
-	public SpanAnnotationException(final int begin, final int end, final String annotationType, final Throwable cause) {
+	public SpanAnnotationException(final int begin, final int end, final String label, final Throwable cause) {
 		super(cause);
 		this.begin = begin;
 		this.end = end;
-		this.annotationType = annotationType;
+		this.label = label;
 	}
 
 	/*
@@ -85,11 +85,11 @@ public class SpanAnnotationException extends Exception {
 			return false;
 		}
 		final SpanAnnotationException other = (SpanAnnotationException) obj;
-		if (annotationType == null) {
-			if (other.annotationType != null) {
+		if (label == null) {
+			if (other.label != null) {
 				return false;
 			}
-		} else if (!annotationType.equals(other.annotationType)) {
+		} else if (!label.equals(other.label)) {
 			return false;
 		}
 		if (begin != other.begin) {
@@ -102,10 +102,10 @@ public class SpanAnnotationException extends Exception {
 	}
 
 	/**
-	 * @return the annotationType
+	 * @return the label
 	 */
 	public String getAnnotationType() {
-		return annotationType;
+		return label;
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class SpanAnnotationException extends Exception {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (annotationType == null ? 0 : annotationType.hashCode());
+		result = prime * result + (label == null ? 0 : label.hashCode());
 		result = prime * result + begin;
 		result = prime * result + end;
 		return result;
@@ -149,7 +149,7 @@ public class SpanAnnotationException extends Exception {
 	}
 
 	private String createMessageSuffix() {
-		return String.format(" (Annotation type \"%s\"; span [%d, %d])", annotationType, begin, end);
+		return String.format(" (Annotation label \"%s\"; span [%d, %d])", label, begin, end);
 	}
 
 }

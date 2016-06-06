@@ -40,7 +40,7 @@ public final class SpanAnnotationMatrices {
 					.int2ObjectEntrySet()) {
 				// final int end = secondDimEntry.getIntKey();
 				for (final Map.Entry<?, T> thirdDimEntry : secondDimEntry.getValue().entrySet()) {
-					// final String annotationType = thirdDimEntry.getKey();
+					// final String label = thirdDimEntry.getKey();
 					final T annotation = thirdDimEntry.getValue();
 					result.add(annotation);
 				}
@@ -74,11 +74,11 @@ public final class SpanAnnotationMatrices {
 			final int begin = spanAnnotation.getBegin();
 			final int end = spanAnnotation.getEnd();
 			final Map<? super String, T> spanAnnotations = result.fetch3DMap(begin, end);
-			final String annotationType = spanAnnotation.getAnnotationType();
-			final T oldSpanAnnotation = spanAnnotations.put(annotationType, spanAnnotation);
+			final String label = spanAnnotation.getLabel();
+			final T oldSpanAnnotation = spanAnnotations.put(label, spanAnnotation);
 			if (oldSpanAnnotation != null) {
-				LOG.warn(String.format("Annotation type \"%s\" already exists for span [%d, %d]; Overwriting.",
-						annotationType, begin, end));
+				LOG.warn(String.format("Annotation label \"%s\" already exists for span [%d, %d]; Overwriting.",
+						label, begin, end));
 			}
 		}
 	}

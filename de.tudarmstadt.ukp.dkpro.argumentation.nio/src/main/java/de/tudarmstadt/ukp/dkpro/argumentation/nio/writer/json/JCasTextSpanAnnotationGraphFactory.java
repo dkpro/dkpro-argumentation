@@ -65,10 +65,10 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 
 		final int begin = source.getBegin();
 		final int end = source.getEnd();
-		final String annotationType = source.getType().getShortName();
-		final TextSpanAnnotation spanAnnotation = spanAnnotationMatrix.get3DValue(begin, end, annotationType);
+		final String label = source.getType().getShortName();
+		final TextSpanAnnotation spanAnnotation = spanAnnotationMatrix.get3DValue(begin, end, label);
 		if (spanAnnotation == null) {
-			throw new SpanAnnotationNotFoundException(begin, end, annotationType);
+			throw new SpanAnnotationNotFoundException(begin, end, label);
 		} else {
 			result = spanAnnotationIds.getInt(spanAnnotation);
 		}
@@ -108,14 +108,14 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 						.apply(argumentComponent);
 				final int begin = spanAnnotation.getBegin();
 				final int end = spanAnnotation.getEnd();
-				final String annotationType = spanAnnotation.getAnnotationType();
+				final String label = spanAnnotation.getLabel();
 				// final SpanAnnotationEdge edge = new
-				// SpanAnnotationEdge(annotationType);
+				// SpanAnnotationEdge(label);
 				final Map<String, TextSpanAnnotation> spanAnnotations = spanAnnotationMatrix.fetch3DMap(begin, end);
-				final TextSpanAnnotation oldSpanAnnotation = spanAnnotations.put(annotationType, spanAnnotation);
+				final TextSpanAnnotation oldSpanAnnotation = spanAnnotations.put(label, spanAnnotation);
 				if (oldSpanAnnotation != null) {
-					LOG.warn(String.format("Annotation type \"%s\" already exists for span [%d, %d]; Overwriting.",
-							annotationType, begin, end));
+					LOG.warn(String.format("Annotation label \"%s\" already exists for span [%d, %d]; Overwriting.",
+							label, begin, end));
 				}
 				spanAnnotationVector.add(spanAnnotation);
 			}

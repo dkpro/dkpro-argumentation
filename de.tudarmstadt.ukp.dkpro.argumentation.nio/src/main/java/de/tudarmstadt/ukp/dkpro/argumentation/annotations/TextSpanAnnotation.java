@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ TextSpanAnnotation.PROPERTY_BEGIN, TextSpanAnnotation.PROPERTY_END })
 public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 
-	public static final String PROPERTY_ANNOTATION_TYPE = "annotationType";
+	public static final String PROPERTY_LABEL = "label";
 
 	public static final String PROPERTY_BEGIN = "begin";
 
@@ -32,7 +32,7 @@ public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 	 */
 	private static final long serialVersionUID = -5564537471325147494L;
 
-	private final String annotationType;
+	private final String label;
 
 	private final int begin;
 
@@ -47,11 +47,11 @@ public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 	 */
 	@JsonCreator
 	public TextSpanAnnotation(@JsonProperty(PROPERTY_BEGIN) final int begin, @JsonProperty(PROPERTY_END) final int end,
-			@JsonProperty(PROPERTY_ANNOTATION_TYPE) final String annotationType,
+			@JsonProperty(PROPERTY_LABEL) final String label,
 			@JsonProperty(PROPERTY_COVERED_TEXT) final String coveredText) {
 		this.begin = begin;
 		this.end = end;
-		this.annotationType = annotationType;
+		this.label = label;
 		this.coveredText = coveredText;
 
 		hashCode = createHashCode();
@@ -74,11 +74,11 @@ public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 			return false;
 		}
 		final TextSpanAnnotation other = (TextSpanAnnotation) obj;
-		if (annotationType == null) {
-			if (other.annotationType != null) {
+		if (label == null) {
+			if (other.label != null) {
 				return false;
 			}
-		} else if (!annotationType.equals(other.annotationType)) {
+		} else if (!label.equals(other.label)) {
 			return false;
 		}
 		if (begin != other.begin) {
@@ -104,9 +104,9 @@ public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 	 * getAnnotationType()
 	 */
 	@Override
-	@JsonProperty(PROPERTY_ANNOTATION_TYPE)
-	public String getAnnotationType() {
-		return annotationType;
+	@JsonProperty(PROPERTY_LABEL)
+	public String getLabel() {
+		return label;
 	}
 
 	/*
@@ -164,8 +164,8 @@ public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 		builder.append(begin);
 		builder.append(", end=");
 		builder.append(end);
-		builder.append(", annotationType=");
-		builder.append(annotationType);
+		builder.append(", label=");
+		builder.append(label);
 		builder.append(", coveredText=");
 		builder.append(coveredText);
 		builder.append("]");
@@ -175,7 +175,7 @@ public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 	private int createHashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (annotationType == null ? 0 : annotationType.hashCode());
+		result = prime * result + (label == null ? 0 : label.hashCode());
 		result = prime * result + begin;
 		result = prime * result + (coveredText == null ? 0 : coveredText.hashCode());
 		result = prime * result + end;

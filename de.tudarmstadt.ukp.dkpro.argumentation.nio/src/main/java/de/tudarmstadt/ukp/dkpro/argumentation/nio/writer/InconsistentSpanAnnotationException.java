@@ -22,40 +22,40 @@ public final class InconsistentSpanAnnotationException extends SpanAnnotationExc
 	/**
 	 *
 	 */
-	public InconsistentSpanAnnotationException(final int begin, final int end, final String annotationType,
+	public InconsistentSpanAnnotationException(final int begin, final int end, final String label,
 			final String coveredText) {
-		super(begin, end, annotationType);
+		super(begin, end, label);
 		this.coveredText = coveredText;
 	}
 
 	/**
 	 * @param message
 	 */
-	public InconsistentSpanAnnotationException(final int begin, final int end, final String annotationType,
+	public InconsistentSpanAnnotationException(final int begin, final int end, final String label,
 			final String coveredText, final String message) {
-		super(begin, end, annotationType, message);
+		super(begin, end, label, message);
 		this.coveredText = coveredText;
 	}
 
-	public InconsistentSpanAnnotationException(final int begin, final int end, final String annotationType,
+	public InconsistentSpanAnnotationException(final int begin, final int end, final String label,
 			final String coveredText, final String message, final Throwable cause) {
-		super(begin, end, annotationType, message, cause);
+		super(begin, end, label, message, cause);
 		this.coveredText = coveredText;
 	}
 
-	public InconsistentSpanAnnotationException(final int begin, final int end, final String annotationType,
+	public InconsistentSpanAnnotationException(final int begin, final int end, final String label,
 			final String coveredText, final String message, final Throwable cause, final boolean enableSuppression,
 			final boolean writableStackTrace) {
-		super(begin, end, annotationType, message, cause, enableSuppression, writableStackTrace);
+		super(begin, end, label, message, cause, enableSuppression, writableStackTrace);
 		this.coveredText = coveredText;
 	}
 
 	/**
 	 * @param cause
 	 */
-	public InconsistentSpanAnnotationException(final int begin, final int end, final String annotationType,
+	public InconsistentSpanAnnotationException(final int begin, final int end, final String label,
 			final String coveredText, final Throwable cause) {
-		super(begin, end, annotationType, cause);
+		super(begin, end, label, cause);
 		this.coveredText = coveredText;
 	}
 

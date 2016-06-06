@@ -17,29 +17,29 @@ public final class SpanAnnotationNotFoundException extends SpanAnnotationExcepti
 	 */
 	private static final long serialVersionUID = -3102176978651248772L;
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String annotationType) {
-		super(begin, end, annotationType);
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label) {
+		super(begin, end, label);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String annotationType,
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
 			final String message) {
-		super(begin, end, annotationType, message);
+		super(begin, end, label, message);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String annotationType,
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
 			final String message, final Throwable cause) {
-		super(begin, end, annotationType, message, cause);
+		super(begin, end, label, message, cause);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String annotationType,
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
 			final String message, final Throwable cause, final boolean enableSuppression,
 			final boolean writableStackTrace) {
-		super(begin, end, annotationType, message, cause, enableSuppression, writableStackTrace);
+		super(begin, end, label, message, cause, enableSuppression, writableStackTrace);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String annotationType,
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
 			final Throwable cause) {
-		super(begin, end, annotationType, cause);
+		super(begin, end, label, cause);
 	}
 
 }
