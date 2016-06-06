@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @since May 10, 2016
  *
  */
-public final class AnnotatedDocument<T extends AnnotatedSpan> {
+public final class AnnotatedDocument<T extends SpanTextLabel> {
 
 	public static final String PROPERTY_ANNOTATIONS = "annotations";
 

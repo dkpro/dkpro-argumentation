@@ -21,24 +21,21 @@ public final class SpanAnnotationNotFoundException extends SpanAnnotationExcepti
 		super(begin, end, label);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
-			final String message) {
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label, final String message) {
 		super(begin, end, label, message);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
-			final String message, final Throwable cause) {
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label, final String message,
+			final Throwable cause) {
 		super(begin, end, label, message, cause);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
-			final String message, final Throwable cause, final boolean enableSuppression,
-			final boolean writableStackTrace) {
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label, final String message,
+			final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
 		super(begin, end, label, message, cause, enableSuppression, writableStackTrace);
 	}
 
-	public SpanAnnotationNotFoundException(final int begin, final int end, final String label,
-			final Throwable cause) {
+	public SpanAnnotationNotFoundException(final int begin, final int end, final String label, final Throwable cause) {
 		super(begin, end, label, cause);
 	}
 

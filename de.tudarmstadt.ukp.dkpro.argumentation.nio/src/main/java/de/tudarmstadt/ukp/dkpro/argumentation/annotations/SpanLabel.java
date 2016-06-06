@@ -1,10 +1,12 @@
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
-public interface AnnotatedSpan extends Span {
+public interface SpanLabel {
 
 	/**
 	 * @return the label
 	 */
 	String getLabel();
+
+	Span getSpan();
 
 }

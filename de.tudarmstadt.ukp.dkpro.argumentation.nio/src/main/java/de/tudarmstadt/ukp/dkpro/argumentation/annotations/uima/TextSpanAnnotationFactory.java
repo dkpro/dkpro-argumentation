@@ -9,14 +9,16 @@ import java.util.function.Function;
 
 import org.apache.uima.jcas.tcas.Annotation;
 
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.TextSpanAnnotation;
+import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpan;
+import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpanText;
+import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpanTextLabel;
 
 /**
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since May 2, 2016
  *
  */
-public final class TextSpanAnnotationFactory implements Function<Annotation, TextSpanAnnotation> {
+public final class TextSpanAnnotationFactory implements Function<Annotation, ImmutableSpanTextLabel> {
 
 	/**
 	 * {@link SingletonHolder} is loaded on the first execution of
@@ -44,9 +46,10 @@ public final class TextSpanAnnotationFactory implements Function<Annotation, Tex
 	}
 
 	@Override
-	public TextSpanAnnotation apply(final Annotation annotation) {
-		return new TextSpanAnnotation(annotation.getBegin(), annotation.getEnd(), annotation.getType().getShortName(),
-				annotation.getCoveredText());
+	public ImmutableSpanTextLabel apply(final Annotation annotation) {
+		final ImmutableSpan span = new ImmutableSpan(annotation.getBegin(), annotation.getEnd());
+		final ImmutableSpanText textSpan = new ImmutableSpanText(span, annotation.getCoveredText());
+		return new ImmutableSpanTextLabel(textSpan, annotation.getType().getShortName());
 	}
 
 }

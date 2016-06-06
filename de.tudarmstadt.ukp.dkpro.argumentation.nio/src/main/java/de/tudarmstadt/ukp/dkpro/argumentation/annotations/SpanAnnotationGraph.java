@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
+import de.tudarmstadt.ukp.math.ObjectMatrices;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
@@ -26,11 +27,17 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
  * @since May 2, 2016
  *
  */
-public final class SpanAnnotationGraph<T extends AnnotatedSpan> {
+public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 
 	public static final String PROPERTY_RELATIONS = "relations";
 
 	public static final String PROPERTY_SPAN_ANNOTATIONS = "spanAnnotations";
+
+//	private static final int DEFAULT_EXPECTED_MAX_BRANCHES = 1;
+
+//	private final int expectedMaxBranches;
+
+//	private transient final Map<T, List<T>> relations;
 
 	private final int[] relationTransitionTable;
 
@@ -42,7 +49,7 @@ public final class SpanAnnotationGraph<T extends AnnotatedSpan> {
 			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
 			final int spanAnnotationMatrixSize, final int[] relationTransitionTable) {
 		this(new ReverseLookupOrderedSet<>(
-				SpanAnnotationMatrices.createList(spanAnnotationMatrix.int2ObjectEntrySet(), spanAnnotationMatrixSize)),
+				ObjectMatrices.createList(spanAnnotationMatrix.int2ObjectEntrySet(), spanAnnotationMatrixSize)),
 				spanAnnotationMatrix, relationTransitionTable);
 	}
 
@@ -72,19 +79,64 @@ public final class SpanAnnotationGraph<T extends AnnotatedSpan> {
 	public SpanAnnotationGraph(final ReverseLookupOrderedSet<T> spanAnnotationVector,
 			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
 			final int[] relationTransitionTable) {
+//		this(spanAnnotationVector, spanAnnotationMatrix, relationTransitionTable, DEFAULT_EXPECTED_MAX_BRANCHES);
 		this.spanAnnotationVector = spanAnnotationVector;
 		this.spanAnnotationMatrix = spanAnnotationMatrix;
 		this.relationTransitionTable = relationTransitionTable;
 	}
 
+//	public SpanAnnotationGraph(final ReverseLookupOrderedSet<T> spanAnnotationVector,
+//			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
+//			final int[] relationTransitionTable, final int expectedMaxBranches) {
+//		this.spanAnnotationVector = spanAnnotationVector;
+//		this.spanAnnotationMatrix = spanAnnotationMatrix;
+//		this.relationTransitionTable = relationTransitionTable;
+//		this.expectedMaxBranches = expectedMaxBranches;
+
+//		this.relations = createRelationMap(spanAnnotationVector, expectedMaxBranches);
+//	}
+
 	public T get(final int id) {
 		return spanAnnotationVector.get(id);
 	}
+
+//	/**
+//	 * @return the expectedMaxBranches
+//	 */
+//	public int getExpectedMaxBranches() {
+//		return expectedMaxBranches;
+//	}
 
 	public int getId(final T spanAnnotation) {
 		final Object2IntMap<T> spanAnnotationIds = spanAnnotationVector.getReverseLookupMap();
 		return spanAnnotationIds.getInt(spanAnnotation);
 	}
+
+	public Map<String, T> getLabels(final Span span) {
+		Map<String, T> result;
+		final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> annotMatrix = getSpanAnnotationMatrix();
+		final int begin = span.getBegin();
+		final Int2ObjectMap<? extends Map<String, T>> firstDim = annotMatrix.get(begin);
+		if (firstDim == annotMatrix.defaultReturnValue()) {
+			throw new NoSuchElementException(String.format("Span begin index %d not found in matrix.", begin));
+		} else {
+			final int end = span.getEnd();
+			result = firstDim.get(end);
+			if (result == firstDim.defaultReturnValue()) {
+				throw new NoSuchElementException(String.format("Span end index %d not found in matrix.", end));
+			}
+		}
+		return result;
+
+	}
+
+//	/**
+//	 * @return the relations
+//	 */
+//	@JsonIgnore
+//	public Map<T, List<T>> getRelations() {
+//		return Collections.unmodifiableMap(relations);
+//	}
 
 	public T getRelationTarget(final T source) {
 		final T result;
@@ -123,5 +175,18 @@ public final class SpanAnnotationGraph<T extends AnnotatedSpan> {
 	public ReverseLookupOrderedSet<T> getSpanAnnotationVector() {
 		return spanAnnotationVector;
 	}
+
+//	private Map<T, List<T>> createRelationMap(final ReverseLookupOrderedSet<T> targetSpanAnnotations,
+//			final int maxBranches) {
+//		final Map<T, List<T>> result = new HashMap<>(targetSpanAnnotations.size() + 1);
+//
+//		targetSpanAnnotations.forEach(targetSpanAnnotation -> {
+//			final Collection<T> relations = result.computeIfAbsent(targetSpanAnnotation,
+//					annot -> new ArrayList<>(maxBranches + 1));
+//			relations.add(getRelationTarget(targetSpanAnnotation));
+//		});
+//
+//		return result;
+//	}
 
 }

@@ -27,8 +27,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.AnnotatedDocument;
+import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.TextSpanAnnotation;
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 
 /**
@@ -45,7 +45,7 @@ public final class JsonStreamDumpWriter extends JCasAnnotator_ImplBase {
 
 		@Override
 		public Void call() throws IOException {
-			for (final Entry<String, AnnotatedDocument<TextSpanAnnotation>> documentAnnotation : documentAnnotations
+			for (final Entry<String, AnnotatedDocument<ImmutableSpanTextLabel>> documentAnnotation : documentAnnotations
 					.entrySet()) {
 				final String docId = documentAnnotation.getKey();
 				final String docFilename = docId + ".json";
@@ -95,7 +95,7 @@ public final class JsonStreamDumpWriter extends JCasAnnotator_ImplBase {
 		return result;
 	}
 
-	private Map<String, AnnotatedDocument<TextSpanAnnotation>> documentAnnotations;
+	private Map<String, AnnotatedDocument<ImmutableSpanTextLabel>> documentAnnotations;
 
 	@ConfigurationParameter(name = PARAM_OUTPUT_FILE, mandatory = false, description = "The path to write the processed results to.")
 	private File outputPath;
@@ -130,8 +130,8 @@ public final class JsonStreamDumpWriter extends JCasAnnotator_ImplBase {
 		final String documentId = DocumentMetaData.get(jCas).getDocumentId();
 		LOG.info(String.format("Processing document \"%s\".", documentId));
 		final JCasTextSpanAnnotationGraphFactory converter = new JCasTextSpanAnnotationGraphFactory();
-		final SpanAnnotationGraph<TextSpanAnnotation> spanAnnotations = converter.apply(jCas);
-		final AnnotatedDocument<TextSpanAnnotation> doc = new AnnotatedDocument<TextSpanAnnotation>(
+		final SpanAnnotationGraph<ImmutableSpanTextLabel> spanAnnotations = converter.apply(jCas);
+		final AnnotatedDocument<ImmutableSpanTextLabel> doc = new AnnotatedDocument<ImmutableSpanTextLabel>(
 				jCas.getDocumentText(), spanAnnotations);
 
 		documentAnnotations.put(documentId, doc);

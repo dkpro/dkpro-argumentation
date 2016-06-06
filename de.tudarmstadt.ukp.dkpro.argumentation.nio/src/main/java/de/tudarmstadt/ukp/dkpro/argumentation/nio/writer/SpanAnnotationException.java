@@ -17,11 +17,11 @@ public class SpanAnnotationException extends Exception {
 	 */
 	private static final long serialVersionUID = -8088424492769878641L;
 
-	private final String label;
-
 	private final int begin;
 
 	private final int end;
+
+	private final String label;
 
 	/**
 	 *
