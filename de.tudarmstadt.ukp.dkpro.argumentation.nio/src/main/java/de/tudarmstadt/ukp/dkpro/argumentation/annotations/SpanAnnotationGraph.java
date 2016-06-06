@@ -26,7 +26,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
  * @since May 2, 2016
  *
  */
-public final class SpanAnnotationGraph<T extends SpanAnnotation> {
+public final class SpanAnnotationGraph<T extends AnnotatedSpan> {
 
 	public static final String PROPERTY_RELATIONS = "relations";
 

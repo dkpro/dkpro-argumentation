@@ -28,7 +28,7 @@ public final class SpanAnnotationMatrices {
 
 	private static final Log LOG = LogFactory.getLog(SpanAnnotationMatrices.class);
 
-	public static <T extends SpanAnnotation> List<T> createList(
+	public static <T extends Span> List<T> createList(
 			final ObjectSet<? extends Int2ObjectMap.Entry<? extends Int2ObjectMap<? extends Map<?, T>>>> objectSet,
 			final int size) {
 		// TODO: add an iterator method to Sparse3DObjectMatrix and use that
@@ -49,7 +49,7 @@ public final class SpanAnnotationMatrices {
 		return result;
 	}
 
-	public static <T extends SpanAnnotation> Sparse3DObjectMatrix<String, T> createMatrix(
+	public static <T extends AnnotatedSpan> Sparse3DObjectMatrix<String, T> createMatrix(
 			final Collection<T> spanAnnotationVector) {
 		final Sparse3DObjectMatrix<String, T> result = new Sparse3DObjectMatrix<>(
 				new Int2ObjectOpenHashMap<>(spanAnnotationVector.size() + 1));
@@ -58,7 +58,7 @@ public final class SpanAnnotationMatrices {
 
 	}
 
-	public static <T extends SpanAnnotation> Sparse3DObjectMatrix<String, T> createMatrix(
+	public static <T extends AnnotatedSpan> Sparse3DObjectMatrix<String, T> createMatrix(
 			final Collection<T> spanAnnotationVector, final int estimatedSpanBeginToEndMapMaxCapacity,
 			final int estimatedAnnotationMapMaxCapacity) {
 		final Sparse3DObjectMatrix<String, T> result = new Sparse3DObjectMatrix<>(
@@ -68,7 +68,7 @@ public final class SpanAnnotationMatrices {
 		return result;
 	}
 
-	public static <T extends SpanAnnotation> void putAnnotations(final Sparse3DObjectMatrix<? super String, T> result,
+	public static <T extends AnnotatedSpan> void putAnnotations(final Sparse3DObjectMatrix<? super String, T> result,
 			final Collection<T> spanAnnotationVector) {
 		for (final T spanAnnotation : spanAnnotationVector) {
 			final int begin = spanAnnotation.getBegin();

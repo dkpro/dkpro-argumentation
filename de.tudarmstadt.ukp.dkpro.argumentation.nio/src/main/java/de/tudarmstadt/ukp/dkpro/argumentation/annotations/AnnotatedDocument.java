@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @since May 10, 2016
  *
  */
-public final class AnnotatedDocument<T extends SpanAnnotation> {
+public final class AnnotatedDocument<T extends AnnotatedSpan> {
 
 	public static final String PROPERTY_ANNOTATIONS = "annotations";
 
@@ -41,7 +41,7 @@ public final class AnnotatedDocument<T extends SpanAnnotation> {
 		return annotations;
 	}
 
-	public String getCoveredText(final SpanAnnotation spanAnnotation) {
+	public String getCoveredText(final Span spanAnnotation) {
 		return text.substring(spanAnnotation.getBegin(), spanAnnotation.getEnd());
 	}
 

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  *
  */
 @JsonPropertyOrder({ TextSpanAnnotation.PROPERTY_BEGIN, TextSpanAnnotation.PROPERTY_END })
-public final class TextSpanAnnotation implements Serializable, SpanAnnotation {
+public final class TextSpanAnnotation implements Serializable, AnnotatedSpan {
 
 	public static final String PROPERTY_ANNOTATION_TYPE = "annotationType";
 
