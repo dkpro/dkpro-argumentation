@@ -12,7 +12,7 @@ DKPro Argumentation is available from Maven Central. For working with the UIMA t
 <dependency>
     <groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
     <artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 ## Modules
@@ -57,7 +57,7 @@ as shown in
 2. Run `ArgumentationCorpusDebugger`
   - It will print annotated argument components, relations, and other info to the std. out
 3. Explore it further!
-  - Have a look at `de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `de.tudarmstadt.ukp.dkpro.argumentation.0.0.2` package which shows how to access the argument components, their text, tokens, sentences, etc.
+  - Have a look at `de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `de.tudarmstadt.ukp.dkpro.argumentation.io.writer` package which shows how to access the argument components, their text, tokens, sentences, etc.
 
 
 &copy; 2013-2015 UKP

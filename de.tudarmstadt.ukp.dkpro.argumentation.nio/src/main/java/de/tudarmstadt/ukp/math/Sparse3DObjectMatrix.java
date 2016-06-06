@@ -3,10 +3,9 @@
  *
  * Unauthorized distribution of this file via any medium is strictly prohibited.
  */
-package de.tudarmstadt.ukp;
+package de.tudarmstadt.ukp.math;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -14,15 +13,15 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 /**
- * TODO: Replace this with an object matrix implementation from the library
- * ultimately used for clustering in order to reduce the amount of code which
- * needs to be written.
- * 
+ * TODO: This class is an ugly, quick hack: Replace this with an object matrix
+ * implementation from the library ultimately used for clustering in order to
+ * reduce the amount of code which needs to be written.
+ *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since Apr 29, 2016
  *
  */
-public final class Sparse3DObjectMatrix<K, V> implements Iterable<ThreeDMatrixEntry<K, V>> {
+public final class Sparse3DObjectMatrix<K, V> {
 
 	private static <K, V> Supplier<Int2ObjectMap<Map<K, V>>> createDefault2DMapFactory() {
 		return Int2ObjectOpenHashMap::new;
@@ -189,43 +188,6 @@ public final class Sparse3DObjectMatrix<K, V> implements Iterable<ThreeDMatrixEn
 		result = prime * result + (secondDimensionMapFactory == null ? 0 : secondDimensionMapFactory.hashCode());
 		result = prime * result + (thirdDimensionMapFactory == null ? 0 : thirdDimensionMapFactory.hashCode());
 		return result;
-	}
-
-	@Override
-	public Iterator<ThreeDMatrixEntry<K, V>> iterator() {
-		throw new UnsupportedOperationException("Not yet implemented.");
-		// return new Iterator<ThreeDMatrixEntry<K, V>>() {
-		//
-		// private Iterator<Entry<Int2ObjectMap<Map<K, V>>>> firstDimIter =
-		// backingMap.int2ObjectEntrySet().iterator();
-		//
-		// private Iterator<Entry<Map<K, V>>> secondDimIter;
-		//
-		// private Entry<Map<K, V>> currentSecondDimEntry;
-		//
-		// private Iterator<Map.Entry<K, V>> thirdDimIter;
-		//
-		// @Override
-		// public boolean hasNext() {
-		// // TODO Auto-generated method stub
-		// return false;
-		// }
-		//
-		// @Override
-		// public ThreeDMatrixEntry<K, V> next() {
-		// Map.Entry<K, V> result;
-		// if (thirdDimIter.hasNext()) {
-		// result = thirdDimIter.next();
-		// } else if (secondDimIter.hasNext()) {
-		// currentSecondDimEntry = secondDimIter.next();
-		// }
-		//
-		// for (Entry<Int2ObjectMap<Map<K, V>>> firstDim)
-		// // TODO Auto-generated method stub
-		// return null;
-		// }
-		//
-		// };
 	}
 
 	public long size() {

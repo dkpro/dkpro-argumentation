@@ -11,7 +11,6 @@ import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 
-import de.tudarmstadt.ukp.Sparse3DObjectMatrix;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.TextSpanAnnotation;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima.TextSpanAnnotationFactory;
@@ -22,6 +21,7 @@ import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationNotFoundE
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit;
+import de.tudarmstadt.ukp.math.Sparse3DObjectMatrix;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
@@ -33,8 +33,10 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 
 	private static final Log LOG = LogFactory.getLog(JCasTextSpanAnnotationGraphFactory.class);
 
-	private static int[] createArgumentTransitionTable(final Collection<ArgumentRelation> argumentRelations, final Sparse3DObjectMatrix<String, TextSpanAnnotation> spanAnnotationMatrix, final Object2IntMap<TextSpanAnnotation> spanAnnotationIds){
-		int[] result = new int[spanAnnotationIds.size()];
+	private static int[] createArgumentTransitionTable(final Collection<ArgumentRelation> argumentRelations,
+			final Sparse3DObjectMatrix<String, TextSpanAnnotation> spanAnnotationMatrix,
+			final Object2IntMap<TextSpanAnnotation> spanAnnotationIds) {
+		final int[] result = new int[spanAnnotationIds.size()];
 		for (final ArgumentRelation argumentRelation : argumentRelations) {
 			final ArgumentUnit source = argumentRelation.getSource();
 			try {
@@ -50,7 +52,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 				LOG.error(e);
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -73,7 +75,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 		return result;
 
 	}
-	
+
 	@Override
 	public SpanAnnotationGraph<TextSpanAnnotation> apply(final JCas jCas) {
 		final ReverseLookupOrderedSet<TextSpanAnnotation> spanAnnotationVector;
@@ -121,7 +123,8 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 		final Collection<ArgumentRelation> argumentRelations = JCasUtil.select(jCas, ArgumentRelation.class);
 		final Object2IntMap<TextSpanAnnotation> spanAnnotationIds = spanAnnotationVector.getReverseLookupMap();
 		LOG.info(String.format("Processing %d argument relations.", argumentRelations.size()));
-		final int[] argumentTransitionTable = createArgumentTransitionTable(argumentRelations, spanAnnotationMatrix, spanAnnotationIds);
+		final int[] argumentTransitionTable = createArgumentTransitionTable(argumentRelations, spanAnnotationMatrix,
+				spanAnnotationIds);
 
 		return new SpanAnnotationGraph<TextSpanAnnotation>(spanAnnotationVector, argumentTransitionTable);
 	}

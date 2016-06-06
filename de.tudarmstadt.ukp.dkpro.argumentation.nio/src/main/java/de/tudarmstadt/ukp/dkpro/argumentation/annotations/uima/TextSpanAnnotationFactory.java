@@ -20,8 +20,8 @@ public final class TextSpanAnnotationFactory implements Function<Annotation, Tex
 
 	/**
 	 * {@link SingletonHolder} is loaded on the first execution of
-	 * {@link TextSpanAnnotationFactory#getInstance()} or the first access
-	 * to {@link SingletonHolder#INSTANCE}, not before.
+	 * {@link TextSpanAnnotationFactory#getInstance()} or the first access to
+	 * {@link SingletonHolder#INSTANCE}, not before.
 	 *
 	 * @author <a href="http://www.cs.umd.edu/~pugh/">Bill Pugh</a>
 	 * @see <a href=
