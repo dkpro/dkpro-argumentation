@@ -25,6 +25,7 @@ import de.tudarmstadt.ukp.math.Sparse3DObjectMatrix;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
+@SuppressWarnings("deprecation")
 final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnnotationGraph<TextSpanAnnotation>> {
 
 	private static final int ESTIMATED_ANNOTATION_MAP_MAX_CAPACITY = 2;

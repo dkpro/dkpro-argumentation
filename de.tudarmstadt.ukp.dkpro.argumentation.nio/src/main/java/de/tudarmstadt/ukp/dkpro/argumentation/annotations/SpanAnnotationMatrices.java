@@ -23,6 +23,7 @@ import it.unimi.dsi.fastutil.objects.ObjectSet;
  * @since May 30, 2016
  *
  */
+@SuppressWarnings("deprecation")
 public final class SpanAnnotationMatrices {
 
 	private static final Log LOG = LogFactory.getLog(SpanAnnotationMatrices.class);

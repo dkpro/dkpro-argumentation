@@ -17,10 +17,15 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
  * implementation from the library ultimately used for clustering in order to
  * reduce the amount of code which needs to be written.
  *
+ * @deprecated This class is an ugly, quick hack and should be replaced with an
+ *             object matrix implementation from the library ultimately used for
+ *             clustering in order to reduce the amount of code which needs to
+ *             be written.
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since Apr 29, 2016
  *
  */
+@Deprecated
 public final class Sparse3DObjectMatrix<K, V> {
 
 	private static <K, V> Supplier<Int2ObjectMap<Map<K, V>>> createDefault2DMapFactory() {

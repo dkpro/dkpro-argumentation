@@ -46,6 +46,7 @@ public final class SpanAnnotationGraph<T extends SpanAnnotation> {
 				spanAnnotationMatrix, relationTransitionTable);
 	}
 
+	@SuppressWarnings("deprecation")
 	@JsonCreator
 	public SpanAnnotationGraph(@JsonProperty(PROPERTY_SPAN_ANNOTATIONS) final List<T> spanAnnotationVector,
 			@JsonProperty(PROPERTY_RELATIONS) final int[] relationTransitionTable) {
@@ -61,6 +62,7 @@ public final class SpanAnnotationGraph<T extends SpanAnnotation> {
 				: new ReverseLookupOrderedSet<>(spanAnnotationVector), spanAnnotationMatrix, relationTransitionTable);
 	}
 
+	@SuppressWarnings("deprecation")
 	public SpanAnnotationGraph(final ReverseLookupOrderedSet<T> spanAnnotationVector,
 			final int[] relationTransitionTable) {
 		this(spanAnnotationVector, SpanAnnotationMatrices.createMatrix(spanAnnotationVector).getBackingMap(),
