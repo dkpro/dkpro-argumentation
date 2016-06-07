@@ -138,7 +138,7 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 //		return Collections.unmodifiableMap(relations);
 //	}
 
-	public T getRelationTarget(final T source) {
+	public T getRelationTarget(final T source) throws NoSuchElementException{
 		final T result;
 
 		final int sourceId = getId(source);
