@@ -49,7 +49,7 @@ public final class ImmutableSpan implements Comparable<Span>, Span, Serializable
 	public int compareTo(Span o) {
 		int result = Integer.compare(getBegin(), o.getBegin());
 		if (result == 0) {
-			result = Integer.compare(getEnd(), getBegin());
+			result = Integer.compare(getEnd(), o.getEnd());
 		}
 		return result;
 	}
