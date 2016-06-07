@@ -48,8 +48,8 @@ public final class TextSpanAnnotationFactory implements Function<Annotation, Imm
 	@Override
 	public ImmutableSpanTextLabel apply(final Annotation annotation) {
 		final ImmutableSpan span = new ImmutableSpan(annotation.getBegin(), annotation.getEnd());
-		final ImmutableSpanText textSpan = new ImmutableSpanText(span, annotation.getCoveredText());
-		return new ImmutableSpanTextLabel(textSpan, annotation.getType().getShortName());
+		final ImmutableSpanText spanText = new ImmutableSpanText(span, annotation.getCoveredText());
+		return new ImmutableSpanTextLabel(spanText, annotation.getType().getShortName());
 	}
 
 }

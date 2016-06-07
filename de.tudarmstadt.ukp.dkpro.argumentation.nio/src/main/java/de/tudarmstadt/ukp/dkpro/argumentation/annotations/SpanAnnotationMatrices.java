@@ -47,8 +47,8 @@ public final class SpanAnnotationMatrices {
 	public static <T extends SpanTextLabel> void putAnnotations(final Sparse3DObjectMatrix<? super String, T> result,
 			final Stream<T> spanAnnotationVector) {
 		spanAnnotationVector.forEach(spanAnnotation -> {
-			final SpanText textSpan = spanAnnotation.getTextSpan();
-			final Span span = textSpan.getSpan();
+			final SpanText spanText = spanAnnotation.getTextSpan();
+			final Span span = spanText.getSpan();
 			final int begin = span.getBegin();
 			final int end = span.getEnd();
 			final Map<? super String, T> spanAnnotations = result.fetch3DMap(begin, end);

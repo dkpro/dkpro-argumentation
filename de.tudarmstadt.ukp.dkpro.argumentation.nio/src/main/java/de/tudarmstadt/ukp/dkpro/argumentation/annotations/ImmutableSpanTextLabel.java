@@ -32,15 +32,15 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 
 	private final String label;
 
-	private final ImmutableSpanText textSpan;
+	private final ImmutableSpanText spanText;
 
 	/**
 	 *
 	 */
 	@JsonCreator
-	public ImmutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final ImmutableSpanText textSpan,
+	public ImmutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final ImmutableSpanText spanText,
 			@JsonProperty(PROPERTY_LABEL) final String label) {
-		this.textSpan = textSpan;
+		this.spanText = spanText;
 		this.label = label;
 
 		hashCode = createHashCode();
@@ -50,7 +50,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (label == null ? 0 : label.hashCode());
-		result = prime * result + (textSpan == null ? 0 : textSpan.hashCode());
+		result = prime * result + (spanText == null ? 0 : spanText.hashCode());
 		return result;
 	}
 
@@ -78,11 +78,11 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 		} else if (!label.equals(other.label)) {
 			return false;
 		}
-		if (textSpan == null) {
-			if (other.textSpan != null) {
+		if (spanText == null) {
+			if (other.spanText != null) {
 				return false;
 			}
-		} else if (!textSpan.equals(other.textSpan)) {
+		} else if (!spanText.equals(other.spanText)) {
 			return false;
 		}
 		return true;
@@ -110,7 +110,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	// @Override
 	// @JsonProperty(PROPERTY_TEXT_SPAN)
 	// public ImmutableSpan getSpan() {
-	// return textSpan.getSpan();
+	// return spanText.getSpan();
 	// }
 
 	// @Override
@@ -123,7 +123,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	@Override
 	@JsonProperty(PROPERTY_TEXT_SPAN)
 	public ImmutableSpanText getTextSpan() {
-		return textSpan;
+		return spanText;
 	}
 
 	@Override

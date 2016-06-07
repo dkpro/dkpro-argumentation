@@ -24,14 +24,11 @@ public final class ObjectMatrices {
 			final int size) {
 		final List<T> result = new ArrayList<>(size);
 		for (final Int2ObjectMap.Entry<? extends Int2ObjectMap<? extends Map<?, T>>> firstDimEntry : matrixRows) {
-			// final int begin = firstDimEntry.getIntKey();
 			for (final Int2ObjectMap.Entry<? extends Map<?, T>> secondDimEntry : firstDimEntry.getValue()
 					.int2ObjectEntrySet()) {
-				// final int end = secondDimEntry.getIntKey();
 				for (final Map.Entry<?, T> thirdDimEntry : secondDimEntry.getValue().entrySet()) {
-					// final String label = thirdDimEntry.getKey();
-					final T annotation = thirdDimEntry.getValue();
-					result.add(annotation);
+					final T thirdDimValue = thirdDimEntry.getValue();
+					result.add(thirdDimValue);
 				}
 			}
 		}
