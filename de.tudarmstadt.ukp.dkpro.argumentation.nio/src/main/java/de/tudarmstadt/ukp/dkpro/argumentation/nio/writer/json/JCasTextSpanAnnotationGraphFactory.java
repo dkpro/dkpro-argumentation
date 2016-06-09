@@ -17,7 +17,6 @@ import de.tudarmstadt.ukp.dkpro.argumentation.annotations.Span;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima.TextSpanAnnotationFactory;
-import de.tudarmstadt.ukp.dkpro.argumentation.collections.ListIndices;
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
 import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.InconsistentSpanAnnotationException;
 import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationException;
@@ -43,7 +42,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 			final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds) {
 		final int[] result = new int[spanAnnotationIds.size()];
 		// Pre-fill the array in the case that there is no transition for a given annotation
-		Arrays.fill(result, ListIndices.UNSEEN_ELEMENT_INDEX);
+		Arrays.fill(result, -1);
 		for (final ArgumentRelation argumentRelation : argumentRelations) {
 			final ArgumentUnit source = argumentRelation.getSource();
 			try {

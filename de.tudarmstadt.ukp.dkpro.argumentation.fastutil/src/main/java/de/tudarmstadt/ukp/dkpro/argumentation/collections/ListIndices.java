@@ -31,11 +31,6 @@ import java.util.Map.Entry;
  */
 public final class ListIndices {
 
-	/**
-	 * @see {@link List#indexOf(Object)}
-	 */
-	public static final int UNSEEN_ELEMENT_INDEX = -1;
-
 	public static final <E> List<E> createListFromIndexMapping(
 			final Collection<? extends Entry<? extends Integer, ? extends E>> elementIndices) {
 		assert elementIndices != null;
