@@ -5,6 +5,7 @@
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -33,17 +34,17 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 
 	public static final String PROPERTY_SPAN_ANNOTATIONS = "spanAnnotations";
 
-	// private static final int DEFAULT_EXPECTED_MAX_BRANCHES = 1;
-
-	// private final int expectedMaxBranches;
-
-	// private transient final Map<T, List<T>> relations;
-
 	private final int[] relationTransitionTable;
 
 	private transient final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix;
 
 	private final ReverseLookupOrderedSet<T> spanAnnotationVector;
+
+	// private static final int DEFAULT_EXPECTED_MAX_BRANCHES = 1;
+
+	// private final int expectedMaxBranches;
+
+	// private transient final Map<T, List<T>> relations;
 
 	public SpanAnnotationGraph(
 			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
@@ -86,6 +87,45 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		this.relationTransitionTable = relationTransitionTable;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof SpanAnnotationGraph)) {
+			return false;
+		}
+		final SpanAnnotationGraph other = (SpanAnnotationGraph) obj;
+		if (!Arrays.equals(relationTransitionTable, other.relationTransitionTable)) {
+			return false;
+		}
+		if (spanAnnotationVector == null) {
+			if (other.spanAnnotationVector != null) {
+				return false;
+			}
+		} else if (!spanAnnotationVector.equals(other.spanAnnotationVector)) {
+			return false;
+		}
+		return true;
+	}
+
+	public T get(final int id) {
+		return spanAnnotationVector.get(id);
+	}
+
+	public int getId(final T spanAnnotation) {
+		final Object2IntMap<T> spanAnnotationIds = spanAnnotationVector.getReverseLookupMap();
+		return spanAnnotationIds.getInt(spanAnnotation);
+	}
+
 	// public SpanAnnotationGraph(final ReverseLookupOrderedSet<T>
 	// spanAnnotationVector,
 	// final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>>
@@ -99,22 +139,6 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 	// this.relations = createRelationMap(spanAnnotationVector,
 	// expectedMaxBranches);
 	// }
-
-	public T get(final int id) {
-		return spanAnnotationVector.get(id);
-	}
-
-	// /**
-	// * @return the expectedMaxBranches
-	// */
-	// public int getExpectedMaxBranches() {
-	// return expectedMaxBranches;
-	// }
-
-	public int getId(final T spanAnnotation) {
-		final Object2IntMap<T> spanAnnotationIds = spanAnnotationVector.getReverseLookupMap();
-		return spanAnnotationIds.getInt(spanAnnotation);
-	}
 
 	public Map<String, T> getLabels(final Span span) {
 		Map<String, T> result;
@@ -135,11 +159,10 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 	}
 
 	// /**
-	// * @return the relations
+	// * @return the expectedMaxBranches
 	// */
-	// @JsonIgnore
-	// public Map<T, List<T>> getRelations() {
-	// return Collections.unmodifiableMap(relations);
+	// public int getExpectedMaxBranches() {
+	// return expectedMaxBranches;
 	// }
 
 	public T getRelationTarget(final T source) throws NoSuchElementException {
@@ -164,6 +187,14 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		return relationTransitionTable;
 	}
 
+	// /**
+	// * @return the relations
+	// */
+	// @JsonIgnore
+	// public Map<T, List<T>> getRelations() {
+	// return Collections.unmodifiableMap(relations);
+	// }
+
 	/**
 	 * @return the spanAnnotationMatrix
 	 */
@@ -178,6 +209,36 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 	@JsonProperty(PROPERTY_SPAN_ANNOTATIONS)
 	public ReverseLookupOrderedSet<T> getSpanAnnotationVector() {
 		return spanAnnotationVector;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(relationTransitionTable);
+		result = prime * result + (spanAnnotationVector == null ? 0 : spanAnnotationVector.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("SpanAnnotationGraph [getSpanAnnotationVector()=");
+		builder.append(getSpanAnnotationVector());
+		builder.append(", getRelationTransitionTable()=");
+		builder.append(Arrays.toString(getRelationTransitionTable()));
+		builder.append("]");
+		return builder.toString();
 	}
 
 	// private Map<T, List<T>> createRelationMap(final

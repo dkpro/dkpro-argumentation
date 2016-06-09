@@ -33,6 +33,40 @@ public final class AnnotatedDocument<T extends SpanTextLabel> {
 		this.annotations = annotations;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof AnnotatedDocument)) {
+			return false;
+		}
+		final AnnotatedDocument other = (AnnotatedDocument) obj;
+		if (annotations == null) {
+			if (other.annotations != null) {
+				return false;
+			}
+		} else if (!annotations.equals(other.annotations)) {
+			return false;
+		}
+		if (text == null) {
+			if (other.text != null) {
+				return false;
+			}
+		} else if (!text.equals(other.text)) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * @return the annotations
 	 */
@@ -51,6 +85,36 @@ public final class AnnotatedDocument<T extends SpanTextLabel> {
 	@JsonProperty(PROPERTY_TEXT)
 	public String getText() {
 		return text;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (annotations == null ? 0 : annotations.hashCode());
+		result = prime * result + (text == null ? 0 : text.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("AnnotatedDocument [text=");
+		builder.append(text);
+		builder.append(", annotations=");
+		builder.append(annotations);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
