@@ -41,7 +41,8 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 			final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix,
 			final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds) {
 		final int[] result = new int[spanAnnotationIds.size()];
-		// Pre-fill the array in the case that there is no transition for a given annotation
+		// Pre-fill the array in the case that there is no transition for a
+		// given annotation
 		Arrays.fill(result, -1);
 		for (final ArgumentRelation argumentRelation : argumentRelations) {
 			final ArgumentUnit source = argumentRelation.getSource();

@@ -168,7 +168,8 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 	public MultiValueObject2IntMap(final Map<K, C> decorated, final Supplier<? extends C> valueCollectionFactory) {
 		this.decorated = decorated;
 		this.valueCollectionFactory = valueCollectionFactory;
-		this.allValues = de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.IntCollections.createAllElementSet(decorated.values());
+		this.allValues = de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.IntCollections
+				.createAllElementSet(decorated.values());
 
 	}
 

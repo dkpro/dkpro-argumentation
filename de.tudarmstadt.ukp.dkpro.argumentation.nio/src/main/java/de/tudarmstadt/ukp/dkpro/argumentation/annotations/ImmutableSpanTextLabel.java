@@ -6,6 +6,9 @@
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,8 +19,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @since Apr 29, 2016
  *
  */
-@JsonPropertyOrder({ ImmutableSpanTextLabel.PROPERTY_TEXT_SPAN, ImmutableSpanTextLabel.PROPERTY_LABEL })
+@JsonPropertyOrder({ ImmutableSpanTextLabel.PROPERTY_TEXT_SPAN, ImmutableSpanTextLabel.PROPERTY_LABEL,
+		ImmutableSpanTextLabel.PROPERTY_ATTRIBUTES })
 public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel {
+
+	public static final String PROPERTY_ATTRIBUTES = "attrs";
 
 	public static final String PROPERTY_LABEL = "label";
 
@@ -27,6 +33,8 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	 *
 	 */
 	private static final long serialVersionUID = -5564537471325147494L;
+
+	private final Map<Attribute, Object> attributes;
 
 	private final transient int hashCode;
 
@@ -39,9 +47,11 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	 */
 	@JsonCreator
 	public ImmutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final ImmutableSpanText spanText,
-			@JsonProperty(PROPERTY_LABEL) final String label) {
+			@JsonProperty(PROPERTY_LABEL) final String label,
+			@JsonProperty(PROPERTY_ATTRIBUTES) final Map<Attribute, Object> attributes) {
 		this.spanText = spanText;
 		this.label = label;
+		this.attributes = attributes;
 
 		hashCode = createHashCode();
 	}
@@ -51,6 +61,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 		int result = 1;
 		result = prime * result + (label == null ? 0 : label.hashCode());
 		result = prime * result + (spanText == null ? 0 : spanText.hashCode());
+		result = prime * result + (attributes == null ? 0 : attributes.hashCode());
 		return result;
 	}
 
@@ -85,7 +96,14 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 		} else if (!spanText.equals(other.spanText)) {
 			return false;
 		}
-		return true;
+		return Objects.equals(attributes, other.attributes);
+	}
+
+	/**
+	 * @return the attributes
+	 */
+	public Map<Attribute, Object> getAttributes() {
+		return Collections.unmodifiableMap(attributes);
 	}
 
 	/*
@@ -97,7 +115,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	// @Override
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.LabelledTextSpan#
 	 * getLabel()
 	 */
@@ -108,15 +126,9 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	}
 
 	// @Override
-	// @JsonProperty(PROPERTY_TEXT_SPAN)
-	// public ImmutableSpan getSpan() {
-	// return spanText.getSpan();
-	// }
-
-	// @Override
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.LabelledTextSpan#
 	 * getTextSpan()
 	 */
@@ -143,6 +155,8 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 		builder.append(getTextSpan());
 		builder.append(", getLabel()=");
 		builder.append(getLabel());
+		builder.append(", getAttributes()=");
+		builder.append(getAttributes());
 		builder.append("]");
 		return builder.toString();
 	}

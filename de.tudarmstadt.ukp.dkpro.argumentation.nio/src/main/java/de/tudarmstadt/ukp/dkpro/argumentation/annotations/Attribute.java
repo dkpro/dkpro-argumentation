@@ -7,13 +7,9 @@ package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
 /**
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
- * @since Jun 6, 2016
+ * @since Jun 9, 2016
  *
  */
-public interface SpanText {
-
-	String getCoveredText();
-
-	Span getSpan();
-
+public enum Attribute {
+	STANCE;
 }
