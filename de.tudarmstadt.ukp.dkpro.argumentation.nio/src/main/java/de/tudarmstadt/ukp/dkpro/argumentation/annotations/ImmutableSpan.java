@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  *
  */
 @JsonPropertyOrder({ ImmutableSpan.PROPERTY_BEGIN, ImmutableSpan.PROPERTY_END })
-public final class ImmutableSpan implements Comparable<Span>, Span, Serializable {
+public final class ImmutableSpan implements Span, Serializable {
 
 	public static final String PROPERTY_BEGIN = "begin";
 
@@ -43,15 +43,6 @@ public final class ImmutableSpan implements Comparable<Span>, Span, Serializable
 		this.end = end;
 
 		hashCode = createHashCode();
-	}
-
-	@Override
-	public int compareTo(final Span o) {
-		int result = Integer.compare(getBegin(), o.getBegin());
-		if (result == 0) {
-			result = Integer.compare(getEnd(), o.getEnd());
-		}
-		return result;
 	}
 
 	/*

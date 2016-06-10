@@ -1,7 +1,7 @@
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
 public interface SpanTextLabel {
-
+	
 	/*
 	 * (non-Javadoc)
 	 *
