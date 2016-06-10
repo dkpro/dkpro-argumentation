@@ -40,12 +40,6 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 
 	private final ReverseLookupOrderedSet<T> spanAnnotationVector;
 
-	// private static final int DEFAULT_EXPECTED_MAX_BRANCHES = 1;
-
-	// private final int expectedMaxBranches;
-
-	// private transient final Map<T, List<T>> relations;
-
 	public SpanAnnotationGraph(
 			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
 			final int spanAnnotationMatrixSize, final int[] relationTransitionTable) {
@@ -80,8 +74,6 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 	public SpanAnnotationGraph(final ReverseLookupOrderedSet<T> spanAnnotationVector,
 			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
 			final int[] relationTransitionTable) {
-		// this(spanAnnotationVector, spanAnnotationMatrix,
-		// relationTransitionTable, DEFAULT_EXPECTED_MAX_BRANCHES);
 		this.spanAnnotationVector = spanAnnotationVector;
 		this.spanAnnotationMatrix = spanAnnotationMatrix;
 		this.relationTransitionTable = relationTransitionTable;
@@ -89,7 +81,7 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -126,20 +118,6 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		return spanAnnotationIds.getInt(spanAnnotation);
 	}
 
-	// public SpanAnnotationGraph(final ReverseLookupOrderedSet<T>
-	// spanAnnotationVector,
-	// final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>>
-	// spanAnnotationMatrix,
-	// final int[] relationTransitionTable, final int expectedMaxBranches) {
-	// this.spanAnnotationVector = spanAnnotationVector;
-	// this.spanAnnotationMatrix = spanAnnotationMatrix;
-	// this.relationTransitionTable = relationTransitionTable;
-	// this.expectedMaxBranches = expectedMaxBranches;
-
-	// this.relations = createRelationMap(spanAnnotationVector,
-	// expectedMaxBranches);
-	// }
-
 	public Map<String, T> getLabels(final Span span) {
 		Map<String, T> result;
 		final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> annotMatrix = getSpanAnnotationMatrix();
@@ -157,13 +135,6 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		return result;
 
 	}
-
-	// /**
-	// * @return the expectedMaxBranches
-	// */
-	// public int getExpectedMaxBranches() {
-	// return expectedMaxBranches;
-	// }
 
 	public T getRelationTarget(final T source) throws NoSuchElementException {
 		final T result;
@@ -187,14 +158,6 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		return relationTransitionTable;
 	}
 
-	// /**
-	// * @return the relations
-	// */
-	// @JsonIgnore
-	// public Map<T, List<T>> getRelations() {
-	// return Collections.unmodifiableMap(relations);
-	// }
-
 	/**
 	 * @return the spanAnnotationMatrix
 	 */
@@ -213,7 +176,7 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -227,7 +190,7 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -240,21 +203,5 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		builder.append("]");
 		return builder.toString();
 	}
-
-	// private Map<T, List<T>> createRelationMap(final
-	// ReverseLookupOrderedSet<T> targetSpanAnnotations,
-	// final int maxBranches) {
-	// final Map<T, List<T>> result = new HashMap<>(targetSpanAnnotations.size()
-	// + 1);
-	//
-	// targetSpanAnnotations.forEach(targetSpanAnnotation -> {
-	// final Collection<T> relations =
-	// result.computeIfAbsent(targetSpanAnnotation,
-	// annot -> new ArrayList<>(maxBranches + 1));
-	// relations.add(getRelationTarget(targetSpanAnnotation));
-	// });
-	//
-	// return result;
-	// }
 
 }
