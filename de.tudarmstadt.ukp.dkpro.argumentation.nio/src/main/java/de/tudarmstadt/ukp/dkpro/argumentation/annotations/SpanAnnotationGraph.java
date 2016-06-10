@@ -103,7 +103,7 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		if (!(obj instanceof SpanAnnotationGraph)) {
 			return false;
 		}
-		final SpanAnnotationGraph other = (SpanAnnotationGraph) obj;
+		final SpanAnnotationGraph<?> other = (SpanAnnotationGraph<?>) obj;
 		if (!Arrays.equals(relationTransitionTable, other.relationTransitionTable)) {
 			return false;
 		}

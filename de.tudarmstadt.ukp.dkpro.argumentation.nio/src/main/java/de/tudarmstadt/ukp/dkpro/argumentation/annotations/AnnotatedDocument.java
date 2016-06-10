@@ -49,7 +49,7 @@ public final class AnnotatedDocument<T extends SpanTextLabel> {
 		if (!(obj instanceof AnnotatedDocument)) {
 			return false;
 		}
-		final AnnotatedDocument other = (AnnotatedDocument) obj;
+		final AnnotatedDocument<?> other = (AnnotatedDocument<?>) obj;
 		if (annotations == null) {
 			if (other.annotations != null) {
 				return false;

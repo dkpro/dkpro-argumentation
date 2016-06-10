@@ -104,7 +104,7 @@ final class DebugArgumentDumping {
 	 * @return string
 	 */
 	private static String formatProperties(final ArgumentUnit argumentUnit) {
-		final StringBuilder sb = new StringBuilder("Properties:\n");
+		final StringBuilder sb = new StringBuilder("Properties:" + System.lineSeparator());
 
 		final Properties properties = ArgumentUnitUtils.getProperties(argumentUnit);
 		for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
@@ -113,7 +113,7 @@ final class DebugArgumentDumping {
 				sb.append(entry.getKey());
 				sb.append(": ");
 				sb.append(entry.getValue());
-				sb.append("\n");
+				sb.append(System.lineSeparator());
 			}
 		}
 
