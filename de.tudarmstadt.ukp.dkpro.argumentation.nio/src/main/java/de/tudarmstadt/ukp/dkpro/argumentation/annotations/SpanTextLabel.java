@@ -10,6 +10,6 @@ public interface SpanTextLabel {
 	 */
 	String getLabel();
 
-	ImmutableSpanText getTextSpan();
+	ImmutableSpanText getSpanText();
 
 }

@@ -134,7 +134,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	 */
 	@Override
 	@JsonProperty(PROPERTY_TEXT_SPAN)
-	public ImmutableSpanText getTextSpan() {
+	public ImmutableSpanText getSpanText() {
 		return spanText;
 	}
 
@@ -152,7 +152,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 	public String toString() {
 		final StringBuilder builder = new StringBuilder();
 		builder.append("ImmutableLabelledTextSpan [getTextSpan()=");
-		builder.append(getTextSpan());
+		builder.append(getSpanText());
 		builder.append(", getLabel()=");
 		builder.append(getLabel());
 		builder.append(", getAttributes()=");

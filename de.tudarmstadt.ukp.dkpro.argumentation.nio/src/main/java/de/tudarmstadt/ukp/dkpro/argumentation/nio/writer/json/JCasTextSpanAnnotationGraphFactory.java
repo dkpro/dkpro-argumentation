@@ -112,7 +112,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 			for (final ArgumentComponent argumentComponent : argumentComponents) {
 				final ImmutableSpanTextLabel spanAnnotation = TextSpanAnnotationFactory.getInstance()
 						.apply(argumentComponent);
-				final Span span = spanAnnotation.getTextSpan().getSpan();
+				final Span span = spanAnnotation.getSpanText().getSpan();
 				final int begin = span.getBegin();
 				final int end = span.getEnd();
 				final String label = spanAnnotation.getLabel();
