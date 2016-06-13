@@ -11,5 +11,5 @@ package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
  *
  */
 public enum Attribute {
-	STANCE;
+	CATEGORY;
 }

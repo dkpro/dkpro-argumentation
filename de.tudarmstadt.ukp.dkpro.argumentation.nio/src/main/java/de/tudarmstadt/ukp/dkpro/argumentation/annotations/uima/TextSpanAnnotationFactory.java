@@ -49,7 +49,7 @@ public final class TextSpanAnnotationFactory implements Function<Annotation, Imm
 	private static Map<Attribute, Object> createAttrMap(final Annotation annotation) {
 		final Map<Attribute, Object> result;
 		if (annotation instanceof Claim) {
-			result = Collections.singletonMap(Attribute.STANCE, ((Claim) annotation).getStance());
+			result = Collections.singletonMap(Attribute.CATEGORY, ((Claim) annotation).getStance());
 		} else {
 			result = Collections.emptyMap();
 		}
