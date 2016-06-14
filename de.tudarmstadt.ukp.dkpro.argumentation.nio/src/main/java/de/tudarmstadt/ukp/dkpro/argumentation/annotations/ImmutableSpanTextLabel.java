@@ -99,9 +99,7 @@ public final class ImmutableSpanTextLabel implements Serializable, SpanTextLabel
 		return Objects.equals(attributes, other.attributes);
 	}
 
-	/**
-	 * @return the attributes
-	 */
+	@Override
 	public Map<Attribute, Object> getAttributes() {
 		return Collections.unmodifiableMap(attributes);
 	}
