@@ -18,7 +18,6 @@ import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima.TextSpanAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.InconsistentSpanAnnotationException;
 import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationException;
 import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationNotFoundException;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
@@ -66,7 +65,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 	private static int getAnnotationId(final Annotation source,
 			final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix,
 			final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds)
-			throws InconsistentSpanAnnotationException, SpanAnnotationNotFoundException {
+			throws SpanAnnotationNotFoundException {
 		final int result;
 
 		final int begin = source.getBegin();
@@ -75,9 +74,8 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 		final SpanTextLabel spanAnnotation = spanAnnotationMatrix.get3DValue(begin, end, label);
 		if (spanAnnotation == null) {
 			throw new SpanAnnotationNotFoundException(begin, end, label);
-		} else {
-			result = spanAnnotationIds.getInt(spanAnnotation);
 		}
+		result = spanAnnotationIds.getInt(spanAnnotation);
 
 		return result;
 
@@ -97,7 +95,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 				// as
 				// their
 				// ID
-				spanAnnotationVector = new ReverseLookupOrderedSet<ImmutableSpanTextLabel>(
+				spanAnnotationVector = new ReverseLookupOrderedSet<>(
 						new ArrayList<ImmutableSpanTextLabel>(argumentComponentCount));
 				// Just use the size "argumentComponentCount" directly here
 				// because
@@ -132,7 +130,7 @@ final class JCasTextSpanAnnotationGraphFactory implements Function<JCas, SpanAnn
 		final int[] argumentTransitionTable = createArgumentTransitionTable(argumentRelations, spanAnnotationMatrix,
 				spanAnnotationIds);
 
-		return new SpanAnnotationGraph<ImmutableSpanTextLabel>(spanAnnotationVector, argumentTransitionTable);
+		return new SpanAnnotationGraph<>(spanAnnotationVector, argumentTransitionTable);
 	}
 
 }

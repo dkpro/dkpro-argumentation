@@ -21,7 +21,6 @@ import java.util.Collection;
 
 import it.unimi.dsi.fastutil.ints.IntCollection;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import it.unimi.dsi.fastutil.ints.IntSortedSet;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 /**
@@ -43,7 +42,7 @@ public final class Object2IntMapValueArithmetic {
 	 * @param toValue
 	 *            The exclusive maximum of the key values to increment.
 	 */
-	public static final <K, C extends IntSortedSet> void incrementValues(final Object2IntMap<K> map,
+	public static final <K> void incrementValues(final Object2IntMap<K> map,
 			final Collection<? extends K> keysToIncrement, final int increment, final int fromValue,
 			final int toValue) {
 		assert keysToIncrement != null;
@@ -63,14 +62,16 @@ public final class Object2IntMapValueArithmetic {
 	 *            The keys to add.
 	 * @param startValue
 	 *            The integer value to start at.
-	 * @return If at least one value was added to the map.
 	 */
-	public static final <K, C extends IntCollection> void putIncrementingValues(final Object2IntMap<K> map,
-			final Iterable<? extends K> keysToAdd, int startValue) {
+	public static final <K> void putIncrementingValues(final Object2IntMap<K> map,
+			final Iterable<? extends K> keysToAdd, final int startValue) {
 		assert keysToAdd != null;
 
-		for (final K keyToAdd : keysToAdd) {
-			map.put(keyToAdd, startValue++);
+		{
+			int currentValue = startValue;
+			for (final K keyToAdd : keysToAdd) {
+				map.put(keyToAdd, currentValue++);
+			}
 		}
 	}
 
@@ -91,9 +92,8 @@ public final class Object2IntMapValueArithmetic {
 	 *            A {@link IntCollection} of elements in the original mapping
 	 *            which were incremented.
 	 */
-	private static final <K, C extends IntSortedSet> void incrementValues(final Object2IntMap<K> map,
-			final K keyToIncrement, final int increment, final int fromValue, final int toValue,
-			final IntCollection incrementedValues) {
+	private static final <K> void incrementValues(final Object2IntMap<K> map, final K keyToIncrement,
+			final int increment, final int fromValue, final int toValue, final IntCollection incrementedValues) {
 		final int valueToIncrement = map.getInt(keyToIncrement);
 		// Filter out the values outside the specified range of values to update
 		if (fromValue <= valueToIncrement && valueToIncrement <= toValue

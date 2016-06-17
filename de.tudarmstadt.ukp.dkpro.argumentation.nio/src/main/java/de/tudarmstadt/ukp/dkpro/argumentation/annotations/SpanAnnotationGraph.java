@@ -125,12 +125,11 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		final Int2ObjectMap<? extends Map<String, T>> firstDim = annotMatrix.get(begin);
 		if (firstDim == annotMatrix.defaultReturnValue()) {
 			throw new NoSuchElementException(String.format("Span begin index %d not found in matrix.", begin));
-		} else {
-			final int end = span.getEnd();
-			result = firstDim.get(end);
-			if (result == firstDim.defaultReturnValue()) {
-				throw new NoSuchElementException(String.format("Span end index %d not found in matrix.", end));
-			}
+		}
+		final int end = span.getEnd();
+		result = firstDim.get(end);
+		if (result == firstDim.defaultReturnValue()) {
+			throw new NoSuchElementException(String.format("Span end index %d not found in matrix.", end));
 		}
 		return result;
 
@@ -142,10 +141,9 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 		final int sourceId = getId(source);
 		if (sourceId < 0) {
 			throw new NoSuchElementException("Not found in relation table: " + source);
-		} else {
-			final int targetId = relationTransitionTable[sourceId];
-			result = targetId < 0 ? null : get(targetId);
 		}
+		final int targetId = relationTransitionTable[sourceId];
+		result = targetId < 0 ? null : get(targetId);
 
 		return result;
 	}

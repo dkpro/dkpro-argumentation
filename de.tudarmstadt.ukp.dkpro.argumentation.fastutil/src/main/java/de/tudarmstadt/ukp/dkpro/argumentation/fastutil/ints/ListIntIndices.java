@@ -43,7 +43,7 @@ public final class ListIntIndices {
 	public static final <E> List<E> createListFromIndexMapping(
 			final Collection<? extends Entry<? extends E>> elementIndices) {
 		assert elementIndices != null;
-		final List<E> result = new ArrayList<E>(elementIndices.size());
+		final List<E> result = new ArrayList<>(elementIndices.size());
 
 		setIndexedElements(result, elementIndices);
 

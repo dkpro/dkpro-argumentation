@@ -131,7 +131,7 @@ public final class JsonStreamDumpWriter extends JCasAnnotator_ImplBase {
 		LOG.info(String.format("Processing document \"%s\".", documentId));
 		final JCasTextSpanAnnotationGraphFactory converter = new JCasTextSpanAnnotationGraphFactory();
 		final SpanAnnotationGraph<ImmutableSpanTextLabel> spanAnnotations = converter.apply(jCas);
-		final AnnotatedDocument<ImmutableSpanTextLabel> doc = new AnnotatedDocument<ImmutableSpanTextLabel>(
+		final AnnotatedDocument<ImmutableSpanTextLabel> doc = new AnnotatedDocument<>(
 				jCas.getDocumentText(), spanAnnotations);
 
 		documentAnnotations.put(documentId, doc);

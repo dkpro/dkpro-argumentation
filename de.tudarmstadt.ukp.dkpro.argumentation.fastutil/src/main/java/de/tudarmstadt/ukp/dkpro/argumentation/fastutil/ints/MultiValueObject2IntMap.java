@@ -87,13 +87,16 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 	 * @return If at least one value was added to the map.
 	 */
 	public static final <K, C extends IntCollection> boolean putIncrementingValues(
-			final MultiValueObject2IntMap<K, C> multimap, final Iterable<? extends K> keysToAdd, int startValue) {
+			final MultiValueObject2IntMap<K, C> multimap, final Iterable<? extends K> keysToAdd, final int startValue) {
 		assert keysToAdd != null;
 		boolean result = false;
 
-		for (final K keyToAdd : keysToAdd) {
-			if (multimap.putValue(keyToAdd, startValue++)) {
-				result = true;
+		{
+			int currentValue = startValue;
+			for (final K keyToAdd : keysToAdd) {
+				if (multimap.putValue(keyToAdd, currentValue++)) {
+					result = true;
+				}
 			}
 		}
 
