@@ -20,12 +20,17 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 /**
- * This is essentially a labelled
+ * A class representing a
  * <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed
- * acyclic graph</a>.
+ * acyclic graph</a> of {@link SpanTextLabel} objects.
+ *
  *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since May 2, 2016
+ *
+ * @param <T>
+ *            The concrete type of {@code SpanTextLabel} used returned by
+ *            methods in this class.
  *
  */
 public final class SpanAnnotationGraph<T extends SpanTextLabel> {

@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * A class representing a document annotated with {@link SpanTextLabel} objects.
+ *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since May 10, 2016
  *
@@ -35,7 +37,7 @@ public final class AnnotatedDocument<T extends SpanTextLabel> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -89,7 +91,7 @@ public final class AnnotatedDocument<T extends SpanTextLabel> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -103,7 +105,7 @@ public final class AnnotatedDocument<T extends SpanTextLabel> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

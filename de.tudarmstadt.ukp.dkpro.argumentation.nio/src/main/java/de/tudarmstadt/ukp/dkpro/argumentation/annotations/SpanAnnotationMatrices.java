@@ -21,7 +21,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
  *
  */
 @SuppressWarnings("deprecation")
-public final class SpanAnnotationMatrices {
+final class SpanAnnotationMatrices {
 
 	private static final Log LOG = LogFactory.getLog(SpanAnnotationMatrices.class);
 
