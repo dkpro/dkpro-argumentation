@@ -35,8 +35,6 @@ import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima.TextSpanAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationException;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.SpanAnnotationNotFoundException;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit;
@@ -66,44 +64,48 @@ final class JCasTextSpanAnnotationGraphFactory
         Arrays.fill(result, -1);
         for (final ArgumentRelation argumentRelation : argumentRelations) {
             final ArgumentUnit source = argumentRelation.getSource();
-            try {
-                final int sourceSpanAnnotationId = getAnnotationId(source, spanAnnotationMatrix,
-                        spanAnnotationIds);
+            final int sourceSpanAnnotationId = getAnnotationId(source, spanAnnotationMatrix,
+                    spanAnnotationIds);
+            if (sourceSpanAnnotationId < 0) {
+                LOG.error(String.format("Source span %s not found in annotation matrix.",
+                        createStrRepr(source)));
+            }
+            else {
                 final ArgumentUnit target = argumentRelation.getTarget();
                 final int targetSpanAnnotationId = getAnnotationId(target, spanAnnotationMatrix,
                         spanAnnotationIds);
-                // The target serves as a key instead of the source because
-                // it is possible that e.g. one claim has multiple premises
-                result[sourceSpanAnnotationId] = targetSpanAnnotationId;
+                if (targetSpanAnnotationId < 0) {
+                    LOG.error(String.format("Target span %s not found in annotation matrix.",
+                            createStrRepr(target)));
+                }
+                else {
+                    // The target serves as a key instead of the source because
+                    // it is possible that e.g. one claim has multiple premises
+                    result[sourceSpanAnnotationId] = targetSpanAnnotationId;
+                }
 
             }
-            catch (final SpanAnnotationException e) {
-                // TODO: implement error handling
-                LOG.error(e);
-            }
+
         }
 
         return result;
     }
 
+    private static String createStrRepr(final Annotation source)
+    {
+        return String.format("[%d, %d, %s]", source.getBegin(), source.getEnd(),
+                source.getType().getShortName());
+    }
+
     private static int getAnnotationId(final Annotation source,
             final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix,
             final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds)
-        throws SpanAnnotationNotFoundException
     {
-        final int result;
-
         final int begin = source.getBegin();
         final int end = source.getEnd();
         final String label = source.getType().getShortName();
         final SpanTextLabel spanAnnotation = spanAnnotationMatrix.get3DValue(begin, end, label);
-        if (spanAnnotation == null) {
-            throw new SpanAnnotationNotFoundException(begin, end, label);
-        }
-        result = spanAnnotationIds.getInt(spanAnnotation);
-
-        return result;
-
+        return spanAnnotation == null ? -1 : spanAnnotationIds.getInt(spanAnnotation);
     }
 
     @Override
