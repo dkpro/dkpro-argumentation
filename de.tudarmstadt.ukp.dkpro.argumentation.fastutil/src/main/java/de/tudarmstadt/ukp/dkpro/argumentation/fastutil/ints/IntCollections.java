@@ -26,18 +26,22 @@ import it.unimi.dsi.fastutil.ints.IntSet;
  *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  */
-public final class IntCollections {
+public final class IntCollections
+{
 
-	public static final IntSet createAllElementSet(final Iterable<? extends IntCollection> collections) {
-		final IntOpenHashSet result = new IntOpenHashSet();
-		for (final IntCollection collection : collections) {
-			result.addAll(collection);
-		}
-		return result;
-	}
+    public static final IntSet createAllElementSet(
+            final Iterable<? extends IntCollection> collections)
+    {
+        final IntOpenHashSet result = new IntOpenHashSet();
+        for (final IntCollection collection : collections) {
+            result.addAll(collection);
+        }
+        return result;
+    }
 
-	private IntCollections() {
-		// Avoid instantiation
-	}
+    private IntCollections()
+    {
+        // Avoid instantiation
+    }
 
 }

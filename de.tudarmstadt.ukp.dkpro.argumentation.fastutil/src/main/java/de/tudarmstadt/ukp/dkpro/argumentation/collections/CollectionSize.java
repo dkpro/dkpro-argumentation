@@ -25,52 +25,57 @@ import java.util.Collections;
  *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  */
-public final class CollectionSize {
+public final class CollectionSize
+{
 
-	/**
-	 * Ensures that a given {@link Collection} has a given size, adding
-	 * {@code null} references to it until it has the given size.
-	 *
-	 * @param collection
-	 *            The {@code Collection} to increase the size of.
-	 * @param size
-	 *            The target size of the {@code Collection}.
-	 * @return {@code true} iff elements were added to the {@code Collection}.
-	 */
-	public static final <E> boolean ensureSize(final Collection<E> collection, final int size) {
-		return ensureSize(collection, size, null);
-	}
+    /**
+     * Ensures that a given {@link Collection} has a given size, adding {@code null} references to
+     * it until it has the given size.
+     *
+     * @param collection
+     *            The {@code Collection} to increase the size of.
+     * @param size
+     *            The target size of the {@code Collection}.
+     * @return {@code true} iff elements were added to the {@code Collection}.
+     */
+    public static final <E> boolean ensureSize(final Collection<E> collection, final int size)
+    {
+        return ensureSize(collection, size, null);
+    }
 
-	/**
-	 * Ensures that a given {@link Collection} has a given size, adding
-	 * references to it until it has the given size.
-	 *
-	 * @param collection
-	 *            The {@code Collection} to increase the size of.
-	 * @param size
-	 *            The target size of the {@code Collection}.
-	 * @param defaultElement
-	 *            The element reference to add until the {@code Collection} is
-	 *            of the target size.
-	 * @return {@code true} iff elements were added to the {@code Collection}.
-	 */
-	public static final <E> boolean ensureSize(final Collection<E> collection, final int size, final E defaultElement) {
-		assert collection != null;
-		final boolean result;
+    /**
+     * Ensures that a given {@link Collection} has a given size, adding references to it until it
+     * has the given size.
+     *
+     * @param collection
+     *            The {@code Collection} to increase the size of.
+     * @param size
+     *            The target size of the {@code Collection}.
+     * @param defaultElement
+     *            The element reference to add until the {@code Collection} is of the target size.
+     * @return {@code true} iff elements were added to the {@code Collection}.
+     */
+    public static final <E> boolean ensureSize(final Collection<E> collection, final int size,
+            final E defaultElement)
+    {
+        assert collection != null;
+        final boolean result;
 
-		final int sizeDifference = size - collection.size();
-		if (sizeDifference > 0) {
-			final Collection<E> elementsToAdd = Collections.nCopies(sizeDifference, defaultElement);
-			result = collection.addAll(elementsToAdd);
-		} else {
-			result = false;
-		}
+        final int sizeDifference = size - collection.size();
+        if (sizeDifference > 0) {
+            final Collection<E> elementsToAdd = Collections.nCopies(sizeDifference, defaultElement);
+            result = collection.addAll(elementsToAdd);
+        }
+        else {
+            result = false;
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	private CollectionSize() {
-		// Avoid instantiation
-	}
+    private CollectionSize()
+    {
+        // Avoid instantiation
+    }
 
 }

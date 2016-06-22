@@ -38,78 +38,87 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
  *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  */
-public final class ListIntIndices {
+public final class ListIntIndices
+{
 
-	public static final <E> List<E> createListFromIndexMapping(
-			final Collection<? extends Entry<? extends E>> elementIndices) {
-		assert elementIndices != null;
-		final List<E> result = new ArrayList<>(elementIndices.size());
+    public static final <E> List<E> createListFromIndexMapping(
+            final Collection<? extends Entry<? extends E>> elementIndices)
+    {
+        assert elementIndices != null;
+        final List<E> result = new ArrayList<>(elementIndices.size());
 
-		setIndexedElements(result, elementIndices);
+        setIndexedElements(result, elementIndices);
 
-		return result;
-	}
+        return result;
+    }
 
-	public static final <E, C extends IntCollection> MultiValueObject2IntMap<E, C> createListIndexMap(
-			final List<? extends E> list, final Supplier<? extends C> valueCollectionFactory) {
-		assert list != null;
-		final Map<E, C> decoratedMap = new HashMap<>(list.size() + 1);
-		final MultiValueObject2IntMap<E, C> result = new MultiValueObject2IntMap<>(decoratedMap,
-				valueCollectionFactory);
+    public static final <E, C extends IntCollection> MultiValueObject2IntMap<E, C> createListIndexMap(
+            final List<? extends E> list, final Supplier<? extends C> valueCollectionFactory)
+    {
+        assert list != null;
+        final Map<E, C> decoratedMap = new HashMap<>(list.size() + 1);
+        final MultiValueObject2IntMap<E, C> result = new MultiValueObject2IntMap<>(decoratedMap,
+                valueCollectionFactory);
 
-		for (final ListIterator<? extends E> listIter = list.listIterator(); listIter.hasNext();) {
-			final int nextIndex = listIter.nextIndex();
-			final E nextElement = listIter.next();
-			result.putValue(nextElement, nextIndex);
-		}
+        for (final ListIterator<? extends E> listIter = list.listIterator(); listIter.hasNext();) {
+            final int nextIndex = listIter.nextIndex();
+            final E nextElement = listIter.next();
+            result.putValue(nextElement, nextIndex);
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	public static final <E> Object2IntMap<E> createOrderedSetIndexMap(final Collection<? extends E> orderedSet) {
-		assert orderedSet != null;
-		final Object2IntMap<E> result = new Object2IntOpenHashMap<>(orderedSet.size() + 1);
-		result.defaultReturnValue(-1);
+    public static final <E> Object2IntMap<E> createOrderedSetIndexMap(
+            final Collection<? extends E> orderedSet)
+    {
+        assert orderedSet != null;
+        final Object2IntMap<E> result = new Object2IntOpenHashMap<>(orderedSet.size() + 1);
+        result.defaultReturnValue(-1);
 
-		int nextIndex = -1;
-		// TODO: Refactor this logic below into its own method
-		for (final E nextElement : orderedSet) {
-			++nextIndex;
-			final int oldValue = result.put(nextElement, nextIndex);
-			if (oldValue != result.defaultReturnValue()) {
-				throw new IllegalArgumentException(String.format(
-						"List passed as argument contains already-seen (i.e. non-unique) element at index %d.",
-						nextIndex));
-			}
-		}
+        int nextIndex = -1;
+        // TODO: Refactor this logic below into its own method
+        for (final E nextElement : orderedSet) {
+            ++nextIndex;
+            final int oldValue = result.put(nextElement, nextIndex);
+            if (oldValue != result.defaultReturnValue()) {
+                throw new IllegalArgumentException(String.format(
+                        "List passed as argument contains already-seen (i.e. non-unique) element at index %d.",
+                        nextIndex));
+            }
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	public static final <E> void setIndexedElements(final List<E> list,
-			final Int2ObjectMap<? extends E> elementIndices) {
-		assert list != null;
-		assert elementIndices != null;
+    public static final <E> void setIndexedElements(final List<E> list,
+            final Int2ObjectMap<? extends E> elementIndices)
+    {
+        assert list != null;
+        assert elementIndices != null;
 
-		// Find the maximum index in order to pre-set the list length
-		final int maxIndex = Collections.max(elementIndices.keySet());
-		ListIndices.ensureIndex(list, maxIndex);
+        // Find the maximum index in order to pre-set the list length
+        final int maxIndex = Collections.max(elementIndices.keySet());
+        ListIndices.ensureIndex(list, maxIndex);
 
-		final Iterable<? extends Entry<? extends E>> elementIndexEntries = elementIndices.int2ObjectEntrySet();
-		setIndexedElements(list, elementIndexEntries);
-	}
+        final Iterable<? extends Entry<? extends E>> elementIndexEntries = elementIndices
+                .int2ObjectEntrySet();
+        setIndexedElements(list, elementIndexEntries);
+    }
 
-	public static final <E> void setIndexedElements(final List<E> list,
-			final Iterable<? extends Entry<? extends E>> elementIndices) {
-		for (final Entry<? extends E> elementIndex : elementIndices) {
-			final int index = elementIndex.getIntKey();
-			final E element = elementIndex.getValue();
-			list.set(index, element);
-		}
-	}
+    public static final <E> void setIndexedElements(final List<E> list,
+            final Iterable<? extends Entry<? extends E>> elementIndices)
+    {
+        for (final Entry<? extends E> elementIndex : elementIndices) {
+            final int index = elementIndex.getIntKey();
+            final E element = elementIndex.getValue();
+            list.set(index, element);
+        }
+    }
 
-	private ListIntIndices() {
-		// Avoid instantiation
-	}
+    private ListIntIndices()
+    {
+        // Avoid instantiation
+    }
 
 }

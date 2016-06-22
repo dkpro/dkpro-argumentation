@@ -22,10 +22,11 @@ package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
  * @since Jun 6, 2016
  *
  */
-public interface SpanText {
+public interface SpanText
+{
 
-	String getCoveredText();
+    String getCoveredText();
 
-	Span getSpan();
+    Span getSpan();
 
 }

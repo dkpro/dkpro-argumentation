@@ -22,6 +22,7 @@ package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
  * @since Jun 9, 2016
  *
  */
-public enum Attribute {
-	CATEGORY;
+public enum Attribute
+{
+    CATEGORY;
 }

@@ -17,13 +17,14 @@
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
-public interface SpanLabel {
+public interface SpanLabel
+{
 
-	/**
-	 * @return the label
-	 */
-	String getLabel();
+    /**
+     * @return the label
+     */
+    String getLabel();
 
-	Span getSpan();
+    Span getSpan();
 
 }

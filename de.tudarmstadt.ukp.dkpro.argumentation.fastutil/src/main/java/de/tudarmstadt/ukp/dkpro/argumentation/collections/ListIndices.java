@@ -29,50 +29,59 @@ import java.util.Map.Entry;
  *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  */
-public final class ListIndices {
+public final class ListIndices
+{
 
-	public static final <E> List<E> createListFromIndexMapping(
-			final Collection<? extends Entry<? extends Integer, ? extends E>> elementIndices) {
-		assert elementIndices != null;
-		final List<E> result = new ArrayList<>(elementIndices.size());
+    public static final <E> List<E> createListFromIndexMapping(
+            final Collection<? extends Entry<? extends Integer, ? extends E>> elementIndices)
+    {
+        assert elementIndices != null;
+        final List<E> result = new ArrayList<>(elementIndices.size());
 
-		setIndexedElements(result, elementIndices);
+        setIndexedElements(result, elementIndices);
 
-		return result;
-	}
+        return result;
+    }
 
-	public static final <E> boolean ensureIndex(final List<E> list, final int index) {
-		return CollectionSize.ensureSize(list, index + 1);
-	}
+    public static final <E> boolean ensureIndex(final List<E> list, final int index)
+    {
+        return CollectionSize.ensureSize(list, index + 1);
+    }
 
-	public static final <E> boolean ensureIndex(final List<E> list, final int index, final E defaultElement) {
-		return CollectionSize.ensureSize(list, index + 1, defaultElement);
-	}
+    public static final <E> boolean ensureIndex(final List<E> list, final int index,
+            final E defaultElement)
+    {
+        return CollectionSize.ensureSize(list, index + 1, defaultElement);
+    }
 
-	public static final <E> void setIndexedElements(final List<E> list,
-			final Iterable<? extends Entry<? extends Integer, ? extends E>> elementIndices) {
-		for (final Entry<? extends Integer, ? extends E> elementIndex : elementIndices) {
-			final Integer index = elementIndex.getKey();
-			final E element = elementIndex.getValue();
-			list.set(index, element);
-		}
-	}
+    public static final <E> void setIndexedElements(final List<E> list,
+            final Iterable<? extends Entry<? extends Integer, ? extends E>> elementIndices)
+    {
+        for (final Entry<? extends Integer, ? extends E> elementIndex : elementIndices) {
+            final Integer index = elementIndex.getKey();
+            final E element = elementIndex.getValue();
+            list.set(index, element);
+        }
+    }
 
-	public static final <E> void setIndexedElements(final List<E> list,
-			final Map<? extends Integer, ? extends E> elementIndices) {
-		assert list != null;
-		assert elementIndices != null;
+    public static final <E> void setIndexedElements(final List<E> list,
+            final Map<? extends Integer, ? extends E> elementIndices)
+    {
+        assert list != null;
+        assert elementIndices != null;
 
-		// Find the maximum index in order to pre-set the list length
-		final int maxIndex = Collections.max(elementIndices.keySet());
-		ensureIndex(list, maxIndex);
+        // Find the maximum index in order to pre-set the list length
+        final int maxIndex = Collections.max(elementIndices.keySet());
+        ensureIndex(list, maxIndex);
 
-		final Iterable<? extends Entry<? extends Integer, ? extends E>> elementIndexEntries = elementIndices.entrySet();
-		setIndexedElements(list, elementIndexEntries);
-	}
+        final Iterable<? extends Entry<? extends Integer, ? extends E>> elementIndexEntries = elementIndices
+                .entrySet();
+        setIndexedElements(list, elementIndexEntries);
+    }
 
-	private ListIndices() {
-		// Avoid instantiation
-	}
+    private ListIndices()
+    {
+        // Avoid instantiation
+    }
 
 }
