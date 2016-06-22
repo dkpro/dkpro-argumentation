@@ -1,10 +1,23 @@
 /*
- * Copyright (c) the Department of Informatics, Technische Universität Darmstadt. All Rights Reserved.
+ * Copyright 2016
+ * Ubiquitous Knowledge Processing (UKP) Lab
+ * Technische Universität Darmstadt
  *
- * Unauthorized distribution of this file via any medium is strictly prohibited.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +28,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
-import de.tudarmstadt.ukp.math.ObjectMatrices;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.ObjectSet;
 
 /**
  * A class representing a
@@ -49,9 +62,25 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel> {
 			final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
 			final int spanAnnotationMatrixSize, final int[] relationTransitionTable) {
 		this(new ReverseLookupOrderedSet<>(
-				ObjectMatrices.createList(spanAnnotationMatrix.int2ObjectEntrySet(), spanAnnotationMatrixSize)),
+				createList(spanAnnotationMatrix.int2ObjectEntrySet(), spanAnnotationMatrixSize)),
 				spanAnnotationMatrix, relationTransitionTable);
 	}
+	
+	private static <T> List<T> createList(
+            final ObjectSet<? extends Int2ObjectMap.Entry<? extends Int2ObjectMap<? extends Map<?, T>>>> matrixRows,
+            final int size) {
+        final List<T> result = new ArrayList<>(size);
+        for (final Int2ObjectMap.Entry<? extends Int2ObjectMap<? extends Map<?, T>>> firstDimEntry : matrixRows) {
+            for (final Int2ObjectMap.Entry<? extends Map<?, T>> secondDimEntry : firstDimEntry.getValue()
+                    .int2ObjectEntrySet()) {
+                for (final Map.Entry<?, T> thirdDimEntry : secondDimEntry.getValue().entrySet()) {
+                    final T thirdDimValue = thirdDimEntry.getValue();
+                    result.add(thirdDimValue);
+                }
+            }
+        }
+        return result;
+    }
 
 	@SuppressWarnings("deprecation")
 	@JsonCreator
