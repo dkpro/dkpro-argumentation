@@ -30,7 +30,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<dkpro.version>1.7.0</dkpro.version>
-		<java.version>1.7</java.version>
 	</properties>
 
 	<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
