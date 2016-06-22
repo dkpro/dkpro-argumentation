@@ -27,6 +27,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.JCasFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
+import org.apache.uima.fit.testing.util.HideOutput;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.junit.Before;
@@ -111,10 +112,15 @@ public class ArgumentBIOAnnotatorTest
     public void testSimplifiedTokenBIO()
             throws Exception
     {
+        // hide stderr for this test
+        HideOutput hideOutput = new HideOutput();
+
         // this must fail, it needs to also be annotated by ArgumentTokenBIOAnnotator
         exception.expect(AnalysisEngineProcessException.class);
         SimplePipeline.runPipeline(jCas, AnalysisEngineFactory.createEngineDescription(
                 ArgumentSimplifiedTokenBIOAnnotator.class));
+        // and restore it back
+        hideOutput.restoreOutput();
 
         SimplePipeline.runPipeline(jCas,
                 AnalysisEngineFactory.createEngineDescription(
