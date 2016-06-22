@@ -70,11 +70,11 @@ final class JCasTextSpanAnnotationGraphFactory
                 final int sourceSpanAnnotationId = getAnnotationId(source, spanAnnotationMatrix,
                         spanAnnotationIds);
                 final ArgumentUnit target = argumentRelation.getTarget();
-                final int targetSpanAnnotatonId = getAnnotationId(target, spanAnnotationMatrix,
+                final int targetSpanAnnotationId = getAnnotationId(target, spanAnnotationMatrix,
                         spanAnnotationIds);
                 // The target serves as a key instead of the source because
                 // it is possible that e.g. one claim has multiple premises
-                result[sourceSpanAnnotationId] = targetSpanAnnotatonId;
+                result[sourceSpanAnnotationId] = targetSpanAnnotationId;
 
             }
             catch (final SpanAnnotationException e) {
