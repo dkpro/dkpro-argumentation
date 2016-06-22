@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2014
+  ~ Copyright 2016
   ~ Ubiquitous Knowledge Processing (UKP) Lab
   ~ Technische Universität Darmstadt
   ~
@@ -43,8 +43,7 @@
 
 	<scm>
 		<connection>scm:git:git://github.com/dkpro/dkpro-argumentation</connection>
-		<developerConnection>scm:git:git://github.com/dkpro/dkpro-argumentation.git
-		</developerConnection>
+		<developerConnection>scm:git:git://github.com/dkpro/dkpro-argumentation.git</developerConnection>
 		<url>https://github.com/dkpro/dkpro-argumentation</url>
 	</scm>
 
@@ -63,7 +62,7 @@
 
 	<organization>
 		<name>Ubiquitous Knowledge Processing (UKP) Lab, Technische Universität Darmstadt</name>
-		<url>http://www.ukp.tu-darmstadt.de/</url>
+		<url>https://www.ukp.tu-darmstadt.de/</url>
 	</organization>
 
 	<developers>
