@@ -15,8 +15,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
@@ -27,20 +28,10 @@
 	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</groupId>
 	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</artifactId>
 	<name>fastutil NLP</name>
-	<description>Extension classes to classes from fastutil especially used for data mining/NLP tasks.</description>
+	<description>Extension classes to classes from fastutil especially used for data mining/NLP
+		tasks.
+	</description>
 	<inceptionYear>2016</inceptionYear>
-
-	<developers>
-		<developer>
-			<id>shore</id>
-			<name>Todd Shore</name>
-			<email>errantlinguist+github@gmail.com</email>
-			<roles>
-				<role>architect</role>
-				<role>developer</role>
-			</roles>
-		</developer>
-	</developers>
 
 	<dependencies>
 		<dependency>
