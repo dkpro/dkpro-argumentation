@@ -8,11 +8,13 @@ Version 0.0.3-SNAPSHOT
 
 DKPro Argumentation is available from Maven Central. For working with the UIMA type system, add the following dependencies to your `pom.xml`
 
+Stable version released: 0.0.2
+
 ```
 <dependency>
     <groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
     <artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 ## Modules
@@ -60,7 +62,7 @@ as shown in
   - Have a look at `de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `de.tudarmstadt.ukp.dkpro.argumentation.io.writer` package which shows how to access the argument components, their text, tokens, sentences, etc.
 
 
-&copy; 2013-2015 UKP
+&copy; 2013-2016 UKP
 
 Argumentation Mining Special Interest Group members
 
