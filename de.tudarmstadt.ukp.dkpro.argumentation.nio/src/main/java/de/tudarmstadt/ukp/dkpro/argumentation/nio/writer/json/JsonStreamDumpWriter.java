@@ -38,9 +38,9 @@ import org.apache.uima.resource.ResourceInitializationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.AnnotatedDocument;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpanTextLabel;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.AnnotatedDocument;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 
 /**

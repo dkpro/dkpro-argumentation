@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
+package de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -131,13 +131,13 @@ public final class ImmutableSpanTextLabel
     /*
      * (non-Javadoc)
      *
-     * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotation# getAnnotationType()
+     * @see de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanAnnotation# getAnnotationType()
      */
     // @Override
     /*
      * (non-Javadoc)
      *
-     * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.LabelledTextSpan# getLabel()
+     * @see de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.LabelledTextSpan# getLabel()
      */
     @Override
     @JsonProperty(PROPERTY_LABEL)
@@ -150,7 +150,7 @@ public final class ImmutableSpanTextLabel
     /*
      * (non-Javadoc)
      *
-     * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.LabelledTextSpan# getTextSpan()
+     * @see de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.LabelledTextSpan# getTextSpan()
      */
     @Override
     @JsonProperty(PROPERTY_TEXT_SPAN)

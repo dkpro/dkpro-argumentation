@@ -29,12 +29,12 @@ import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpanTextLabel;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.Span;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotationGraph;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanTextLabel;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima.TextSpanAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.Span;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanAnnotationGraph;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.uima.TextSpanAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit;

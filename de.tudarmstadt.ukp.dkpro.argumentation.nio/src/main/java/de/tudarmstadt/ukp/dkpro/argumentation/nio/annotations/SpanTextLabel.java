@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
+package de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations;
 
 import java.util.Map;
 
@@ -30,7 +30,7 @@ public interface SpanTextLabel
     /*
      * (non-Javadoc)
      *
-     * @see de.tudarmstadt.ukp.dkpro.argumentation.annotations.SpanAnnotation# getAnnotationType()
+     * @see de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanAnnotation# getAnnotationType()
      */
     String getLabel();
 

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.annotations;
+package de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations;
 
 /**
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>

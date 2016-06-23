@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.annotations.uima;
+package de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.uima;
 
 import java.util.Collections;
 import java.util.Map;
@@ -23,10 +23,10 @@ import java.util.function.Function;
 
 import org.apache.uima.jcas.tcas.Annotation;
 
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.Attribute;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpan;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpanText;
-import de.tudarmstadt.ukp.dkpro.argumentation.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.Attribute;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.ImmutableSpan;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.ImmutableSpanText;
+import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.ImmutableSpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.Claim;
 
 /**
