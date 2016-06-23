@@ -205,19 +205,19 @@ public class ArgumentDumpWriter
      */
     private static String formatProperties(ArgumentUnit argumentUnit)
     {
-        StringBuilder sb = new StringBuilder("Properties:\n");
+		final StringBuilder sb = new StringBuilder("Properties:" + System.lineSeparator());
 
-        Properties properties = ArgumentUnitUtils.getProperties(argumentUnit);
-        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-            if (entry.getValue() != null) {
-                sb.append("   ");
-                sb.append(entry.getKey());
-                sb.append(": ");
-                sb.append(entry.getValue());
-                sb.append("\n");
-            }
-        }
+		final Properties properties = ArgumentUnitUtils.getProperties(argumentUnit);
+		for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
+			if (entry.getValue() != null) {
+				sb.append("   ");
+				sb.append(entry.getKey());
+				sb.append(": ");
+				sb.append(entry.getValue());
+				sb.append(System.lineSeparator());
+			}
+		}
 
-        return sb.toString();
+		return sb.toString();
     }
 }

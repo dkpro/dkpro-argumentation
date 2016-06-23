@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2014
+  ~ Copyright 2016
   ~ Ubiquitous Knowledge Processing (UKP) Lab
   ~ Technische Universität Darmstadt
   ~
@@ -15,31 +15,39 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
 		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
-	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.misc</groupId>
-	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.misc</artifactId>
+
+	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</groupId>
+	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</artifactId>
+	<name>fastutil NLP</name>
+	<description>Extension classes to classes from fastutil especially used for data mining/NLP tasks.</description>
+	<inceptionYear>2016</inceptionYear>
+
+	<developers>
+		<developer>
+			<id>shore</id>
+			<name>Todd Shore</name>
+			<email>errantlinguist+github@gmail.com</email>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
 	<dependencies>
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.segmentation-asl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.statistics</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.statistics</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.io</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.io</artifactId>
+			<groupId>it.unimi.dsi</groupId>
+			<artifactId>fastutil</artifactId>
+			<version>7.0.12</version>
 		</dependency>
 	</dependencies>
 </project>
+

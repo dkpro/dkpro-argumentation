@@ -16,9 +16,8 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -30,11 +29,12 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<dkpro.version>1.7.0</dkpro.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
 	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>DKPro Argumentation</name>
@@ -82,7 +82,32 @@
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing</module>
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.misc</module>
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.examples</module>
+		<module>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</module>
 	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencyManagement>
 		<dependencies>
@@ -111,6 +136,11 @@
 			<dependency>
 				<groupId>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing</groupId>
 				<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</groupId>
+				<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

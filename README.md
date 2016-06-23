@@ -2,7 +2,7 @@
 
 Java framework for demonstration purposes of working with DKPro/UIMA typesystem for argumentation annotation and argumentation mining.
 
-Version 0.0.2
+Version 0.0.3-SNAPSHOT
 
 ## Installation
 
@@ -12,14 +12,14 @@ DKPro Argumentation is available from Maven Central. For working with the UIMA t
 <dependency>
     <groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
     <artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 ## Modules
 
 ### de.tudarmstadt.ukp.dkpro.argumentation.types
 
-The UIMA type system is the central part of DKPro Argumentation. It enables annotation of argument components and relations on top of the UIMA/DKPro framework.
+The UIMA type system is the central part of DKPro Argumentation. It allows one to annotate argument components and relations on top of the UIMA/DKPro framework.
 
 The class hierarchy contains two central classes, ``ArgumentComponent`` and ``ArgumentRelation``.
 
@@ -43,7 +43,7 @@ Contains several annotators for casting the problem of argument component identi
 
 as shown in
 
-> Habernal, I., Eckle-Kohler, J., & Gurevych, I. (2014). Argumentation Mining on the Web from Information Seeking Perspective. In E. Cabrio, S. Villata, & A. Wyner (Eds.), _Proceedings of the Workshop on Frontiers and Connections between Argumentation Theory and Natural Language Processing_ (pp. 26–39). Bertinoro, Italy: CEUR-WS. Retrieved from http://ceur-ws.org/Vol-1341/
+> Habernal, I., Eckle-Kohler, J., & Gurevych, I. (2014). Argumentation Mining on the Web from Information Seeking Perspective. In E. Cabrio, S. Villata, & A. Wyner (Eds.), Proceedings of the Workshop on Frontiers and Connections between Argumentation Theory and Natural Language Processing (pp. 26-39). Bertinoro, Italy: CEUR-WS. Retrieved from http://ceur-ws.org/Vol-1341/
 
 ##### Requirements
 
@@ -52,15 +52,15 @@ as shown in
 
 ##### How-to
 
-1. Modify paths to the gold data
+1. Modify paths to gold data
   - Modify `de.tudarmstadt.ukp.dkpro.argumentation.tutorial.ArgumentationCorpusDebugger` and set the `annotatedCorpusDir` variable to point to the gold data located in `gold.data.toulmin` directory
 2. Run `ArgumentationCorpusDebugger`
-  - It will print annotated argument components, relations, and other info to standard output
+  - It will print annotated argument components, relations, and other info to the std. out
 3. Explore it further!
-  - Have a look at `de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `de.tudarmstadt.ukp.dkpro.argumentation.0.0.2` package which shows how to access the argument components, their text, tokens, sentences, etc.
+  - Have a look at `de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `de.tudarmstadt.ukp.dkpro.argumentation.io.writer` package which shows how to access the argument components, their text, tokens, sentences, etc.
 
 
-© 2013–2016 Ubiquitous Knowledge Processing Lab
+&copy; 2013-2015 UKP
 
 Argumentation Mining Special Interest Group members
 
