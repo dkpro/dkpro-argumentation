@@ -15,14 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations;
+package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations;
 
-/**
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
- * @since Jun 9, 2016
- *
- */
-public enum Attribute
+public interface Span
+    extends Comparable<Span>
 {
-    CATEGORY;
+
+    @Override
+    default int compareTo(final Span o)
+    {
+        int result = Integer.compare(getBegin(), o.getBegin());
+        if (result == 0) {
+            result = Integer.compare(getEnd(), o.getEnd());
+        }
+        return result;
+    }
+
+    /**
+     * @return the begin
+     */
+    int getBegin();
+
+    /**
+     * @return the end
+     */
+    int getEnd();
+
 }

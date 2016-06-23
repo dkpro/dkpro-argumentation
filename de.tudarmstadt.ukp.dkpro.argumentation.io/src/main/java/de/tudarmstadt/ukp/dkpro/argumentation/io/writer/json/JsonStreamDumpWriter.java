@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.json;
+package de.tudarmstadt.ukp.dkpro.argumentation.io.writer.json;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -38,9 +38,9 @@ import org.apache.uima.resource.ResourceInitializationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.AnnotatedDocument;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.ImmutableSpanTextLabel;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanAnnotationGraph;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.AnnotatedDocument;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 
 /**

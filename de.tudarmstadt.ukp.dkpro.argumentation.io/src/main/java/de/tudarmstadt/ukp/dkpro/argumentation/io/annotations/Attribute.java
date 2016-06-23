@@ -15,25 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations;
+package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations;
 
-import java.util.Map;
-
-public interface SpanTextLabel
+/**
+ * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @since Jun 9, 2016
+ *
+ */
+public enum Attribute
 {
-
-    /**
-     * @return the attributes
-     */
-    Map<Attribute, Object> getAttributes();
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanAnnotation# getAnnotationType()
-     */
-    String getLabel();
-
-    SpanText getSpanText();
-
+    CATEGORY;
 }

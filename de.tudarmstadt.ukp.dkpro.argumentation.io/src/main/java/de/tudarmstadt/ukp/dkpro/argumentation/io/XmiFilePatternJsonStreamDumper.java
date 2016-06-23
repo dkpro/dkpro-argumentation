@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.nio;
+package de.tudarmstadt.ukp.dkpro.argumentation.io;
 
 import java.io.IOException;
 import java.util.concurrent.Callable;
@@ -38,7 +38,7 @@ import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.CollectionReaderFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
 
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.json.JsonStreamDumpWriter;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.writer.json.JsonStreamDumpWriter;
 import de.tudarmstadt.ukp.dkpro.core.api.io.ResourceCollectionReaderBase;
 import de.tudarmstadt.ukp.dkpro.core.io.xmi.XmiReader;
 

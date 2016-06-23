@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations;
+package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations;
 
 import java.io.Serializable;
 
@@ -24,42 +24,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * An immutable {@link Span} implementation which is also JSON-serializable using
+ * An immutable {@link SpanText} implementation which is also JSON-serializable using
  * <a href="https://github.com/FasterXML/jackson">Jackson</a>.
  *
  * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
  * @since Jun 6, 2016
  *
  */
-@JsonPropertyOrder({ ImmutableSpan.PROPERTY_BEGIN, ImmutableSpan.PROPERTY_END })
-public final class ImmutableSpan
-    implements Span, Serializable
+@JsonPropertyOrder({ ImmutableSpanText.PROPERTY_SPAN, ImmutableSpanText.PROPERTY_COVERED_TEXT })
+public final class ImmutableSpanText
+    implements SpanText, Serializable
 {
 
-    public static final String PROPERTY_BEGIN = "begin";
+    public static final String PROPERTY_COVERED_TEXT = "coveredText";
 
-    public static final String PROPERTY_END = "end";
+    public static final String PROPERTY_SPAN = "span";
 
     /**
      *
      */
-    private static final long serialVersionUID = 5872170320837177233L;
+    private static final long serialVersionUID = -3916487992948159620L;
 
-    private final int begin;
-
-    private final int end;
+    private final String coveredText;
 
     private final transient int hashCode;
+
+    private final ImmutableSpan span;
 
     /**
      *
      */
     @JsonCreator
-    public ImmutableSpan(@JsonProperty(PROPERTY_BEGIN) final int begin,
-            @JsonProperty(PROPERTY_END) final int end)
+    public ImmutableSpanText(@JsonProperty(PROPERTY_SPAN) final ImmutableSpan span,
+            @JsonProperty(PROPERTY_COVERED_TEXT) final String coveredText)
     {
-        this.begin = begin;
-        this.end = end;
+        this.span = span;
+        this.coveredText = coveredText;
 
         hashCode = createHashCode();
     }
@@ -73,8 +73,8 @@ public final class ImmutableSpan
     {
         final int prime = 31;
         int result = 1;
-        result = prime * result + begin;
-        result = prime * result + end;
+        result = prime * result + (coveredText == null ? 0 : coveredText.hashCode());
+        result = prime * result + (span == null ? 0 : span.hashCode());
         return result;
     }
 
@@ -92,31 +92,41 @@ public final class ImmutableSpan
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof ImmutableSpan)) {
+        if (!(obj instanceof ImmutableSpanText)) {
             return false;
         }
-        final ImmutableSpan other = (ImmutableSpan) obj;
-        if (begin != other.begin) {
+        final ImmutableSpanText other = (ImmutableSpanText) obj;
+        if (coveredText == null) {
+            if (other.coveredText != null) {
+                return false;
+            }
+        }
+        else if (!coveredText.equals(other.coveredText)) {
             return false;
         }
-        if (end != other.end) {
+        if (span == null) {
+            if (other.span != null) {
+                return false;
+            }
+        }
+        else if (!span.equals(other.span)) {
             return false;
         }
         return true;
     }
 
     @Override
-    @JsonProperty(PROPERTY_BEGIN)
-    public int getBegin()
+    @JsonProperty(PROPERTY_COVERED_TEXT)
+    public String getCoveredText()
     {
-        return begin;
+        return coveredText;
     }
 
     @Override
-    @JsonProperty(PROPERTY_END)
-    public int getEnd()
+    @JsonProperty(PROPERTY_SPAN)
+    public ImmutableSpan getSpan()
     {
-        return end;
+        return span;
     }
 
     @Override
@@ -134,10 +144,10 @@ public final class ImmutableSpan
     public String toString()
     {
         final StringBuilder builder = new StringBuilder();
-        builder.append("ImmutableSpan [getBegin()=");
-        builder.append(getBegin());
-        builder.append(", getEnd()=");
-        builder.append(getEnd());
+        builder.append("ImmutableTextSpan [getSpan()=");
+        builder.append(getSpan());
+        builder.append(", getCoveredText()=");
+        builder.append(getCoveredText());
         builder.append("]");
         return builder.toString();
     }

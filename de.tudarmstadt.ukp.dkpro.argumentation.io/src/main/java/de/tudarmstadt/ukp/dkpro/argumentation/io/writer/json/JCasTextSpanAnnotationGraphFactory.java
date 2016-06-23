@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tudarmstadt.ukp.dkpro.argumentation.nio.writer.json;
+package de.tudarmstadt.ukp.dkpro.argumentation.io.writer.json;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,11 +30,11 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.ImmutableSpanTextLabel;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.Span;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanAnnotationGraph;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.SpanTextLabel;
-import de.tudarmstadt.ukp.dkpro.argumentation.nio.annotations.uima.TextSpanAnnotationFactory;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.Span;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanAnnotationGraph;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.uima.TextSpanAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit;

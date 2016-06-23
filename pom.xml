@@ -76,7 +76,6 @@
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.misc</module>
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.examples</module>
 		<module>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</module>
-		<module>de.tudarmstadt.ukp.dkpro.argumentation.nio</module>
 	</modules>
 
 	<build>
@@ -135,11 +134,6 @@
 			<dependency>
 				<groupId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</groupId>
 				<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>de.tudarmstadt.ukp.dkpro.argumentation.nio</groupId>
-				<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.nio</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
