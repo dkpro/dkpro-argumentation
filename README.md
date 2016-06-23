@@ -19,7 +19,7 @@ DKPro Argumentation is available from Maven Central. For working with the UIMA t
 
 ### de.tudarmstadt.ukp.dkpro.argumentation.types
 
-The UIMA type system is the central part of DKPro Argumentation. It enables to annotate argument components and relations on top of the UIMA/DKPro framework.
+The UIMA type system is the central part of DKPro Argumentation. It allows one to annotate argument components and relations on top of the UIMA/DKPro framework.
 
 The class hierarchy contains two central classes, ``ArgumentComponent`` and ``ArgumentRelation``.
 
