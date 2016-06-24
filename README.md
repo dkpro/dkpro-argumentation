@@ -4,6 +4,10 @@ Java framework for demonstration purposes of working with DKPro/UIMA typesystem 
 
 Version 0.0.3-SNAPSHOT
 
+## Requirements
+
+Java 1.8 and higher
+
 ## Installation
 
 DKPro Argumentation is available from Maven Central. For working with the UIMA type system, add the following dependencies to your `pom.xml`
