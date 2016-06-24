@@ -191,7 +191,7 @@ public class ArgumentDumpWriter
      * @param argumentUnit argument unit
      * @return string
      */
-    private static String argumentUnitToString(ArgumentUnit argumentUnit)
+    public static String argumentUnitToString(ArgumentUnit argumentUnit)
     {
         return String.format("%s [%d, %d] \"%s\"", argumentUnit.getType().getShortName(),
                 argumentUnit.getBegin(), argumentUnit.getEnd(), argumentUnit.getCoveredText());
