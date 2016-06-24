@@ -67,7 +67,7 @@ public final class JsonStreamDumpWriter
                 final String docId = documentAnnotation.getKey();
                 final String docFilename = docId + ".json";
                 final File docFile = new File(outputPath, docFilename);
-                try (PrintWriter outputWriter = new PrintWriter(new FileWriter(docFile, false));) {
+                try (PrintWriter outputWriter = new PrintWriter(new FileWriter(docFile, false))) {
                     OBJECT_MAPPER.writeValue(outputWriter, documentAnnotation.getValue());
                 }
             }
