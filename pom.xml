@@ -113,7 +113,7 @@
 					<sourceFileExcludes>
 					<exclude>**/*_Type.java</exclude>
 					</sourceFileExcludes>
-					<excludePackageNames>de.tudarmstadt.ukp.dkpro.argumentation.misc*,de.tudarmstadt.ukp.dkpro.argumentation.preprocessing*,tutorial*</excludePackageNames>
+					<excludePackageNames>tutorial*</excludePackageNames>
 					<tags>
 						<tag>
 							<name>generated</name>
