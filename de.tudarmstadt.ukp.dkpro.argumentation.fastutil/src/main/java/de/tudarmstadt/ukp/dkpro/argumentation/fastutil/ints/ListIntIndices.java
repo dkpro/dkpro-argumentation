@@ -36,7 +36,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 /**
  * A utility class for manipulating {@link List} indices.
  *
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  */
 public final class ListIntIndices
 {

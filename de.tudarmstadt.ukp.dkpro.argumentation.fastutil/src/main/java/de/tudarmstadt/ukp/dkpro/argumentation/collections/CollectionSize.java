@@ -23,7 +23,7 @@ import java.util.Collections;
 /**
  * A utility class for manipulating the size of {@link Collection} objects.
  *
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  */
 public final class CollectionSize
 {

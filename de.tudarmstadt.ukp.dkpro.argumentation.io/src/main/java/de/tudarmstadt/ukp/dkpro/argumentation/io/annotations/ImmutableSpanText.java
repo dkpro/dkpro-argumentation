@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * An immutable {@link SpanText} implementation which is also JSON-serializable using
  * <a href="https://github.com/FasterXML/jackson">Jackson</a>.
  *
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  * @since Jun 6, 2016
  *
  */

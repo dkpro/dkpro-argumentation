@@ -37,7 +37,7 @@ import it.unimi.dsi.fastutil.objects.ObjectSet;
  * acyclic graph</a> of {@link SpanTextLabel} objects.
  *
  *
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  * @since May 2, 2016
  *
  * @param <T>

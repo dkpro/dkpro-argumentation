@@ -38,7 +38,7 @@ import it.unimi.dsi.fastutil.ints.IntSortedSet;
  *
  * @param <E>
  *            The type of the elements of the decorated {@code List}.
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  */
 public final class ReverseLookupList<E>
     implements List<E>, Serializable

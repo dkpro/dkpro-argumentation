@@ -24,7 +24,7 @@ import it.unimi.dsi.fastutil.ints.IntSet;
 /**
  * A utility class for manipulating {@link IntCollection} elements.
  *
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  */
 public final class IntCollections
 {

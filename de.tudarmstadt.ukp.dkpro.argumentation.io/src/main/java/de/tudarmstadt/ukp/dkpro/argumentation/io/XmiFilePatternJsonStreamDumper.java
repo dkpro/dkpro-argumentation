@@ -48,7 +48,7 @@ import de.tudarmstadt.ukp.dkpro.core.io.xmi.XmiReader;
  * <code>de.tudarmstadt.ukp.dkpro.argumentation.tutorial.ArgumentationCorpusDebugger</code> </a>
  * because the Maven package structure for getting that class is very bad.
  *
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  * @since Apr 28, 2016
  *
  */

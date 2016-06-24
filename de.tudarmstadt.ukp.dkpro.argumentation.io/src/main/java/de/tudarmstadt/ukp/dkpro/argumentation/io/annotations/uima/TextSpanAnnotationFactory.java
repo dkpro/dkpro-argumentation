@@ -30,7 +30,7 @@ import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanTextLa
 import de.tudarmstadt.ukp.dkpro.argumentation.types.Claim;
 
 /**
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  * @since May 2, 2016
  *
  */

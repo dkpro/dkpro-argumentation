@@ -46,7 +46,7 @@ import de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData;
 /**
  * TODO: Implement usage of {@link JsonStreamDumpWriter#PARAM_OUTPUT_FILE} param in calling classes
  *
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  * @since Apr 29, 2016
  *
  */

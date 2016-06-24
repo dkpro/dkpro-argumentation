@@ -39,7 +39,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMaps;
  *
  * @param <E>
  *            The type of the elements of the decorated {@code List}.
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  */
 public final class ReverseLookupOrderedSet<E>
     implements List<E>, Serializable, Set<E>

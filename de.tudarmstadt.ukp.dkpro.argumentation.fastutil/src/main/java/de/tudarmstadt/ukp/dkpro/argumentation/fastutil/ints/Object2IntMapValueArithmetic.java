@@ -24,7 +24,7 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 /**
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  */
 public final class Object2IntMapValueArithmetic
 {
@@ -82,7 +82,7 @@ public final class Object2IntMapValueArithmetic
      *
      * @param map
      *            The {@link Object2IntMap} to add to.
-     * @param keysToIncrement
+     * @param keyToIncrement
      *            The keys to increment the values of.
      * @param increment
      *            The amount to increment the values by.

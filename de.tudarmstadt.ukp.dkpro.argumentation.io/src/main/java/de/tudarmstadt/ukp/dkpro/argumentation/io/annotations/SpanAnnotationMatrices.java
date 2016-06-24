@@ -28,7 +28,7 @@ import de.tudarmstadt.ukp.math.Sparse3DObjectMatrix;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 /**
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  * @since May 30, 2016
  *
  */

@@ -18,7 +18,7 @@
 package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations;
 
 /**
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  * @since Jun 6, 2016
  *
  */

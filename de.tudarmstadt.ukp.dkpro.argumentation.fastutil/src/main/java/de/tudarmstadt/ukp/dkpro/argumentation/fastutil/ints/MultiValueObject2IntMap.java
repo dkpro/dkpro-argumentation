@@ -40,7 +40,7 @@ import it.unimi.dsi.fastutil.ints.IntSortedSet;
  *            The key type.
  * @param <C>
  *            The type of {@code IntCollection} object used to contain the values for each key.
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author Todd Shore
  */
 public final class MultiValueObject2IntMap<K, C extends IntCollection>
     implements Map<K, C>, Serializable
@@ -113,7 +113,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection>
      *
      * @param multimap
      *            The {@link MultiValueObject2IntMap} to add to.
-     * @param keysToIncrement
+     * @param keyToIncrement
      *            The keys to increment the values of.
      * @param increment
      *            The amount to increment the values by.
