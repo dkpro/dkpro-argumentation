@@ -109,30 +109,11 @@
 							<title>Analysis Components</title>
 							<packages>de.tudarmstadt.ukp.dkpro.argumentation*</packages>
 						</group>
-						<group>
-							<title>I/O Components</title>
-							<packages>de.tudarmstadt.ukp.dkpro.argumentation.io*</packages>
-						</group>
-						<group>
-							<title>Preprocessing</title>
-							<packages>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing*</packages>
-						</group>
-						<group>
-							<title>Miscellaneous</title>
-							<packages>de.tudarmstadt.ukp.dkpro.argumentation.misc*</packages>
-						</group>
-						<group>
-							<title>Examples</title>
-							<packages>de.tudarmstadt.ukp.dkpro.argumentation.examples*</packages>
-						</group>
-						<group>
-							<title>Fastutils</title>
-							<packages>de.tudarmstadt.ukp.dkpro.argumentation.examples*</packages>
-						</group>
 					</groups>
 					<sourceFileExcludes>
 					<exclude>**/*_Type.java</exclude>
 					</sourceFileExcludes>
+					<excludePackageNames>de.tudarmstadt.ukp.dkpro.argumentation.misc*,de.tudarmstadt.ukp.dkpro.argumentation.preprocessing*,tutorial*</excludePackageNames>
 					<tags>
 						<tag>
 							<name>generated</name>
