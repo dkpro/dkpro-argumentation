@@ -22,47 +22,28 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
-		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
+		<groupId>org.dkpro.argumentation</groupId>
+		<artifactId>dkpro-argumentation</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
-	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing</groupId>
-	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing</artifactId>
+	<artifactId>dkpro-argumentation-preprocessing</artifactId>
 	<description>preprocessing components, e.g. argumentation specific segmentation</description>
 	<dependencies>
-		<!--<dependency>-->
-			<!--<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>-->
-			<!--<artifactId>de.tudarmstadt.ukp.dkpro.core.languagetool-asl</artifactId>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>-->
-			<!--<artifactId>de.tudarmstadt.ukp.dkpro.core.stanfordnlp-gpl</artifactId>-->
-			<!--<version>1.6.1</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>-->
-			<!--<artifactId>de.tudarmstadt.ukp.dkpro.core.snowball-asl</artifactId>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.io.xmi-asl</artifactId>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>-->
-			<!--<artifactId>de.tudarmstadt.ukp.dkpro.core.matetools-gpl</artifactId>-->
-			<!--<version>1.6.1</version>-->
-		<!--</dependency>-->
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-types</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.io</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.io</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-io</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.misc</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.misc</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-misc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>

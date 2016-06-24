@@ -20,14 +20,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
-		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
+		<groupId>org.dkpro.argumentation</groupId>
+		<artifactId>dkpro-argumentation</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 
-	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</groupId>
-	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</artifactId>
-	<name>fastutil NLP</name>
+	<artifactId>dkpro-argumentation-fastutil</artifactId>
 	<description>Extension classes to classes from fastutil especially used for data mining/NLP
 		tasks.
 	</description>

@@ -21,13 +21,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
-		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
+		<groupId>org.dkpro.argumentation</groupId>
+		<artifactId>dkpro-argumentation</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 	
-	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.io</groupId>
-	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.io</artifactId>
+	<artifactId>dkpro-argumentation-io</artifactId>
 	<description>Readers for data sets used for argumentation mining</description>
 	
 	<properties>
@@ -59,12 +58,12 @@
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.io.xmi-asl</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.fastutil</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-fastutil</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-types</artifactId>
 		</dependency>
 	</dependencies>
 </project>

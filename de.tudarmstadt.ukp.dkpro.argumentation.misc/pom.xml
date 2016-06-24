@@ -21,12 +21,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
-		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
+		<groupId>org.dkpro.argumentation</groupId>
+		<artifactId>dkpro-argumentation</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
-	<groupId>de.tudarmstadt.ukp.dkpro.argumentation.misc</groupId>
-	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.misc</artifactId>
+	<artifactId>dkpro-argumentation-misc</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
@@ -38,8 +37,8 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.io</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.io</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-io</artifactId>
 		</dependency>
 	</dependencies>
 </project>

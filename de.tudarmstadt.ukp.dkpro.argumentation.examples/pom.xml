@@ -5,22 +5,22 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>de.tudarmstadt.ukp.dkpro.argumentation</groupId>
-		<artifactId>de.tudarmstadt.ukp.dkpro.argumentation</artifactId>
+		<groupId>org.dkpro.argumentation</groupId>
+		<artifactId>dkpro-argumentation</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.examples</artifactId>
+	<artifactId>dkpro-argumentation-examples</artifactId>
 
 	<dependencies>
 		<!-- common argumentation framework for type systems etc. -->
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-types</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.argumentation.io</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.argumentation.io</artifactId>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-io</artifactId>
 		</dependency>
 		<!--dkpro xmi io library-->
 		<dependency>
