@@ -34,9 +34,10 @@ import java.util.List;
  * Annotates the tokens as a sequence of BIO labels, such as
  * B-CLAIM; I-CLAIM; O; O; B-PREMISE; I-PREMISE; B-PREMISE; O; ...
  * with type {@link de.tudarmstadt.ukp.dkpro.argumentation.types.BIOTokenArgumentAnnotation}
- * <p/>
+ * <p>
  * If a token contains multiple annotations (i.e. was annotated as a claim AND backing),
  * an exception is thrown.
+ * </p>
  *
  * @author Ivan Habernal
  */
