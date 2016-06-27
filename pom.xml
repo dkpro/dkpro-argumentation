@@ -28,7 +28,7 @@
 	</parent>
 
 	<properties>
-		<dkpro.version>1.7.0</dkpro.version>
+		<dkpro.version>1.8.0</dkpro.version>
 		<!--
 		This is required otherwise the compiler fails with
 		'Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile
