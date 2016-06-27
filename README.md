@@ -2,7 +2,7 @@
 
 Java framework for demonstration purposes of working with DKPro/UIMA typesystem for argumentation annotation and argumentation mining.
 
-Version 0.0.3-SNAPSHOT
+Version 0.1.0-SNAPSHOT
 
 ## Requirements
 

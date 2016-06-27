@@ -22,7 +22,7 @@
 	<parent>
 		<groupId>org.dkpro.argumentation</groupId>
 		<artifactId>dkpro-argumentation</artifactId>
-		<version>0.0.3-SNAPSHOT</version>
+		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>dkpro-argumentation-fastutil</artifactId>
