@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package tutorial;
+package de.tudarmstadt.ukp.dkpro.argumentation.tutorial;
 
 import de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter;
 import de.tudarmstadt.ukp.dkpro.core.io.xmi.XmiReader;
@@ -26,12 +26,7 @@ import org.apache.uima.fit.pipeline.SimplePipeline;
 
 /**
  * Reads the complete argumentation corpus from
- * <p/>
- * Habernal, I., Eckle-Kohler, J., & Gurevych, I. (2014). Argumentation Mining on the Web from
- * Information Seeking Perspective. In E. Cabrio, S. Villata, & A. Wyner (Eds.), Proceedings
- * of the Workshop on Frontiers and Connections between Argumentation Theory and Natural Language
- * Processing (pp. 26–39). Bertinoro, Italy: CEUR-WS. Retrieved from http://ceur-ws.org/Vol-1341/
- * <p/>
+ * https://www.ukp.tu-darmstadt.de/data/argumentation-mining/argument-annotated-user-generated-web-discourse/
  * and prints argument units (argument components, argument relations, implicit component, etc.)
  *
  * @author Ivan Habernal
