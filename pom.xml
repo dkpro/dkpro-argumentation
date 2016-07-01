@@ -113,7 +113,6 @@
 					<sourceFileExcludes>
 					<exclude>**/*_Type.java</exclude>
 					</sourceFileExcludes>
-					<excludePackageNames>tutorial*</excludePackageNames>
 					<tags>
 						<tag>
 							<name>generated</name>
@@ -127,7 +126,7 @@
 							<name>modifiable</name>
 							<placement>X</placement>
 						</tag>
-				</tags>
+					</tags>
 				</configuration>
 			</plugin>
 			<plugin>
