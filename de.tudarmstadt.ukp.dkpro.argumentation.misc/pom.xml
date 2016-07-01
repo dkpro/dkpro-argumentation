@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>org.dkpro.argumentation</groupId>
 		<artifactId>dkpro-argumentation</artifactId>
-		<version>0.1.0</version>
+		<version>0.1.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>dkpro-argumentation-misc</artifactId>
 	<dependencies>
