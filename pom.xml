@@ -31,7 +31,7 @@
 		This is required otherwise the compiler fails with
 		'Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile
 		(default-compile) on project de.tudarmstadt.ukp.dkpro.argumentation.types: Fatal error
-		compiling: invalid target release: 1.8.0_91
+		compiling: invalid target release: 1.8.0_91  
 		-->
 		<java.version>1.8</java.version>
 	</properties>
