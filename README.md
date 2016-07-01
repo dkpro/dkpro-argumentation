@@ -1,6 +1,6 @@
 # DKPro Argumentation
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.dkpro.argumentation/dkpro-argumentation/badge.svg?style=flat)](http://mvnrepository.com/artifact/org.dkpro.argumentation/dkpro-argumentation)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.dkpro.argumentation/dkpro-argumentation/badge.svg?style=flat)](http://maven-badges.herokuapp.com/maven-central/org.dkpro.argumentation/dkpro-argumentation)
 
 Java framework for demonstration purposes of working with DKPro/UIMA typesystem for argumentation annotation and argumentation mining.
 
