@@ -1,8 +1,8 @@
 # DKPro Argumentation
 
-Java framework for demonstration purposes of working with DKPro/UIMA typesystem for argumentation annotation and argumentation mining.
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.dkpro.argumentation/dkpro-argumentation/badge.svg?style=flat)](http://mvnrepository.com/artifact/org.dkpro.argumentation/dkpro-argumentation)
 
-Version 0.1.0-SNAPSHOT
+Java framework for demonstration purposes of working with DKPro/UIMA typesystem for argumentation annotation and argumentation mining.
 
 ## Requirements
 
@@ -12,15 +12,16 @@ Java 1.8 and higher
 
 DKPro Argumentation is available from Maven Central. For working with the UIMA type system, add the following dependencies to your `pom.xml`
 
-Stable version released: 0.0.2
-
 ```
 <dependency>
-    <groupId>de.tudarmstadt.ukp.dkpro.argumentation.types</groupId>
-    <artifactId>de.tudarmstadt.ukp.dkpro.argumentation.types</artifactId>
-    <version>0.0.2</version>
+    <groupId>org.dkpro.argumentation</groupId>
+    <artifactId>dkpro-argumentation-types</artifactId>
+    <version>0.1.0</version>
 </dependency>
 ```
+
+* Current development version: 0.1.1-SNAPSHOT
+
 ## Modules
 
 ### de.tudarmstadt.ukp.dkpro.argumentation.types
