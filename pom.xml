@@ -49,7 +49,7 @@
 
 	<scm>
 		<connection>scm:git:git://github.com/dkpro/dkpro-argumentation</connection>
-		<developerConnection>scm:git:git://github.com/dkpro/dkpro-argumentation.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:dkpro/dkpro-argumentation.git</developerConnection>
 		<url>https://github.com/dkpro/dkpro-argumentation</url>
 	</scm>
 
