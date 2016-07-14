@@ -17,7 +17,7 @@
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.uima;
 
-import java.util.Collections;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -26,7 +26,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.Attribute;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpan;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanText;
-import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.MutableSpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.Claim;
 
@@ -63,12 +63,9 @@ public final class SpanTextAnnotationFactory
 
     private static Map<Attribute, Object> createAttrMap(final Annotation annotation)
     {
-        final Map<Attribute, Object> result;
+        final Map<Attribute, Object> result = new EnumMap<>(Attribute.class);
         if (annotation instanceof Claim) {
-            result = Collections.singletonMap(Attribute.CATEGORY, ((Claim) annotation).getStance());
-        }
-        else {
-            result = Collections.emptyMap();
+            result.put(Attribute.CATEGORY, ((Claim) annotation).getStance());
         }
         return result;
     }
@@ -83,7 +80,7 @@ public final class SpanTextAnnotationFactory
         final ImmutableSpan span = new ImmutableSpan(annotation.getBegin(), annotation.getEnd());
         final ImmutableSpanText spanText = new ImmutableSpanText(span, annotation.getCoveredText());
         final Map<Attribute, Object> attrs = createAttrMap(annotation);
-        return new ImmutableSpanTextLabel(spanText, annotation.getType().getShortName(), attrs);
+        return new MutableSpanTextLabel(spanText, annotation.getType().getShortName(), attrs);
     }
 
 }
