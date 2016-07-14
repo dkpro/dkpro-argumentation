@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -37,7 +38,6 @@ import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.uima.TextSpanAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation;
-import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit;
 import de.tudarmstadt.ukp.math.Sparse3DObjectMatrix;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -52,50 +52,6 @@ final class JCasTextSpanAnnotationGraphFactory
     private static final int ESTIMATED_SPAN_BEGIN_TO_END_MAP_MAX_CAPACITY = 3;
 
     private static final Log LOG = LogFactory.getLog(JCasTextSpanAnnotationGraphFactory.class);
-
-    private static int[] createArgumentTransitionTable(
-            final Collection<ArgumentRelation> argumentRelations,
-            final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix,
-            final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds)
-    {
-        final int[] result = new int[spanAnnotationIds.size()];
-        // Pre-fill the array in the case that there is no transition for a
-        // given annotation
-        Arrays.fill(result, -1);
-        for (final ArgumentRelation argumentRelation : argumentRelations) {
-            final ArgumentUnit source = argumentRelation.getSource();
-            final int sourceSpanAnnotationId = getAnnotationId(source, spanAnnotationMatrix,
-                    spanAnnotationIds);
-            if (sourceSpanAnnotationId < 0) {
-                LOG.error(String.format("Source span %s not found in annotation matrix.",
-                        createStrRepr(source)));
-            }
-            else {
-                final ArgumentUnit target = argumentRelation.getTarget();
-                final int targetSpanAnnotationId = getAnnotationId(target, spanAnnotationMatrix,
-                        spanAnnotationIds);
-                if (targetSpanAnnotationId < 0) {
-                    LOG.error(String.format("Target span %s not found in annotation matrix.",
-                            createStrRepr(target)));
-                }
-                else {
-                    // The target serves as a key instead of the source because
-                    // it is possible that e.g. one claim has multiple premises
-                    result[sourceSpanAnnotationId] = targetSpanAnnotationId;
-                }
-
-            }
-
-        }
-
-        return result;
-    }
-
-    private static String createStrRepr(final Annotation source)
-    {
-        return String.format("[%d, %d, %s]", source.getBegin(), source.getEnd(),
-                source.getType().getShortName());
-    }
 
     private static int getAnnotationId(final Annotation source,
             final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix,
@@ -162,8 +118,18 @@ final class JCasTextSpanAnnotationGraphFactory
         final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds = spanAnnotationVector
                 .getReverseLookupMap();
         LOG.info(String.format("Processing %d argument relations.", argumentRelations.size()));
-        final int[] argumentTransitionTable = createArgumentTransitionTable(argumentRelations,
-                spanAnnotationMatrix, spanAnnotationIds);
+        
+        final int initialTableRelationValue = -1;
+        final Supplier<int[]> transitionTableArraySupplier = () -> {
+            final int[] result = new int[spanAnnotationIds.size()];
+            // Pre-fill the array in the case that there is no transition for a
+            // given annotation
+            Arrays.fill(result, initialTableRelationValue);   
+            return result;
+        };
+        
+        final ArgumentTransitionTableCollector argTransitionTableCollector = new ArgumentTransitionTableCollector(transitionTableArraySupplier, initialTableRelationValue, annot -> getAnnotationId(annot, spanAnnotationMatrix, spanAnnotationIds));
+        final int[] argumentTransitionTable = argumentRelations.stream().collect(argTransitionTableCollector);
 
         return new SpanAnnotationGraph<>(spanAnnotationVector, argumentTransitionTable);
     }
