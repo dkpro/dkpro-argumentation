@@ -174,7 +174,7 @@ public final class ImmutableSpanTextLabel
     public String toString()
     {
         final StringBuilder builder = new StringBuilder();
-        builder.append("ImmutableLabelledTextSpan [getTextSpan()=");
+        builder.append("ImmutableSpanTextLabel [getTextSpan()=");
         builder.append(getSpanText());
         builder.append(", getLabel()=");
         builder.append(getLabel());

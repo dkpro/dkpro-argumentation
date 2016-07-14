@@ -144,7 +144,7 @@ public final class ImmutableSpanText
     public String toString()
     {
         final StringBuilder builder = new StringBuilder();
-        builder.append("ImmutableTextSpan [getSpan()=");
+        builder.append("ImmutableSpanText [getSpan()=");
         builder.append(getSpan());
         builder.append(", getCoveredText()=");
         builder.append(getCoveredText());
