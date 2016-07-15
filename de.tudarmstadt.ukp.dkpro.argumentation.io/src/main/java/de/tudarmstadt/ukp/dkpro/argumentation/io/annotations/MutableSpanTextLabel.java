@@ -54,13 +54,13 @@ public final class MutableSpanTextLabel
 
     private String label;
 
-    private ImmutableSpanText spanText;
+    private SpanText spanText;
 
     /**
      *
      */
     @JsonCreator
-    public MutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final ImmutableSpanText spanText,
+    public MutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final SpanText spanText,
             @JsonProperty(PROPERTY_LABEL) final String label,
             @JsonProperty(PROPERTY_ATTRIBUTES) final Map<Attribute, Object> attributes)
     {
@@ -140,7 +140,7 @@ public final class MutableSpanTextLabel
      */
     @Override
     @JsonProperty(PROPERTY_TEXT_SPAN)
-    public ImmutableSpanText getSpanText()
+    public SpanText getSpanText()
     {
         return spanText;
     }
@@ -178,7 +178,7 @@ public final class MutableSpanTextLabel
      * @param spanText
      *            the spanText to set
      */
-    public void setSpanText(final ImmutableSpanText spanText)
+    public void setSpanText(final SpanText spanText)
     {
         this.spanText = spanText;
     }
