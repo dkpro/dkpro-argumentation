@@ -17,7 +17,7 @@
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.uima;
 
-import java.util.Collections;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -26,7 +26,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.Attribute;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpan;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanText;
-import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.MutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanTextLabel;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.Claim;
 
 /**
@@ -34,13 +35,13 @@ import de.tudarmstadt.ukp.dkpro.argumentation.types.Claim;
  * @since May 2, 2016
  *
  */
-public final class TextSpanAnnotationFactory
-    implements Function<Annotation, ImmutableSpanTextLabel>
+public final class SpanTextAnnotationFactory
+    implements Function<Annotation, SpanTextLabel>
 {
 
     /**
      * {@link SingletonHolder} is loaded on the first execution of
-     * {@link TextSpanAnnotationFactory#getInstance()} or the first access to
+     * {@link SpanTextAnnotationFactory#getInstance()} or the first access to
      * {@link SingletonHolder#INSTANCE}, not before.
      *
      * @author <a href="http://www.cs.umd.edu/~pugh/">Bill Pugh</a>
@@ -50,39 +51,36 @@ public final class TextSpanAnnotationFactory
     private static final class SingletonHolder
     {
         /**
-         * A singleton instance of {@link TextSpanAnnotationFactory}.
+         * A singleton instance of {@link SpanTextAnnotationFactory}.
          */
-        private static final TextSpanAnnotationFactory INSTANCE = new TextSpanAnnotationFactory();
+        private static final SpanTextAnnotationFactory INSTANCE = new SpanTextAnnotationFactory();
     }
 
-    public static TextSpanAnnotationFactory getInstance()
+    public static SpanTextAnnotationFactory getInstance()
     {
         return SingletonHolder.INSTANCE;
     }
 
     private static Map<Attribute, Object> createAttrMap(final Annotation annotation)
     {
-        final Map<Attribute, Object> result;
+        final Map<Attribute, Object> result = new EnumMap<>(Attribute.class);
         if (annotation instanceof Claim) {
-            result = Collections.singletonMap(Attribute.CATEGORY, ((Claim) annotation).getStance());
-        }
-        else {
-            result = Collections.emptyMap();
+            result.put(Attribute.CATEGORY, ((Claim) annotation).getStance());
         }
         return result;
     }
 
-    private TextSpanAnnotationFactory()
+    private SpanTextAnnotationFactory()
     {
     }
 
     @Override
-    public ImmutableSpanTextLabel apply(final Annotation annotation)
+    public SpanTextLabel apply(final Annotation annotation)
     {
         final ImmutableSpan span = new ImmutableSpan(annotation.getBegin(), annotation.getEnd());
         final ImmutableSpanText spanText = new ImmutableSpanText(span, annotation.getCoveredText());
         final Map<Attribute, Object> attrs = createAttrMap(annotation);
-        return new ImmutableSpanTextLabel(spanText, annotation.getType().getShortName(), attrs);
+        return new MutableSpanTextLabel(spanText, annotation.getType().getShortName(), attrs);
     }
 
 }

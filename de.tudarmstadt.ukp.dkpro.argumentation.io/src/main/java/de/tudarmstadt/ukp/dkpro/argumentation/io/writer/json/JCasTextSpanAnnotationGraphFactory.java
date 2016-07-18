@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -30,11 +32,11 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 
 import de.tudarmstadt.ukp.dkpro.argumentation.fastutil.ints.ReverseLookupOrderedSet;
-import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.ImmutableSpanTextLabel;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.Attribute;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.Span;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanAnnotationGraph;
 import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanTextLabel;
-import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.uima.TextSpanAnnotationFactory;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.uima.SpanTextAnnotationFactory;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentComponent;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentRelation;
 import de.tudarmstadt.ukp.dkpro.argumentation.types.ArgumentUnit;
@@ -44,7 +46,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 
 @SuppressWarnings("deprecation")
 final class JCasTextSpanAnnotationGraphFactory
-    implements Function<JCas, SpanAnnotationGraph<ImmutableSpanTextLabel>>
+    implements Function<JCas, SpanAnnotationGraph<SpanTextLabel>>
 {
 
     private static final int ESTIMATED_ANNOTATION_MAP_MAX_CAPACITY = 2;
@@ -53,66 +55,35 @@ final class JCasTextSpanAnnotationGraphFactory
 
     private static final Log LOG = LogFactory.getLog(JCasTextSpanAnnotationGraphFactory.class);
 
-    private static int[] createArgumentTransitionTable(
-            final Collection<ArgumentRelation> argumentRelations,
-            final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix,
-            final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds)
+    private static SpanTextLabel getSpanTextLabel(final Annotation annot,
+            final Sparse3DObjectMatrix<String, SpanTextLabel> spanAnnotationMatrix)
     {
-        final int[] result = new int[spanAnnotationIds.size()];
-        // Pre-fill the array in the case that there is no transition for a
-        // given annotation
-        Arrays.fill(result, -1);
-        for (final ArgumentRelation argumentRelation : argumentRelations) {
-            final ArgumentUnit source = argumentRelation.getSource();
-            final int sourceSpanAnnotationId = getAnnotationId(source, spanAnnotationMatrix,
-                    spanAnnotationIds);
-            if (sourceSpanAnnotationId < 0) {
-                LOG.error(String.format("Source span %s not found in annotation matrix.",
-                        createStrRepr(source)));
-            }
-            else {
-                final ArgumentUnit target = argumentRelation.getTarget();
-                final int targetSpanAnnotationId = getAnnotationId(target, spanAnnotationMatrix,
-                        spanAnnotationIds);
-                if (targetSpanAnnotationId < 0) {
-                    LOG.error(String.format("Target span %s not found in annotation matrix.",
-                            createStrRepr(target)));
-                }
-                else {
-                    // The target serves as a key instead of the source because
-                    // it is possible that e.g. one claim has multiple premises
-                    result[sourceSpanAnnotationId] = targetSpanAnnotationId;
-                }
-
-            }
-
-        }
-
-        return result;
+        final Map<String, SpanTextLabel> labelAnnots = getSpanTextLabels(annot,
+                spanAnnotationMatrix);
+        return labelAnnots.get(annot.getType().getShortName());
     }
 
-    private static String createStrRepr(final Annotation source)
+    private static Map<String, SpanTextLabel> getSpanTextLabels(final Annotation annot,
+            final Sparse3DObjectMatrix<String, SpanTextLabel> spanAnnotationMatrix)
     {
-        return String.format("[%d, %d, %s]", source.getBegin(), source.getEnd(),
-                source.getType().getShortName());
+        final int begin = annot.getBegin();
+        final int end = annot.getEnd();
+        return spanAnnotationMatrix.get3DMap(begin, end);
     }
 
     private static int getAnnotationId(final Annotation source,
-            final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix,
-            final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds)
+            final Sparse3DObjectMatrix<String, SpanTextLabel> spanAnnotationMatrix,
+            final Object2IntMap<SpanTextLabel> spanAnnotationIds)
     {
-        final int begin = source.getBegin();
-        final int end = source.getEnd();
-        final String label = source.getType().getShortName();
-        final SpanTextLabel spanAnnotation = spanAnnotationMatrix.get3DValue(begin, end, label);
+        final SpanTextLabel spanAnnotation = getSpanTextLabel(source, spanAnnotationMatrix);
         return spanAnnotation == null ? -1 : spanAnnotationIds.getInt(spanAnnotation);
     }
 
     @Override
-    public SpanAnnotationGraph<ImmutableSpanTextLabel> apply(final JCas jCas)
+    public SpanAnnotationGraph<SpanTextLabel> apply(final JCas jCas)
     {
-        final ReverseLookupOrderedSet<ImmutableSpanTextLabel> spanAnnotationVector;
-        final Sparse3DObjectMatrix<String, ImmutableSpanTextLabel> spanAnnotationMatrix;
+        final ReverseLookupOrderedSet<SpanTextLabel> spanAnnotationVector;
+        final Sparse3DObjectMatrix<String, SpanTextLabel> spanAnnotationMatrix;
         {
             final Collection<ArgumentComponent> argumentComponents = JCasUtil.select(jCas,
                     ArgumentComponent.class);
@@ -126,7 +97,7 @@ final class JCasTextSpanAnnotationGraphFactory
                 // their
                 // ID
                 spanAnnotationVector = new ReverseLookupOrderedSet<>(
-                        new ArrayList<ImmutableSpanTextLabel>(argumentComponentCount));
+                        new ArrayList<SpanTextLabel>(argumentComponentCount));
                 // Just use the size "argumentComponentCount" directly here
                 // because
                 // it
@@ -139,13 +110,13 @@ final class JCasTextSpanAnnotationGraphFactory
             }
 
             for (final ArgumentComponent argumentComponent : argumentComponents) {
-                final ImmutableSpanTextLabel spanAnnotation = TextSpanAnnotationFactory
-                        .getInstance().apply(argumentComponent);
+                final SpanTextLabel spanAnnotation = SpanTextAnnotationFactory.getInstance()
+                        .apply(argumentComponent);
                 final Span span = spanAnnotation.getSpanText().getSpan();
                 final int begin = span.getBegin();
                 final int end = span.getEnd();
                 final String label = spanAnnotation.getLabel();
-                final Map<String, ImmutableSpanTextLabel> spanAnnotations = spanAnnotationMatrix
+                final Map<String, SpanTextLabel> spanAnnotations = spanAnnotationMatrix
                         .fetch3DMap(begin, end);
                 final SpanTextLabel oldSpanAnnotation = spanAnnotations.put(label, spanAnnotation);
                 if (oldSpanAnnotation != null) {
@@ -159,11 +130,35 @@ final class JCasTextSpanAnnotationGraphFactory
 
         final Collection<ArgumentRelation> argumentRelations = JCasUtil.select(jCas,
                 ArgumentRelation.class);
-        final Object2IntMap<ImmutableSpanTextLabel> spanAnnotationIds = spanAnnotationVector
+        final Object2IntMap<SpanTextLabel> spanAnnotationIds = spanAnnotationVector
                 .getReverseLookupMap();
         LOG.info(String.format("Processing %d argument relations.", argumentRelations.size()));
-        final int[] argumentTransitionTable = createArgumentTransitionTable(argumentRelations,
-                spanAnnotationMatrix, spanAnnotationIds);
+
+        final int initialTableRelationValue = -1;
+        final Supplier<int[]> transitionTableArraySupplier = () -> {
+            final int[] result = new int[spanAnnotationIds.size()];
+            // Pre-fill the array in the case that there is no transition for a
+            // given annotation
+            Arrays.fill(result, initialTableRelationValue);
+            return result;
+        };
+        final ArgumentTransitionTableCollector argTransitionTableCollector = new ArgumentTransitionTableCollector(
+                transitionTableArraySupplier, initialTableRelationValue,
+                annot -> getAnnotationId(annot, spanAnnotationMatrix, spanAnnotationIds));
+
+        final Stream<ArgumentRelation> argumentRelationStream = argumentRelations.stream()
+                .map(argumentRelation -> {
+                    final ArgumentUnit source = argumentRelation.getSource();
+                    final Map<Attribute, Object> sourceAnnotAttrs = getSpanTextLabel(source,
+                            spanAnnotationMatrix).getAttributes();
+                    // If the source annotation doesn't have its own category already set, set it to
+                    // the type label of the relation between it and its target
+                    sourceAnnotAttrs.putIfAbsent(Attribute.CATEGORY,
+                            argumentRelation.getType().getShortName());
+                    return argumentRelation;
+                });
+        final int[] argumentTransitionTable = argumentRelationStream
+                .collect(argTransitionTableCollector);
 
         return new SpanAnnotationGraph<>(spanAnnotationVector, argumentTransitionTable);
     }

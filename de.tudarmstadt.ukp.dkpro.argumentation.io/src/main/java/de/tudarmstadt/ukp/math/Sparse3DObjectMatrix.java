@@ -203,13 +203,6 @@ public final class Sparse3DObjectMatrix<K, V>
         return secondDimensionMap == null ? null : secondDimensionMap.get(secondDimensionIdx);
     }
 
-    public V get3DValue(final int firstDimensionIdx, final int secondDimensionIdx,
-            final K thirdDimensionKey)
-    {
-        final Map<K, V> thirdDimensionMap = get3DMap(firstDimensionIdx, secondDimensionIdx);
-        return thirdDimensionMap == null ? null : thirdDimensionMap.get(thirdDimensionKey);
-    }
-
     /**
      * @return the backingMap
      */

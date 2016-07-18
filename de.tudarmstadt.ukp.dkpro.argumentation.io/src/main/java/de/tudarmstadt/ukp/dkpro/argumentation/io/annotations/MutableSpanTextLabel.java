@@ -18,7 +18,6 @@
 package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -27,16 +26,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * An immutable {@link SpanTextLabel} implementation which is also JSON-serializable using
+ * A mutable {@link SpanTextLabel} implementation which is also JSON-serializable using
  * <a href="https://github.com/FasterXML/jackson">Jackson</a>.
  *
  * @author Todd Shore
  * @since Apr 29, 2016
  *
  */
-@JsonPropertyOrder({ ImmutableSpanTextLabel.PROPERTY_TEXT_SPAN,
-        ImmutableSpanTextLabel.PROPERTY_LABEL, ImmutableSpanTextLabel.PROPERTY_ATTRIBUTES })
-public final class ImmutableSpanTextLabel
+@JsonPropertyOrder({ MutableSpanTextLabel.PROPERTY_TEXT_SPAN, MutableSpanTextLabel.PROPERTY_LABEL,
+        MutableSpanTextLabel.PROPERTY_ATTRIBUTES })
+public final class MutableSpanTextLabel
     implements Serializable, SpanTextLabel
 {
 
@@ -51,20 +50,17 @@ public final class ImmutableSpanTextLabel
      */
     private static final long serialVersionUID = -5564537471325147494L;
 
-    private final Map<Attribute, Object> attributes;
+    private Map<Attribute, Object> attributes;
 
-    private final transient int hashCode;
+    private String label;
 
-    private final String label;
-
-    private final ImmutableSpanText spanText;
+    private SpanText spanText;
 
     /**
      *
      */
     @JsonCreator
-    public ImmutableSpanTextLabel(
-            @JsonProperty(PROPERTY_TEXT_SPAN) final ImmutableSpanText spanText,
+    public MutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final SpanText spanText,
             @JsonProperty(PROPERTY_LABEL) final String label,
             @JsonProperty(PROPERTY_ATTRIBUTES) final Map<Attribute, Object> attributes)
     {
@@ -72,17 +68,6 @@ public final class ImmutableSpanTextLabel
         this.label = label;
         this.attributes = attributes;
 
-        hashCode = createHashCode();
-    }
-
-    public int createHashCode()
-    {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (label == null ? 0 : label.hashCode());
-        result = prime * result + (spanText == null ? 0 : spanText.hashCode());
-        result = prime * result + (attributes == null ? 0 : attributes.hashCode());
-        return result;
     }
 
     /*
@@ -99,10 +84,10 @@ public final class ImmutableSpanTextLabel
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof ImmutableSpanTextLabel)) {
+        if (!(obj instanceof MutableSpanTextLabel)) {
             return false;
         }
-        final ImmutableSpanTextLabel other = (ImmutableSpanTextLabel) obj;
+        final MutableSpanTextLabel other = (MutableSpanTextLabel) obj;
         if (label == null) {
             if (other.label != null) {
                 return false;
@@ -125,13 +110,14 @@ public final class ImmutableSpanTextLabel
     @Override
     public Map<Attribute, Object> getAttributes()
     {
-        return Collections.unmodifiableMap(attributes);
+        return attributes;
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanAnnotation# getAnnotationType()
+     * @see de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanAnnotation#
+     * getAnnotationType()
      */
     // @Override
     /*
@@ -154,7 +140,7 @@ public final class ImmutableSpanTextLabel
      */
     @Override
     @JsonProperty(PROPERTY_TEXT_SPAN)
-    public ImmutableSpanText getSpanText()
+    public SpanText getSpanText()
     {
         return spanText;
     }
@@ -162,7 +148,39 @@ public final class ImmutableSpanTextLabel
     @Override
     public int hashCode()
     {
-        return hashCode;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (label == null ? 0 : label.hashCode());
+        result = prime * result + (spanText == null ? 0 : spanText.hashCode());
+        result = prime * result + (attributes == null ? 0 : attributes.hashCode());
+        return result;
+    }
+
+    /**
+     * @param attributes
+     *            the attributes to set
+     */
+    public void setAttributes(final Map<Attribute, Object> attributes)
+    {
+        this.attributes = attributes;
+    }
+
+    /**
+     * @param label
+     *            the label to set
+     */
+    public void setLabel(final String label)
+    {
+        this.label = label;
+    }
+
+    /**
+     * @param spanText
+     *            the spanText to set
+     */
+    public void setSpanText(final SpanText spanText)
+    {
+        this.spanText = spanText;
     }
 
     /*
@@ -174,7 +192,7 @@ public final class ImmutableSpanTextLabel
     public String toString()
     {
         final StringBuilder builder = new StringBuilder();
-        builder.append("ImmutableSpanTextLabel [getTextSpan()=");
+        builder.append("MutableSpanTextLabel [getTextSpan()=");
         builder.append(getSpanText());
         builder.append(", getLabel()=");
         builder.append(getLabel());
