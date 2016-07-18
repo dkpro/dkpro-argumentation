@@ -80,7 +80,7 @@ public final class SpanTextAnnotationFactory
         final ImmutableSpan span = new ImmutableSpan(annotation.getBegin(), annotation.getEnd());
         final ImmutableSpanText spanText = new ImmutableSpanText(span, annotation.getCoveredText());
         final Map<Attribute, Object> attrs = createAttrMap(annotation);
-        return new MutableSpanTextLabel(spanText, annotation.getType().getShortName(), attrs);
+        return new MutableSpanTextLabel<>(spanText, annotation.getType().getShortName(), attrs);
     }
 
 }
