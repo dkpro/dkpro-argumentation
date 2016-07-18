@@ -162,19 +162,18 @@ public final class JCasUtil2
 
     /**
      * Returns whether the given annotations have a non-empty overlap.
-     * <p/>
+     *
      * <p>
      * Note that this method is symmetric. Two annotations overlap
      * if they have at least one character position in common.
      * Annotations that merely touch at the begin or end are not
      * overlapping.
-     * <p/>
-     * <ul>
-     * <li>anno1[0,1], anno2[1,2] => no overlap</li>
-     * <li>anno1[0,2], anno2[1,2] => overlap</li>
-     * <li>anno1[0,2], anno2[0,2] => overlap (same span)</li>
-     * </ul>
      * </p>
+     * <ul>
+     * <li>anno1[0,1], anno2[1,2] =&gt; no overlap</li>
+     * <li>anno1[0,2], anno2[1,2] =&gt; overlap</li>
+     * <li>anno1[0,2], anno2[0,2] =&gt; overlap (same span)</li>
+     * </ul>
      *
      * @param anno1 first annotation
      * @param anno2 second annotation
@@ -187,7 +186,7 @@ public final class JCasUtil2
 
     /**
      * Returns whether two annotations share the same span
-     * <p/>
+     *
      * <p>
      * The method checks the spans based on the begin and end indices and not based on the
      * covered text.
@@ -204,7 +203,7 @@ public final class JCasUtil2
 
     /**
      * Returns the JCas of this annotation.
-     * <p/>
+     *
      * <p>
      * The method converts the potentially thrown {@link CASException} to an
      * unchecked {@link IllegalArgumentException}.
