@@ -18,6 +18,9 @@
 package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations;
 
 /**
+ * An enumeration of annotation attributes which is read from UIMA data and is made accessible
+ * through the classes in this package.
+ * 
  * @author Todd Shore
  * @since Jun 9, 2016
  *

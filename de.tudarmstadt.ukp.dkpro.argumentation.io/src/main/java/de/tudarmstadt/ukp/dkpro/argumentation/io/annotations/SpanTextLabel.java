@@ -25,7 +25,7 @@ public interface SpanTextLabel
     /**
      * @return the attributes
      */
-    Map<Attribute, Object> getAttributes();
+    Map<String, Object> getAttributes();
 
     /*
      * (non-Javadoc)

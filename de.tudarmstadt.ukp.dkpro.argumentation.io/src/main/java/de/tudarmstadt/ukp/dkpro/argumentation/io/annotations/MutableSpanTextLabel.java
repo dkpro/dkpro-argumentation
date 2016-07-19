@@ -50,7 +50,7 @@ public final class MutableSpanTextLabel<T extends SpanText>
      */
     private static final long serialVersionUID = -5564537471325147494L;
 
-    private Map<Attribute, Object> attributes;
+    private Map<String, Object> attributes;
 
     private String label;
 
@@ -62,7 +62,7 @@ public final class MutableSpanTextLabel<T extends SpanText>
     @JsonCreator
     public MutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final T spanText,
             @JsonProperty(PROPERTY_LABEL) final String label,
-            @JsonProperty(PROPERTY_ATTRIBUTES) final Map<Attribute, Object> attributes)
+            @JsonProperty(PROPERTY_ATTRIBUTES) final Map<String, Object> attributes)
     {
         this.spanText = spanText;
         this.label = label;
@@ -108,7 +108,7 @@ public final class MutableSpanTextLabel<T extends SpanText>
     }
 
     @Override
-    public Map<Attribute, Object> getAttributes()
+    public Map<String, Object> getAttributes()
     {
         return attributes;
     }
@@ -160,7 +160,7 @@ public final class MutableSpanTextLabel<T extends SpanText>
      * @param attributes
      *            the attributes to set
      */
-    public void setAttributes(final Map<Attribute, Object> attributes)
+    public void setAttributes(final Map<String, Object> attributes)
     {
         this.attributes = attributes;
     }
