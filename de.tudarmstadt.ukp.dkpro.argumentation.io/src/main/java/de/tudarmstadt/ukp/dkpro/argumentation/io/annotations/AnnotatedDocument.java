@@ -38,9 +38,6 @@ public final class AnnotatedDocument<T extends SpanTextLabel>
 
     private final String text;
 
-    /**
-     *
-     */
     @JsonCreator
     public AnnotatedDocument(@JsonProperty(PROPERTY_TEXT) final String text,
             @JsonProperty(PROPERTY_ANNOTATIONS) final SpanAnnotationGraph<? extends T> annotations)

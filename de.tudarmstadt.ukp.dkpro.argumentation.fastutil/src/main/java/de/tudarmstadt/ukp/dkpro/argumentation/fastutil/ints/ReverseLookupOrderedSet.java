@@ -56,8 +56,7 @@ public final class ReverseLookupOrderedSet<E>
     private final List<E> decorated;
 
     /**
-     * The reverse-lookup index map for the elements of {@link #decorated the decorated
-     * <code>List</code>}.
+     * The reverse-lookup index map for the elements of {@link #decorated the decorated list}.
      */
     private transient Object2IntMap<E> reverseLookupMap;
 
@@ -216,7 +215,7 @@ public final class ReverseLookupOrderedSet<E>
 
     /**
      * @return An unmodifiable view of the reverse-lookup index map for the elements of
-     *         {@link #getDecorated() the decorated <code>List</code>}.
+     *         {@link #getDecorated() the decorated list}.
      */
     public Object2IntMap<E> getReverseLookupMap()
     {

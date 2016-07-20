@@ -17,7 +17,7 @@
  */
 package de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.uima;
 
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -61,11 +61,11 @@ public final class SpanTextAnnotationFactory
         return SingletonHolder.INSTANCE;
     }
 
-    private static Map<Attribute, Object> createAttrMap(final Annotation annotation)
+    private static Map<String, Object> createAttrMap(final Annotation annotation)
     {
-        final Map<Attribute, Object> result = new EnumMap<>(Attribute.class);
+        final Map<String, Object> result = new HashMap<>();
         if (annotation instanceof Claim) {
-            result.put(Attribute.CATEGORY, ((Claim) annotation).getStance());
+            result.put(Attribute.CATEGORY.toString(), ((Claim) annotation).getStance());
         }
         return result;
     }
@@ -79,8 +79,8 @@ public final class SpanTextAnnotationFactory
     {
         final ImmutableSpan span = new ImmutableSpan(annotation.getBegin(), annotation.getEnd());
         final ImmutableSpanText spanText = new ImmutableSpanText(span, annotation.getCoveredText());
-        final Map<Attribute, Object> attrs = createAttrMap(annotation);
-        return new MutableSpanTextLabel(spanText, annotation.getType().getShortName(), attrs);
+        final Map<String, Object> attrs = createAttrMap(annotation);
+        return new MutableSpanTextLabel<>(spanText, annotation.getType().getShortName(), attrs);
     }
 
 }

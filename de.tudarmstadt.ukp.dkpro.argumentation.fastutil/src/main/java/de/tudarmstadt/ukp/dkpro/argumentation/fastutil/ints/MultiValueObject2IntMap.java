@@ -64,6 +64,10 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection>
      *            The inclusive minimum of the key values to increment.
      * @param toValue
      *            The exclusive maximum of the key values to increment.
+     * @param <K>
+     *            The key type.
+     * @param <C>
+     *            The type of {@code IntCollection} object used to contain the values for each key.
      */
     public static final <K, C extends IntSortedSet> void incrementValues(
             final MultiValueObject2IntMap<K, C> multimap,
@@ -87,6 +91,10 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection>
      *            The keys to add.
      * @param startValue
      *            The integer value to start at.
+     * @param <K>
+     *            The key type.
+     * @param <C>
+     *            The type of {@code IntCollection} object used to contain the values for each key.
      * @return If at least one value was added to the map.
      */
     public static final <K, C extends IntCollection> boolean putIncrementingValues(
@@ -124,6 +132,10 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection>
      * @param incrementedValues
      *            A {@link IntCollection} of elements in the original mapping which were
      *            incremented.
+     * @param <K>
+     *            The key type.
+     * @param <C>
+     *            The type of {@code IntCollection} object used to contain the values for each key.
      */
     private static final <K, C extends IntSortedSet> void incrementValues(
             final MultiValueObject2IntMap<K, C> multimap, final K keyToIncrement,

@@ -36,6 +36,8 @@ public final class CollectionSize
      *            The {@code Collection} to increase the size of.
      * @param size
      *            The target size of the {@code Collection}.
+     * @param <E>
+     *            The collection element type.
      * @return {@code true} iff elements were added to the {@code Collection}.
      */
     public static final <E> boolean ensureSize(final Collection<E> collection, final int size)
@@ -53,6 +55,8 @@ public final class CollectionSize
      *            The target size of the {@code Collection}.
      * @param defaultElement
      *            The element reference to add until the {@code Collection} is of the target size.
+     * @param <E>
+     *            The collection element type.
      * @return {@code true} iff elements were added to the {@code Collection}.
      */
     public static final <E> boolean ensureSize(final Collection<E> collection, final int size,

@@ -51,21 +51,6 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel>
 
     public static final String PROPERTY_SPAN_ANNOTATIONS = "spanAnnotations";
 
-    private final int[] relationTransitionTable;
-
-    private transient final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix;
-
-    private final ReverseLookupOrderedSet<T> spanAnnotationVector;
-
-    public SpanAnnotationGraph(
-            final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
-            final int spanAnnotationMatrixSize, final int[] relationTransitionTable)
-    {
-        this(new ReverseLookupOrderedSet<>(
-                createList(spanAnnotationMatrix.int2ObjectEntrySet(), spanAnnotationMatrixSize)),
-                spanAnnotationMatrix, relationTransitionTable);
-    }
-
     private static <T> List<T> createList(
             final ObjectSet<? extends Int2ObjectMap.Entry<? extends Int2ObjectMap<? extends Map<?, T>>>> matrixRows,
             final int size)
@@ -81,6 +66,21 @@ public final class SpanAnnotationGraph<T extends SpanTextLabel>
             }
         }
         return result;
+    }
+
+    private final int[] relationTransitionTable;
+
+    private transient final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix;
+
+    private final ReverseLookupOrderedSet<T> spanAnnotationVector;
+
+    public SpanAnnotationGraph(
+            final Int2ObjectMap<? extends Int2ObjectMap<? extends Map<String, T>>> spanAnnotationMatrix,
+            final int spanAnnotationMatrixSize, final int[] relationTransitionTable)
+    {
+        this(new ReverseLookupOrderedSet<>(
+                createList(spanAnnotationMatrix.int2ObjectEntrySet(), spanAnnotationMatrixSize)),
+                spanAnnotationMatrix, relationTransitionTable);
     }
 
     @SuppressWarnings("deprecation")

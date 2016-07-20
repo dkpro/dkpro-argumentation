@@ -149,11 +149,11 @@ final class JCasTextSpanAnnotationGraphFactory
         final Stream<ArgumentRelation> argumentRelationStream = argumentRelations.stream()
                 .map(argumentRelation -> {
                     final ArgumentUnit source = argumentRelation.getSource();
-                    final Map<Attribute, Object> sourceAnnotAttrs = getSpanTextLabel(source,
+                    final Map<String, Object> sourceAnnotAttrs = getSpanTextLabel(source,
                             spanAnnotationMatrix).getAttributes();
                     // If the source annotation doesn't have its own category already set, set it to
                     // the type label of the relation between it and its target
-                    sourceAnnotAttrs.putIfAbsent(Attribute.CATEGORY,
+                    sourceAnnotAttrs.putIfAbsent(Attribute.CATEGORY.toString(),
                             argumentRelation.getType().getShortName());
                     return argumentRelation;
                 });

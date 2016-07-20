@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({ MutableSpanTextLabel.PROPERTY_TEXT_SPAN, MutableSpanTextLabel.PROPERTY_LABEL,
         MutableSpanTextLabel.PROPERTY_ATTRIBUTES })
-public final class MutableSpanTextLabel
+public final class MutableSpanTextLabel<T extends SpanText>
     implements Serializable, SpanTextLabel
 {
 
@@ -50,19 +50,16 @@ public final class MutableSpanTextLabel
      */
     private static final long serialVersionUID = -5564537471325147494L;
 
-    private Map<Attribute, Object> attributes;
+    private Map<String, Object> attributes;
 
     private String label;
 
-    private SpanText spanText;
+    private T spanText;
 
-    /**
-     *
-     */
     @JsonCreator
-    public MutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final SpanText spanText,
+    public MutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final T spanText,
             @JsonProperty(PROPERTY_LABEL) final String label,
-            @JsonProperty(PROPERTY_ATTRIBUTES) final Map<Attribute, Object> attributes)
+            @JsonProperty(PROPERTY_ATTRIBUTES) final Map<String, Object> attributes)
     {
         this.spanText = spanText;
         this.label = label;
@@ -87,7 +84,7 @@ public final class MutableSpanTextLabel
         if (!(obj instanceof MutableSpanTextLabel)) {
             return false;
         }
-        final MutableSpanTextLabel other = (MutableSpanTextLabel) obj;
+        final MutableSpanTextLabel<?> other = (MutableSpanTextLabel<?>) obj;
         if (label == null) {
             if (other.label != null) {
                 return false;
@@ -108,7 +105,7 @@ public final class MutableSpanTextLabel
     }
 
     @Override
-    public Map<Attribute, Object> getAttributes()
+    public Map<String, Object> getAttributes()
     {
         return attributes;
     }
@@ -140,7 +137,7 @@ public final class MutableSpanTextLabel
      */
     @Override
     @JsonProperty(PROPERTY_TEXT_SPAN)
-    public SpanText getSpanText()
+    public T getSpanText()
     {
         return spanText;
     }
@@ -160,7 +157,7 @@ public final class MutableSpanTextLabel
      * @param attributes
      *            the attributes to set
      */
-    public void setAttributes(final Map<Attribute, Object> attributes)
+    public void setAttributes(final Map<String, Object> attributes)
     {
         this.attributes = attributes;
     }
@@ -178,7 +175,7 @@ public final class MutableSpanTextLabel
      * @param spanText
      *            the spanText to set
      */
-    public void setSpanText(final SpanText spanText)
+    public void setSpanText(final T spanText)
     {
         this.spanText = spanText;
     }

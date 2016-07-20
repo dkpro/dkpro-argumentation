@@ -51,9 +51,6 @@ public final class ImmutableSpanText
 
     private final ImmutableSpan span;
 
-    /**
-     *
-     */
     @JsonCreator
     public ImmutableSpanText(@JsonProperty(PROPERTY_SPAN) final ImmutableSpan span,
             @JsonProperty(PROPERTY_COVERED_TEXT) final String coveredText)
