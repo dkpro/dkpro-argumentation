@@ -56,9 +56,6 @@ public final class MutableSpanTextLabel<T extends SpanText>
 
     private T spanText;
 
-    /**
-     *
-     */
     @JsonCreator
     public MutableSpanTextLabel(@JsonProperty(PROPERTY_TEXT_SPAN) final T spanText,
             @JsonProperty(PROPERTY_LABEL) final String label,

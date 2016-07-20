@@ -59,8 +59,7 @@ public final class ReverseLookupList<E>
     private final Supplier<? extends IntSortedSet> indexCollectionFactory;
 
     /**
-     * The reverse-lookup index map for the elements of {@link #decorated the decorated
-     * <code>List</code>}.
+     * The reverse-lookup index map for the elements of {@link #decorated the decorated list}.
      */
     private transient MultiValueObject2IntMap<E, ? extends IntSortedSet> reverseLookupMap;
 
@@ -76,6 +75,9 @@ public final class ReverseLookupList<E>
     /**
      * @param decorated
      *            The {@link List} to decorate.
+     * @param indexCollectionFactory
+     *            The {@link Supplier} used to create new {@link IntSortedSet} instances which
+     *            represents all the indices at which a given object occurs in the list.
      */
     public ReverseLookupList(final List<E> decorated,
             final Supplier<? extends IntSortedSet> indexCollectionFactory)
@@ -226,7 +228,7 @@ public final class ReverseLookupList<E>
 
     /**
      * @return An unmodifiable view of the reverse-lookup index map for the elements of
-     *         {@link #getDecorated() the decorated <code>List</code>}.
+     *         {@link #getDecorated() the decorated list}.
      */
     public Map<E, IntSortedSet> getReverseLookupMap()
     {

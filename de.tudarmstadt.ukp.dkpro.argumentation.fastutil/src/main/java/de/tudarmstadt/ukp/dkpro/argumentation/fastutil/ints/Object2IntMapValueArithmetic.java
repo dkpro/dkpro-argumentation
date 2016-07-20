@@ -42,6 +42,8 @@ public final class Object2IntMapValueArithmetic
      *            The inclusive minimum of the key values to increment.
      * @param toValue
      *            The exclusive maximum of the key values to increment.
+     * @param <K>
+     *            The map key type.
      */
     public static final <K> void incrementValues(final Object2IntMap<K> map,
             final Collection<? extends K> keysToIncrement, final int increment, final int fromValue,
@@ -63,6 +65,8 @@ public final class Object2IntMapValueArithmetic
      *            The keys to add.
      * @param startValue
      *            The integer value to start at.
+     * @param <K>
+     *            The map key type.
      */
     public static final <K> void putIncrementingValues(final Object2IntMap<K> map,
             final Iterable<? extends K> keysToAdd, final int startValue)
@@ -93,6 +97,8 @@ public final class Object2IntMapValueArithmetic
      * @param incrementedValues
      *            A {@link IntCollection} of elements in the original mapping which were
      *            incremented.
+     * @param <K>
+     *            The map key type.
      */
     private static final <K> void incrementValues(final Object2IntMap<K> map,
             final K keyToIncrement, final int increment, final int fromValue, final int toValue,

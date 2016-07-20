@@ -30,7 +30,8 @@ public interface SpanTextLabel
     /*
      * (non-Javadoc)
      *
-     * @see de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanAnnotation# getAnnotationType()
+     * @see de.tudarmstadt.ukp.dkpro.argumentation.io.annotations.SpanAnnotation#
+     * getAnnotationType()
      */
     String getLabel();
 

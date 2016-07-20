@@ -51,9 +51,6 @@ public final class ImmutableSpan
 
     private final transient int hashCode;
 
-    /**
-     *
-     */
     @JsonCreator
     public ImmutableSpan(@JsonProperty(PROPERTY_BEGIN) final int begin,
             @JsonProperty(PROPERTY_END) final int end)
