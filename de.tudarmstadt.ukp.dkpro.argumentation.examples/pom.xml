@@ -29,6 +29,10 @@
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.segmentation-asl</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.dkpro.argumentation</groupId>
+			<artifactId>dkpro-argumentation-preprocessing</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

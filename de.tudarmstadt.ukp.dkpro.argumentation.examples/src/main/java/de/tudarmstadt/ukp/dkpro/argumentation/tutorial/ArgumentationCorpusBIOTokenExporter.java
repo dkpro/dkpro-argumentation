@@ -1,5 +1,5 @@
 /*
- * Copyright 2015
+ * Copyright 2017
  * Ubiquitous Knowledge Processing (UKP) Lab
  * Technische Universität Darmstadt
  *
@@ -18,7 +18,8 @@
 
 package de.tudarmstadt.ukp.dkpro.argumentation.tutorial;
 
-import de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter;
+import de.tudarmstadt.ukp.dkpro.argumentation.io.writer.TokenTabBIOArgumentWriter;
+import de.tudarmstadt.ukp.dkpro.argumentation.preprocessing.annotation.ArgumentTokenBIOAnnotator;
 import de.tudarmstadt.ukp.dkpro.core.io.xmi.XmiReader;
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.CollectionReaderFactory;
@@ -27,27 +28,39 @@ import org.apache.uima.fit.pipeline.SimplePipeline;
 /**
  * Reads the complete argumentation corpus from
  * https://www.ukp.tu-darmstadt.de/data/argumentation-mining/argument-annotated-user-generated-web-discourse/
- * and prints argument units (argument components, argument relations, implicit component, etc.)
+ * and writes argument units (argument components, argument relations, implicit component, etc.)
+ * into files split by tokens with their corresponding BIO tag.
  *
  * @author Ivan Habernal
  */
-public class ArgumentationCorpusDebugger
+public class ArgumentationCorpusBIOTokenExporter
 {
     public static void main(String[] args)
     {
         // TODO set this properly to "gold.data.toulmin" directory
-//        final String annotatedCorpusDir = "data/gold.data.toulmin/";
         final String annotatedCorpusDir = args[0];
+
+        // TODO set this to output directory
+        final String outputDir = args[1];
 
         try {
             SimplePipeline.runPipeline(CollectionReaderFactory.createReaderDescription(
-                            XmiReader.class,
-                            XmiReader.PARAM_SOURCE_LOCATION, annotatedCorpusDir,
-                            XmiReader.PARAM_PATTERNS, "[+]*.xmi",
-                            XmiReader.PARAM_LENIENT, true
+                    XmiReader.class,
+                    XmiReader.PARAM_SOURCE_LOCATION, annotatedCorpusDir,
+                    XmiReader.PARAM_PATTERNS, "[+]*.xmi",
+                    XmiReader.PARAM_LENIENT, true
                     ),
+                    // annotate with BIO tags
                     AnalysisEngineFactory.createEngineDescription(
-                            ArgumentDumpWriter.class
+                            ArgumentTokenBIOAnnotator.class,
+                            ArgumentTokenBIOAnnotator.PARAM_LABEL_GRANULARITY,
+                            ArgumentTokenBIOAnnotator.BIO
+                    ),
+                    // export to TXT files
+                    AnalysisEngineFactory.createEngineDescription(
+                            TokenTabBIOArgumentWriter.class,
+                            TokenTabBIOArgumentWriter.PARAM_TARGET_LOCATION,
+                            outputDir
                     )
             );
         }
