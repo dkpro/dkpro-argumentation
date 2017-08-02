@@ -123,7 +123,7 @@ public final class JCasUtil2
      */
     public static <T extends TOP> List<T> selectAsList(final JCas jCas, final Class<T> type)
     {
-        return new ArrayList<T>(JCasUtil.select(jCas, type));
+        return new ArrayList<>(JCasUtil.select(jCas, type));
     }
 
     /**
