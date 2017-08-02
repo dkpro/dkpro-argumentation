@@ -182,4 +182,29 @@ public class ArgumentUnitUtilsTest
         exception.expect(IllegalArgumentException.class);
         ArgumentUnitUtils.setIsImplicit(au2, true);
     }
+
+    @Test
+    public void testPropertiesToString()
+            throws Exception
+    {
+        // create a single unit
+        ArgumentUnit au1 = new ArgumentUnit(cas.getJCas());
+        au1.setBegin(0);
+        au1.setEnd(1);
+        au1.addToIndexes();
+
+        // set a dummy property
+        ArgumentUnitUtils.setProperty(au1, "key", "value");
+        String properties1 = au1.getProperties();
+
+        // wait for two seconds
+        Thread.sleep(2000);
+
+        // set the same property again
+        ArgumentUnitUtils.setProperty(au1, "key", "value");
+        String properties2 = au1.getProperties();
+
+        // they must be identical
+        assertEquals(properties1, properties2);
+    }
 }
