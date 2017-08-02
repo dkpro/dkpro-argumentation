@@ -18,10 +18,10 @@
 
 package de.tudarmstadt.ukp.dkpro.argumentation.types;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.Properties;
+import org.apache.commons.lang.StringUtils;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Tools for handling java {@code Properties} as a {@code properties} field
@@ -89,7 +89,17 @@ public class ArgumentUnitUtils
         }
 
         stringWriter.flush();
-        return stringWriter.toString();
+        String result = stringWriter.toString();
+
+        // let's get rid of the timestamp from the properties as it cannot be disabled
+        // in the Properties implementation
+        List<String> lines = new ArrayList<>(Arrays.asList(result.split("\n")));
+        // Remove the second line
+        lines.remove(1);
+        // join back
+        result = StringUtils.join(lines, "\n");
+
+        return result;
     }
 
     /**
