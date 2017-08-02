@@ -24,7 +24,7 @@ DKPro Argumentation is available from Maven Central. For working with the UIMA t
 
 ## Modules
 
-### de.tudarmstadt.ukp.dkpro.argumentation.types
+### org.dkpro.argumentation.types
 
 The UIMA type system is the central part of DKPro Argumentation. It allows one to annotate argument components and relations on top of the UIMA/DKPro framework.
 
@@ -60,11 +60,11 @@ as shown in
 ##### How-to
 
 1. Modify paths to gold data
-  - Modify `de.tudarmstadt.ukp.dkpro.argumentation.tutorial.ArgumentationCorpusDebugger` and set the `annotatedCorpusDir` variable to point to the gold data located in `gold.data.toulmin` directory
+  - Modify `org.dkpro.argumentation.tutorial.ArgumentationCorpusDebugger` and set the `annotatedCorpusDir` variable to point to the gold data located in `gold.data.toulmin` directory
 2. Run `ArgumentationCorpusDebugger`
   - It will print annotated argument components, relations, and other info to the std. out
 3. Explore it further!
-  - Have a look at `de.tudarmstadt.ukp.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `de.tudarmstadt.ukp.dkpro.argumentation.io.writer` package which shows how to access the argument components, their text, tokens, sentences, etc.
+  - Have a look at `org.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `org.dkpro.argumentation.io.writer` package which shows how to access the argument components, their text, tokens, sentences, etc.
 
 
 &copy; 2013-2016 UKP

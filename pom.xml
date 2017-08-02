@@ -30,7 +30,7 @@
 		<!--
 		This is required otherwise the compiler fails with
 		'Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile
-		(default-compile) on project de.tudarmstadt.ukp.dkpro.argumentation.types: Fatal error
+		(default-compile) on project org.dkpro.argumentation.types: Fatal error
 		compiling: invalid target release: 1.8.0_91
 		-->
 		<java.version>1.8</java.version>
@@ -86,11 +86,11 @@
 	</developers>
 
 	<modules>
-		<module>de.tudarmstadt.ukp.dkpro.argumentation.types</module>
-		<module>de.tudarmstadt.ukp.dkpro.argumentation.io</module>
-		<module>de.tudarmstadt.ukp.dkpro.argumentation.preprocessing</module>
-		<module>de.tudarmstadt.ukp.dkpro.argumentation.misc</module>
-		<module>de.tudarmstadt.ukp.dkpro.argumentation.examples</module>
+		<module>dkpro-argumentation-types</module>
+		<module>dkpro-argumentation-io</module>
+		<module>dkpro-argumentation-preprocessing</module>
+		<module>dkpro-argumentation-misc</module>
+		<module>dkpro-argumentation-examples</module>
 	</modules>
 
 	<build>
@@ -105,7 +105,7 @@
 					<groups>
 						<group>
 							<title>Analysis Components</title>
-							<packages>de.tudarmstadt.ukp.dkpro.argumentation*</packages>
+							<packages>org.dkpro.argumentation*</packages>
 						</group>
 					</groups>
 					<sourceFileExcludes>
