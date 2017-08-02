@@ -166,11 +166,6 @@
 				<artifactId>dkpro-argumentation-preprocessing</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.dkpro.argumentation</groupId>
-				<artifactId>dkpro-argumentation-fastutil</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
