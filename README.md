@@ -20,7 +20,7 @@ DKPro Argumentation is available from Maven Central. For working with the UIMA t
 </dependency>
 ```
 
-* Current development version: 0.1.1-SNAPSHOT
+* Current development version: 0.2.0-SNAPSHOT
 
 ## Modules
 
@@ -67,7 +67,7 @@ as shown in
   - Have a look at `org.dkpro.argumentation.io.writer.ArgumentDumpWriter` from the `org.dkpro.argumentation.io.writer` package which shows how to access the argument components, their text, tokens, sentences, etc.
 
 
-&copy; 2013-2016 UKP
+&copy; 2013-2017 UKP
 
 Argumentation Mining Special Interest Group members
 
